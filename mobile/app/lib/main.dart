@@ -1,6 +1,7 @@
 import 'package:app/pages/settings_widget.dart';
 import 'package:app/pages/conversations_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
@@ -37,18 +38,18 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
   );
 }
 
-// main.dart
 void main() {
   runApp(
-    ChangeNotifierProvider<MyState>(
-      create: (_) => MyState(),
+    ProviderScope(
       child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({super.key});
+
+  final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
 
   // This list holds the pages to navigate between
   final List<Widget> _pages = [
@@ -60,8 +61,8 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    int selectedIndex = Provider.of<MyState>(context).selectedIndex;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(selectedIndexProvider);
 
     return MaterialApp(
       title: 'App',
@@ -78,12 +79,12 @@ class MyApp extends StatelessWidget {
             centerTitle: false,
             elevation: 0,
           ),
-        body: _pages[Provider.of<MyState>(context, listen: false).selectedIndex],
+        body: _pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           // Set the number of items to the length of the pages list
           items: List.generate(_pages.length, (index) => _buildNavigationItem(index)),
           currentIndex: selectedIndex,
-          onTap: (index) => Provider.of<MyState>(context, listen: false).selectedIndex = index, // Update using Provider
+          onTap: (index) => ref.read(selectedIndexProvider.notifier).state = index,
         ),
       ),
     );
