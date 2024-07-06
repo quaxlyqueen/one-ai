@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
 
-// my_state.dart (Provider for selected index)
 final _selectedIndex = ValueNotifier<int>(0);
 
 class MyState with ChangeNotifier {
@@ -54,7 +53,7 @@ class MyApp extends ConsumerWidget {
   // This list holds the pages to navigate between
   final List<Widget> _pages = [
     // Replace with the widget for your first page (e.g., HomeScreen())
-    const Center(child: ConversationsListWidget()),
+    Center(child: ConversationsListWidget()),
     // Replace with the widget for your second page (e.g., SettingsPage())
     const Center(child: SettingsWidget()),
   ];

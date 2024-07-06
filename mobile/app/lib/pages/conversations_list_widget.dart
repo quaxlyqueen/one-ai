@@ -1,3 +1,6 @@
+import 'package:app/pages/conversation_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '/components/conversation_options/conversation_options_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +12,18 @@ import 'package:app/theme.dart';
 import 'conversations_list_model.dart';
 export 'conversations_list_model.dart';
 
+final conversationIndex = ValueNotifier<int>(0);
+
+
+class MyState with ChangeNotifier {
+  int get selectedIndex => conversationIndex.value;
+
+  set selectedIndex(int value) {
+    conversationIndex.value = value;
+    notifyListeners();
+  }
+}
+
 class ConversationsListWidget extends StatefulWidget {
   const ConversationsListWidget({super.key});
 
@@ -19,6 +34,15 @@ class ConversationsListWidget extends StatefulWidget {
 
 class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   late ConversationsListModel _model;
+  final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
+
+  final List<Widget> _pages = [
+    // Replace with the widget for your first page (e.g., HomeScreen())
+    Center(child: ConversationWidget()),
+
+    // TODO: Dynamically generate list of pages based upon existing conversations.
+    // This requires retrievable conversations from the server side.
+  ];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -50,7 +74,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                   child: Text(
-                    'AI conversations',
+                    'Conversations',
                     style: AppTheme.labelMedium,
                   ),
                 ),
@@ -87,7 +111,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                   child: const Align(
                                     alignment: AlignmentDirectional(0, 0),
                                     child: Icon(
-                                      Icons.settings_outlined,
+                                      Icons.settings_outlined, // TODO: Dynamically generate or allow users to color code/tag conversations.
                                       color: AppTheme.secondaryText,
                                       size: 48,
                                     ),
@@ -121,7 +145,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Hello World',
+                                                  'Hello World', // TODO: Dynamically obtain conversation title from server.
                                                   style: AppTheme.headlineLarge,
                                                 ),
                                               ],
@@ -135,7 +159,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               children: [
                                                 Expanded(
                                                   child: Text(
-                                                    'Hello World',
+                                                    'Hello World', // TODO: Summary or list of models used
                                                     style: AppTheme.bodyMedium,
                                                   ),
                                                 ),
@@ -161,6 +185,12 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                 ),
                               ],
                             ),
+                            onTap: () => {
+                              print("opening existing conversation")
+                            },
+                            onLongPress: () => {
+                              print("opening options")
+                            },
                           ),
                         ),
                       ],
@@ -169,67 +199,6 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                 ),
               ],
             ),
-      // child: Scaffold(
-      //   key: scaffoldKey,
-      //   backgroundColor: AppTheme.secondaryBackground,
-      //   floatingActionButton: InkWell(
-      //     splashColor: Colors.transparent,
-      //     focusColor: Colors.transparent,
-      //     hoverColor: Colors.transparent,
-      //     highlightColor: Colors.transparent,
-      //     onLongPress: () async {
-      //       await showModalBottomSheet(
-      //         isScrollControlled: true,
-      //         backgroundColor: Colors.transparent,
-      //         enableDrag: false,
-      //         context: context,
-      //         builder: (context) {
-      //           return GestureDetector(
-      //             onTap: () => _model.unfocusNode.canRequestFocus
-      //                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-      //                 : FocusScope.of(context).unfocus(),
-      //             child: Padding(
-      //               padding: MediaQuery.viewInsetsOf(context),
-      //               child: const ConversationOptionsWidget(),
-      //             ),
-      //           );
-      //         },
-      //       ).then((value) => safeSetState(() {}));
-      //
-      //       // TODO
-      //       //context.pushNamed('Conversation');
-      //     },
-      //     child: FloatingActionButton(
-      //       // TODO
-      //       // onPressed: () async {
-      //       //   context.pushNamed('Conversation');
-      //       // },
-      //       onPressed: () {
-      //         print("fab pressed");
-      //       },
-      //       backgroundColor: AppTheme.primaryBackground,
-      //       elevation: 8,
-      //       child: const Icon(
-      //         Icons.add,
-      //         color: AppTheme.info,
-      //         size: 24,
-      //       ),
-      //     ),
-      //   ),
-      //   appBar: AppBar(
-      //     backgroundColor: AppTheme.secondaryBackground,
-      //     automaticallyImplyLeading: false,
-      //     title: const Text(
-      //       'My Chats',
-      //       style: AppTheme.headlineLarge,
-      //     ),
-      //     actions: const [],
-      //     centerTitle: false,
-      //     elevation: 0,
-      //   ),
-      //   body: SafeArea(
-      //
-      //   ),
       ),
     );
   }
