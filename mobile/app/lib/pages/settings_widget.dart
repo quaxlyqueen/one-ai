@@ -3,10 +3,8 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -49,8 +47,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 90.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 90.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -68,8 +66,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 90.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 90.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -105,7 +103,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                       letterSpacing: 0,
                     ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: false,
               elevation: 0,
             )
@@ -134,14 +132,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 16),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 16),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+                                const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -151,7 +149,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   size: 32,
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12, 0, 0, 0),
                                   child: Text(
                                     'check.io',
@@ -177,7 +175,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 12, 0, 0),
                                   child: Text(
                                     'Platform Navigation',
@@ -190,10 +188,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -204,7 +202,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -217,7 +215,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Dashboard',
@@ -237,10 +235,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -251,7 +249,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -264,7 +262,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Chats',
@@ -284,10 +282,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -298,7 +296,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -311,7 +309,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Projects',
@@ -331,10 +329,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -345,7 +343,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -358,7 +356,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(12, 0, 0, 0),
                                               child: Text(
                                                 'Recent Orders',
@@ -384,9 +382,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             ),
                                             child: Align(
                                               alignment:
-                                                  AlignmentDirectional(0, 0),
+                                                  const AlignmentDirectional(0, 0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(8, 4, 8, 4),
                                                 child: Text(
                                                   '12',
@@ -412,7 +410,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 0, 0),
                                   child: Text(
                                     'Settings',
@@ -425,10 +423,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -439,7 +437,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -452,7 +450,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Billing',
@@ -472,10 +470,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     curve: Curves.easeInOut,
                                     width: double.infinity,
                                     height: 44,
@@ -486,7 +484,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -499,7 +497,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Explore',
@@ -518,14 +516,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(height: 12)),
+                              ].divide(const SizedBox(height: 12)),
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0, -1),
+                            alignment: const AlignmentDirectional(0, -1),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 16),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 16),
                               child: Container(
                                 width: 250,
                                 height: 50,
@@ -540,7 +538,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4),
+                                  padding: const EdgeInsets.all(4),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -604,7 +602,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   size: 16,
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(4, 0, 0, 0),
                                                   child: Text(
                                                     'Light Mode',
@@ -693,7 +691,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   size: 16,
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(4, 0, 0, 0),
                                                   child: Text(
                                                     'Dark Mode',
@@ -736,7 +734,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                                const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -753,14 +751,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(2),
+                                    padding: const EdgeInsets.all(2),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: CachedNetworkImage(
                                         fadeInDuration:
-                                            Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         fadeOutDuration:
-                                            Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         imageUrl:
                                             'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                         width: 44,
@@ -772,7 +770,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12, 0, 0, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -806,7 +804,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -826,7 +824,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                   ),
                 Expanded(
                   child: Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -839,13 +837,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                             Container(
                               width: double.infinity,
                               height: 24,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                             ),
                           Align(
-                            alignment: AlignmentDirectional(0, -1),
+                            alignment: const AlignmentDirectional(0, -1),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                               child: Wrap(
                                 spacing: 16,
                                 runSpacing: 16,
@@ -858,7 +856,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                 children: [
                                   Container(
                                     width: double.infinity,
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 390,
                                     ),
                                     decoration: BoxDecoration(
@@ -875,7 +873,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(16),
+                                          padding: const EdgeInsets.all(16),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -896,15 +894,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(2),
+                                                  padding: const EdgeInsets.all(2),
                                                   child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
                                                     child: CachedNetworkImage(
-                                                      fadeInDuration: Duration(
+                                                      fadeInDuration: const Duration(
                                                           milliseconds: 500),
-                                                      fadeOutDuration: Duration(
+                                                      fadeOutDuration: const Duration(
                                                           milliseconds: 500),
                                                       imageUrl:
                                                           'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
@@ -917,7 +915,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(16, 4, 0, 4),
                                                   child: Column(
                                                     mainAxisSize:
@@ -939,7 +937,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0, 4, 0, 0),
                                                         child: Text(
@@ -973,7 +971,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 12),
                                                 child: Container(
                                                   width: 200,
@@ -987,7 +985,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 12, 12, 12, 0),
                                                     child: Column(
@@ -1006,7 +1004,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(0,
                                                                       8, 0, 4),
                                                           child: Text(
@@ -1047,7 +1045,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 12),
                                                 child: Container(
                                                   width: 200,
@@ -1061,7 +1059,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 12, 12, 12, 0),
                                                     child: Column(
@@ -1081,7 +1079,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(0,
                                                                       8, 0, 4),
                                                           child: Text(
@@ -1127,10 +1125,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                   Container(
                                     width: double.infinity,
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 470,
                                     ),
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -1151,7 +1149,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16, 12, 0, 12),
                                             child: Text(
                                               'My Account Information',
@@ -1168,7 +1166,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 1),
                                           child: Container(
                                             width: double.infinity,
@@ -1183,7 +1181,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
-                                                  offset: Offset(
+                                                  offset: const Offset(
                                                     0,
                                                     1,
                                                   ),
@@ -1192,7 +1190,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               shape: BoxShape.rectangle,
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(16, 0, 16, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1217,7 +1215,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   1, 0),
                                                           child: Icon(
                                                             Icons
@@ -1238,7 +1236,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 1),
                                           child: Container(
                                             width: double.infinity,
@@ -1253,7 +1251,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
-                                                  offset: Offset(
+                                                  offset: const Offset(
                                                     0,
                                                     1,
                                                   ),
@@ -1262,7 +1260,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               shape: BoxShape.rectangle,
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(16, 0, 16, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1292,7 +1290,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   1, 0),
                                                           child: Icon(
                                                             Icons
@@ -1313,7 +1311,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 12, 0, 0),
                                           child: Container(
                                             width: double.infinity,
@@ -1330,7 +1328,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(16, 12, 0, 12),
                                               child: Text(
                                                 'Support',
@@ -1348,7 +1346,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 1),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1365,7 +1363,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     transitionType:
                                                         PageTransitionType
                                                             .rightToLeft,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 250),
                                                   ),
                                                 },
@@ -1384,7 +1382,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .alternate,
-                                                    offset: Offset(
+                                                    offset: const Offset(
                                                       0,
                                                       1,
                                                     ),
@@ -1393,7 +1391,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 shape: BoxShape.rectangle,
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(16, 0, 16, 0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1423,7 +1421,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     1, 0),
                                                             child: Icon(
                                                               Icons
@@ -1445,7 +1443,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 1),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1484,7 +1482,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .alternate,
-                                                    offset: Offset(
+                                                    offset: const Offset(
                                                       0,
                                                       1,
                                                     ),
@@ -1493,7 +1491,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 shape: BoxShape.rectangle,
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(16, 0, 16, 0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1520,7 +1518,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     1, 0),
                                                             child: Icon(
                                                               Icons
@@ -1542,13 +1540,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0, -1),
+                                              const AlignmentDirectional(0, -1),
                                           child: Padding(
-                                            padding: EdgeInsets.all(16),
+                                            padding: const EdgeInsets.all(16),
                                             child: Container(
                                               width: double.infinity,
                                               height: 50,
-                                              constraints: BoxConstraints(
+                                              constraints: const BoxConstraints(
                                                 maxWidth: 500,
                                               ),
                                               decoration: BoxDecoration(
@@ -1565,7 +1563,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(4),
+                                                padding: const EdgeInsets.all(4),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1652,7 +1650,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4,
                                                                             0,
@@ -1753,7 +1751,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4,
                                                                             0,
@@ -1794,7 +1792,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               ),
                             ),
                           ),
-                        ].addToEnd(SizedBox(height: 72)),
+                        ].addToEnd(const SizedBox(height: 72)),
                       ),
                     ),
                   ),

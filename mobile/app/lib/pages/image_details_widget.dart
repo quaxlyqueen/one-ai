@@ -3,11 +3,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -51,15 +49,15 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.7, 0.7),
-            end: Offset(1.0, 1.0),
+            begin: const Offset(0.7, 0.7),
+            end: const Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -78,15 +76,15 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(-0.698, 0),
-            end: Offset(0, 0),
+            begin: const Offset(-0.698, 0),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -126,7 +124,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
               context.pop();
             },
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -137,15 +135,15 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Hero(
                     tag: 'hero',
                     transitionOnUserGestures: true,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: CachedNetworkImage(
-                        fadeInDuration: Duration(milliseconds: 500),
-                        fadeOutDuration: Duration(milliseconds: 500),
+                        fadeInDuration: const Duration(milliseconds: 500),
+                        fadeOutDuration: const Duration(milliseconds: 500),
                         imageUrl: 'https://picsum.photos/seed/150/600',
                         width: double.infinity,
                         fit: BoxFit.fitWidth,
@@ -158,13 +156,13 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 32),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 32),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 16),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 8, 16),
                       child: Container(
                         width: 36,
                         height: 36,
@@ -178,12 +176,12 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(2),
+                          padding: const EdgeInsets.all(2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: CachedNetworkImage(
-                              fadeInDuration: Duration(milliseconds: 200),
-                              fadeOutDuration: Duration(milliseconds: 200),
+                              fadeInDuration: const Duration(milliseconds: 200),
+                              fadeOutDuration: const Duration(milliseconds: 200),
                               imageUrl:
                                   'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMHx8cHJvZmlsZXxlbnwwfHx8fDE2OTU4MjQ5OTN8MA&ixlib=rb-4.0.3&q=80&w=1080',
                               width: 44,
@@ -196,7 +194,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                     ),
                     Flexible(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,7 +216,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                       ),
                                 )),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 0),
                                   child: Text(
                                     'Just Now',
@@ -230,11 +228,11 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                         ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4)),
+                              ].divide(const SizedBox(width: 4)),
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                               child: SelectionArea(
                                   child: AutoSizeText(
                                 'Thanks so much! We really do appreciate it!',

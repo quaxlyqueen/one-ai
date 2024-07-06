@@ -41,13 +41,19 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
     return MouseRegion(
       opaque: false,
       cursor: MouseCursor.defer ?? MouseCursor.defer,
+      onEnter: ((event) async {
+        setState(() => _model.iuserHovered = true);
+      }),
+      onExit: ((event) async {
+        setState(() => _model.iuserHovered = false);
+      }),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -63,7 +69,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                   ),
                 ),
                 child: Align(
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: Text(
                     'A',
                     textAlign: TextAlign.center,
@@ -77,7 +83,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +98,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                         child: Text(
                           'name@domainname.com',
                           style:
@@ -111,12 +117,6 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
           ),
         ),
       ),
-      onEnter: ((event) async {
-        setState(() => _model.iuserHovered = true);
-      }),
-      onExit: ((event) async {
-        setState(() => _model.iuserHovered = false);
-      }),
     );
   }
 }

@@ -66,7 +66,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
                   kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.leftToRight,
-                    duration: Duration(milliseconds: 250),
+                    duration: const Duration(milliseconds: 250),
                   ),
                 },
               );
@@ -79,7 +79,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           ),
           actions: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
               child: FlutterFlowIconButton(
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderRadius: 12,

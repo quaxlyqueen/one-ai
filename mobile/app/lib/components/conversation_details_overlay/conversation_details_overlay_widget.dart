@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -55,20 +54,20 @@ class _ConversationDetailsOverlayWidgetState
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Align(
-            alignment: AlignmentDirectional(0, -1),
+            alignment: const AlignmentDirectional(0, -1),
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 700,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +77,7 @@ class _ConversationDetailsOverlayWidgetState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: Text(
                             'Chat Details',
                             style: FlutterFlowTheme.of(context)
@@ -90,7 +89,7 @@ class _ConversationDetailsOverlayWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                           child: FlutterFlowIconButton(
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderRadius: 12,
@@ -110,12 +109,12 @@ class _ConversationDetailsOverlayWidgetState
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 4),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 0, 4),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: 'Group Chat ID: ',
                               style: TextStyle(),
                             ),
@@ -137,7 +136,7 @@ class _ConversationDetailsOverlayWidgetState
                     ),
                     Expanded(
                       child: Align(
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -151,9 +150,9 @@ class _ConversationDetailsOverlayWidgetState
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: const AlignmentDirectional(0, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
@@ -176,7 +175,7 @@ class _ConversationDetailsOverlayWidgetState
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 44),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 44),
                       child: FFButtonWidget(
                         onPressed: () async {
                           Navigator.pop(context);
@@ -185,9 +184,9 @@ class _ConversationDetailsOverlayWidgetState
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 52,
-                          padding: EdgeInsetsDirectional.fromSTEB(44, 0, 44, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(44, 0, 44, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           textStyle:

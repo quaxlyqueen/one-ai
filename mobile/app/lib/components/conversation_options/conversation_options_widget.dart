@@ -45,7 +45,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,9 +53,9 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
             Container(
               width: double.infinity,
               height: 60,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -67,7 +67,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.share_rounded,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -77,7 +77,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,9 +102,9 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
             Container(
               width: double.infinity,
               height: 60,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -116,7 +116,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.insert_link,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -126,7 +126,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,9 +151,9 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
             Container(
               width: double.infinity,
               height: 60,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -165,7 +165,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.mode_edit,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -175,7 +175,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,9 +200,9 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
             Container(
               width: double.infinity,
               height: 60,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -214,7 +214,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.hide_source,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -224,7 +224,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

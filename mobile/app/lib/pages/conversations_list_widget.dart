@@ -93,7 +93,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                   letterSpacing: 0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -104,7 +104,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   'AI conversations',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -115,14 +115,14 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
               ),
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     reverse: true,
                     scrollDirection: Axis.vertical,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -144,7 +144,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                       .secondaryBackground,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.settings_outlined,
                                     color: FlutterFlowTheme.of(context)
@@ -155,7 +155,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               ),
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1, 0),
+                                  alignment: const AlignmentDirectional(-1, 0),
                                   child: Container(
                                     width: 100,
                                     height: 100,
@@ -177,7 +177,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1, 0),
+                                              const AlignmentDirectional(-1, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -196,7 +196,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1, 0),
+                                              const AlignmentDirectional(-1, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [

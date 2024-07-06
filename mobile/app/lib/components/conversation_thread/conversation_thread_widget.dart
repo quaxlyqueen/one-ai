@@ -57,7 +57,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
         children: [
           Expanded(
             child: ListView(
-              padding: EdgeInsets.fromLTRB(
+              padding: const EdgeInsets.fromLTRB(
                 0,
                 12,
                 0,
@@ -67,14 +67,14 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
               scrollDirection: Axis.vertical,
               children: [
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                 ),
                 Container(
                   height: MediaQuery.sizeOf(context).height * 1,
                   constraints: BoxConstraints(
                     minHeight: MediaQuery.sizeOf(context).height * 1,
                   ),
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: wrapWithModel(
                     model: _model.conversationBubblesModel,
                     updateCallback: () => setState(() {}),
@@ -88,7 +88,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 3,
                   color: Color(0x33000000),
@@ -107,7 +107,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -119,9 +119,9 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                                 imageBuilder: (path) => ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: CachedNetworkImage(
-                                    fadeInDuration: Duration(milliseconds: 500),
+                                    fadeInDuration: const Duration(milliseconds: 500),
                                     fadeOutDuration:
-                                        Duration(milliseconds: 500),
+                                        const Duration(milliseconds: 500),
                                     imageUrl: path,
                                     width: 120,
                                     height: 100,
@@ -140,7 +140,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1, -1),
+                                alignment: const AlignmentDirectional(-1, -1),
                                 child: FlutterFlowIconButton(
                                   borderColor:
                                       FlutterFlowTheme.of(context).error,
@@ -160,9 +160,9 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                                 ),
                               ),
                             ]
-                                .divide(SizedBox(width: 8))
-                                .addToStart(SizedBox(width: 16))
-                                .addToEnd(SizedBox(width: 16)),
+                                .divide(const SizedBox(width: 8))
+                                .addToStart(const SizedBox(width: 16))
+                                .addToEnd(const SizedBox(width: 16)),
                           ),
                         ),
                       ),
@@ -173,7 +173,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                   key: _model.formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: wrapWithModel(
                       model: _model.promptBoxModel,
                       updateCallback: () => setState(() {}),

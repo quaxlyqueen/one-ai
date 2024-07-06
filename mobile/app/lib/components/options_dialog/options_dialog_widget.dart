@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'popup_model.dart';
-export 'popup_model.dart';
+import '/components/popup/popup_model.dart';
+export '/components/popup/popup_model.dart';
 
 class PopupWidget extends StatefulWidget {
   const PopupWidget({super.key});
@@ -43,16 +43,16 @@ class _PopupWidgetState extends State<PopupWidget> {
     return Visibility(
       visible: true,
       child: Align(
-        alignment: AlignmentDirectional(0, 0),
+        alignment: const AlignmentDirectional(0, 0),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570,
             maxHeight: 375,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 64,
                 color: Color(0xB2000000),
@@ -65,14 +65,14 @@ class _PopupWidgetState extends State<PopupWidget> {
             ],
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: Color(0xFFE0E3E7),
+              color: const Color(0xFFE0E3E7),
             ),
           ),
-          alignment: AlignmentDirectional(0, 0),
+          alignment: const AlignmentDirectional(0, 0),
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -83,14 +83,14 @@ class _PopupWidgetState extends State<PopupWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: Text(
                             'Refine the components modal.',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
                                   fontFamily: 'Outfit',
-                                  color: Color(0xFF14181B),
+                                  color: const Color(0xFF14181B),
                                   fontSize: 24,
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.normal,
@@ -99,11 +99,11 @@ class _PopupWidgetState extends State<PopupWidget> {
                         ),
                       ),
                       FlutterFlowIconButton(
-                        borderColor: Color(0xFFF1F4F8),
+                        borderColor: const Color(0xFFF1F4F8),
                         borderRadius: 30,
                         borderWidth: 2,
                         buttonSize: 44,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.close_rounded,
                           color: Color(0xFF57636C),
                           size: 24,
@@ -114,7 +114,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                       ),
                     ],
                   ),
-                  Divider(
+                  const Divider(
                     height: 24,
                     thickness: 2,
                     color: Color(0xFFF1F4F8),
@@ -123,14 +123,14 @@ class _PopupWidgetState extends State<PopupWidget> {
                     'FlutterFlow is a visual development platform that allows you to easily create beautiful and responsive user interfaces for your mobile and web applications. With its drag-and-drop interface and pre-built components, you can quickly prototype and build your app without writing any code. \nAdditionally, FlutterFlow\'s real-time preview feature allows you to see your changes in real-time and make adjustments on the fly.',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: Color(0xFF57636C),
+                          color: const Color(0xFF57636C),
                           fontSize: 14,
                           letterSpacing: 0,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,26 +143,26 @@ class _PopupWidgetState extends State<PopupWidget> {
                           options: FFButtonOptions(
                             height: 40,
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                                const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                             iconPadding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: Colors.white,
                             textStyle:
                                 FlutterFlowTheme.of(context).bodySmall.override(
                                       fontFamily: 'Readex Pro',
-                                      color: Color(0xFF14181B),
+                                      color: const Color(0xFF14181B),
                                       fontSize: 12,
                                       letterSpacing: 0,
                                       fontWeight: FontWeight.normal,
                                     ),
                             elevation: 0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFFF1F4F8),
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
-                            hoverColor: Color(0xFFF1F4F8),
-                            hoverTextColor: Color(0xFF14181B),
+                            hoverColor: const Color(0xFFF1F4F8),
+                            hoverTextColor: const Color(0xFF14181B),
                           ),
                         ),
                         FFButtonWidget(
@@ -173,10 +173,10 @@ class _PopupWidgetState extends State<PopupWidget> {
                           options: FFButtonOptions(
                             width: 130,
                             height: 40,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: Color(0xFF4B39EF),
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: const Color(0xFF4B39EF),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -187,12 +187,12 @@ class _PopupWidgetState extends State<PopupWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                             elevation: 3,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
-                            hoverColor: Color(0xFF2B16ED),
+                            hoverColor: const Color(0xFF2B16ED),
                             hoverTextColor: Colors.white,
                           ),
                         ),

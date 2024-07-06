@@ -50,7 +50,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(10),
         ),
-        alignment: AlignmentDirectional(0, 0),
+        alignment: const AlignmentDirectional(0, 0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -61,7 +61,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -80,7 +80,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -99,7 +99,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -118,7 +118,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -137,7 +137,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -162,13 +162,13 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 Expanded(
                   flex: 7,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
-                        Duration(milliseconds: 2000),
+                        const Duration(milliseconds: 2000),
                         () => setState(() {}),
                       ),
                       autofocus: true,
@@ -192,21 +192,21 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0x00000000),
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0x00000000),
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0x00000000),
                             width: 2,
                           ),
