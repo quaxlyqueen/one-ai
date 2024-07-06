@@ -4,13 +4,13 @@ class AppTheme {
   static const primary = Colors.deepPurple;
   static const secondary = Colors.deepPurpleAccent;
   static const tertiary = Colors.white;
-  static const alternate = Colors.purple;
+  static const alternate = Colors.deepPurple;
 
   static const accent1 = Colors.amber;
   static const accent4 = Colors.amber;
 
-  static const primaryBackground = Colors.purple;
-  static const secondaryBackground = Colors.purpleAccent;
+  static const primaryBackground = Colors.deepPurpleAccent;
+  static const secondaryBackground = Colors.deepPurple;
 
   static const primaryTextColor = Colors.white;
   static const primaryText = TextStyle(color: primaryTextColor, fontSize: 12);

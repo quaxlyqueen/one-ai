@@ -1,21 +1,91 @@
 import 'package:app/pages/settings_widget.dart';
+import 'package:app/pages/conversations_list_widget.dart';
 import 'package:flutter/material.dart';
-import 'theme.dart';
+import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
+// my_state.dart (Provider for selected index)
+final _selectedIndex = ValueNotifier<int>(0);
+
+class MyState with ChangeNotifier {
+  int get selectedIndex => _selectedIndex.value;
+
+  set selectedIndex(int value) {
+    _selectedIndex.value = value;
+    notifyListeners();
+  }
+}
+
+// This function creates a BottomNavigationBarItem for each page
+BottomNavigationBarItem _buildNavigationItem(int index) {
+  String label = "";
+  IconData iconData = Icons.error;
+  switch (index) {
+    case 0:
+      label = 'Home';
+      iconData = Icons.home;
+      break;
+    case 1:
+      label = 'Settings';
+      iconData = Icons.settings;
+      break;
+  }
+  return BottomNavigationBarItem(
+    icon: Icon(iconData),
+    label: label,
+  );
+}
+
+// main.dart
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider<MyState>(
+      create: (_) => MyState(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  // This list holds the pages to navigate between
+  final List<Widget> _pages = [
+    // Replace with the widget for your first page (e.g., HomeScreen())
+    const Center(child: ConversationsListWidget()),
+    // Replace with the widget for your second page (e.g., SettingsPage())
+    const Center(child: SettingsWidget()),
+  ];
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = Provider.of<MyState>(context).selectedIndex;
 
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: SettingsWidget(),
+    return MaterialApp(
+      title: 'App',
+      home: Scaffold(
+        backgroundColor: AppTheme.secondaryBackground,
+        appBar: AppBar(
+            backgroundColor: AppTheme.secondaryBackground,
+            automaticallyImplyLeading: false,
+            title: const Text(
+              'App',
+              style: AppTheme.headlineLarge,
+            ),
+            actions: const [],
+            centerTitle: false,
+            elevation: 0,
+          ),
+        body: _pages[Provider.of<MyState>(context, listen: false).selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          // Set the number of items to the length of the pages list
+          items: List.generate(_pages.length, (index) => _buildNavigationItem(index)),
+          currentIndex: selectedIndex,
+          onTap: (index) => Provider.of<MyState>(context, listen: false).selectedIndex = index, // Update using Provider
+        ),
+      ),
     );
   }
 }
