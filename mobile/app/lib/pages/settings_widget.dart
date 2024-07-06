@@ -6,6 +6,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'settings_model.dart';
 export 'settings_model.dart';
 
@@ -93,12 +95,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
           ? AppBar(
               backgroundColor: AppTheme.secondaryBackground,
               automaticallyImplyLeading: false,
-              title: Text(
+              title: const Text(
                 'My Profile',
-                style: AppTheme.headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      letterSpacing: 0,
-                    ),
+                style: AppTheme.headlineMedium,
               ),
               actions: const [],
               centerTitle: false,
@@ -134,9 +133,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                                const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -146,22 +145,17 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   size: 32,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       12, 0, 0, 0),
                                   child: Text(
                                     'check.io',
-                                    style: AppTheme
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          letterSpacing: 0,
-                                        ),
+                                    style: AppTheme.headlineMedium,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             height: 12,
                             thickness: 2,
                             color: AppTheme.alternate,
@@ -171,17 +165,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                const Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 12, 0, 0),
                                   child: Text(
                                     'Platform Navigation',
-                                    style: AppTheme
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0,
-                                        ),
+                                    style: AppTheme.labelMedium,
                                   ),
                                 ),
                                 Padding(
@@ -198,32 +187,25 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                    child: const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
                                             Icons.space_dashboard,
-                                            color: AppTheme
-                                                .primaryText,
+                                            color: AppTheme.primaryTextColor,
                                             size: 24,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Dashboard',
                                               style:
-                                                  AppTheme
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  AppTheme.bodyMedium,
                                             ),
                                           ),
                                         ],
@@ -240,37 +222,28 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: AppTheme
-                                          .primaryBackground,
+                                      color: AppTheme.primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                    child: const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
                                             Icons.forum_rounded,
-                                            color: AppTheme
-                                                .primaryText,
+                                            color: AppTheme.primaryTextColor,
                                             size: 24,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Chats',
-                                              style:
-                                                  AppTheme
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                              style: AppTheme.bodyMedium,
                                             ),
                                           ),
                                         ],
@@ -292,32 +265,24 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                    child: const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
                                             Icons.work,
-                                            color: AppTheme
-                                                .primaryText,
+                                            color: AppTheme.primaryTextColor,
                                             size: 24,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Projects',
-                                              style:
-                                                  AppTheme
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                              style: AppTheme.bodyMedium,
                                             ),
                                           ),
                                         ],
@@ -345,26 +310,19 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.receipt_rounded,
                                             color: AppTheme
                                                 .primary,
                                             size: 24,
                                           ),
-                                          Expanded(
+                                          const Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(12, 0, 0, 0),
                                               child: Text(
                                                 'Recent Orders',
-                                                style:
-                                                    AppTheme
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0,
-                                                        ),
+                                                style: AppTheme.bodyMedium,
                                               ),
                                             ),
                                           ),
@@ -377,26 +335,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
-                                            child: Align(
+                                            child: const Align(
                                               alignment:
-                                                  const AlignmentDirectional(0, 0),
+                                                  AlignmentDirectional(0, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(8, 4, 8, 4),
                                                 child: Text(
                                                   '12',
-                                                  style: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color:
-                                                            FlutterFlowAppTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  style: AppTheme.bodyMedium,
                                                 ),
                                               ),
                                             ),
@@ -406,17 +353,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                const Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 0, 0),
                                   child: Text(
                                     'Settings',
-                                    style: AppTheme
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0,
-                                        ),
+                                    style: AppTheme.labelMedium,
                                   ),
                                 ),
                                 Padding(
@@ -433,32 +375,25 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                    child: const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
                                             Icons.attach_money_rounded,
-                                            color: AppTheme
-                                                .primaryText,
+                                            color: AppTheme.primaryTextColor,
                                             size: 24,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Billing',
                                               style:
-                                                  AppTheme
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  AppTheme.bodyMedium,
                                             ),
                                           ),
                                         ],
@@ -480,32 +415,25 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                    child: const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 6, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
                                             Icons.wifi_tethering_rounded,
-                                            color: AppTheme
-                                                .primaryText,
+                                            color: AppTheme.primaryTextColor,
                                             size: 24,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 0, 0),
                                             child: Text(
                                               'Explore',
                                               style:
-                                                  AppTheme
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  AppTheme.bodyMedium,
                                             ),
                                           ),
                                         ],
@@ -546,82 +474,42 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           focusColor: Colors.transparent,
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            setDarkModeSetting(
-                                                context, AppThemeMode.light);
-                                          },
+                                          //TODO
+                                          // onTap: () async {
+                                          //   setDarkModeSetting(
+                                          //       context, AppThemeMode.light);
+                                          // },
                                           child: Container(
                                             width: 115,
                                             height: 100,
                                             decoration: BoxDecoration(
-                                              color: AppTheme.of(context)
-                                                          .brightness ==
-                                                      Brightness.light
-                                                  ? AppTheme
-                                                      .secondaryBackground
-                                                  : AppTheme
-                                                      .primaryBackground,
+                                              color: AppTheme.primaryBackground,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
                                                 color: valueOrDefault<Color>(
-                                                  AppTheme.of(context)
-                                                              .brightness ==
-                                                          Brightness.light
-                                                      ? FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .alternate
-                                                      : FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  AppTheme
-                                                      .alternate,
+                                                  AppTheme.primaryBackground,
+                                                  AppTheme.alternate,
                                                 ),
                                                 width: 1,
                                               ),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.wb_sunny_rounded,
-                                                  color: AppTheme.of(context)
-                                                              .brightness ==
-                                                          Brightness.light
-                                                      ? FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .primaryText
-                                                      : FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .secondaryText,
+                                                  color: AppTheme.secondaryText,
                                                   size: 16,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(4, 0, 0, 0),
                                                   child: Text(
                                                     'Light Mode',
-                                                    style:
-                                                        FlutterFlowAppTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              color: AppTheme.of(context)
-                                                                          .brightness ==
-                                                                      Brightness
-                                                                          .light
-                                                                  ? FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .primaryText
-                                                                  : FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                              letterSpacing: 0,
-                                                            ),
+                                                    style: AppTheme.primaryText,
                                                   ),
                                                 ),
                                               ],
@@ -635,82 +523,39 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           focusColor: Colors.transparent,
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            setDarkModeSetting(
-                                                context, AppThemeMode.dark);
-                                          },
+                                          // TODO
+                                          // onTap: () async {
+                                          //   setDarkModeSetting(
+                                          //       context, AppThemeMode.dark);
+                                          // },
                                           child: Container(
                                             width: 115,
                                             height: 100,
                                             decoration: BoxDecoration(
-                                              color: AppTheme.of(context)
-                                                          .brightness ==
-                                                      Brightness.dark
-                                                  ? AppTheme
-                                                      .secondaryBackground
-                                                  : AppTheme
-                                                      .primaryBackground,
+                                              color: AppTheme.primaryBackground,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
-                                                color: valueOrDefault<Color>(
-                                                  AppTheme.of(context)
-                                                              .brightness ==
-                                                          Brightness.dark
-                                                      ? FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .alternate
-                                                      : FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  AppTheme
-                                                      .primaryBackground,
-                                                ),
+                                                color: AppTheme.primaryBackground,
                                                 width: 1,
                                               ),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.nightlight_round,
-                                                  color: AppTheme.of(context)
-                                                              .brightness ==
-                                                          Brightness.dark
-                                                      ? FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .primaryText
-                                                      : FlutterFlowAppTheme.of(
-                                                              context)
-                                                          .secondaryText,
+                                                  color: AppTheme.primaryTextColor,
                                                   size: 16,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(4, 0, 0, 0),
                                                   child: Text(
                                                     'Dark Mode',
-                                                    style:
-                                                        FlutterFlowAppTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              color: AppTheme.of(context)
-                                                                          .brightness ==
-                                                                      Brightness
-                                                                          .dark
-                                                                  ? FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .primaryText
-                                                                  : FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                              letterSpacing: 0,
-                                                            ),
+                                                    style: AppTheme.bodyMedium,
                                                   ),
                                                 ),
                                               ],
@@ -724,7 +569,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               ),
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             height: 12,
                             thickness: 2,
                             color: AppTheme.alternate,
@@ -765,9 +610,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     ),
                                   ),
                                 ),
-                                Expanded(
+                                const Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         12, 0, 0, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -776,21 +621,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       children: [
                                         Text(
                                           'Casper Ghost',
-                                          style: AppTheme
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                letterSpacing: 0,
-                                              ),
+                                          style: AppTheme.bodyLarge,
                                         ),
                                         Text(
                                           'admin@gmail.com',
-                                          style: AppTheme
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                letterSpacing: 0,
-                                              ),
+                                          style: AppTheme.labelMedium,
                                         ),
                                       ],
                                     ),
@@ -799,9 +634,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               ],
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding:
-                                const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -878,15 +713,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 width: 72,
                                                 height: 72,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .accent1,
+                                                  color: AppTheme.accent1,
                                                   borderRadius:
                                                       BorderRadius.circular(12),
                                                   border: Border.all(
-                                                    color: FlutterFlowAppTheme.of(
-                                                            context)
-                                                        .primary,
+                                                    color: AppTheme.primary,
                                                     width: 2,
                                                   ),
                                                 ),
@@ -910,9 +741,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Expanded(
+                                              const Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16, 4, 0, 4),
                                                   child: Column(
                                                     mainAxisSize:
@@ -923,31 +754,16 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     children: [
                                                       Text(
                                                         'Casper Ghost',
-                                                        style: FlutterFlowAppTheme
-                                                                .of(context)
-                                                            .headlineSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Outfit',
-                                                              letterSpacing: 0,
-                                                            ),
+                                                        style: AppTheme.headlineSmall,
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0, 4, 0, 0),
                                                         child: Text(
                                                           'casper@ghustbusters.com',
-                                                          style: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0,
-                                                              ),
+                                                          style: AppTheme.labelMedium,
                                                         ),
                                                       ),
                                                     ],
@@ -957,7 +773,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             ],
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           height: 2,
                                           thickness: 1,
                                           color: AppTheme
@@ -973,16 +789,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 child: Container(
                                                   width: 200,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowAppTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: AppTheme.secondaryBackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  child: Padding(
+                                                  child: const Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 12, 12, 12, 0),
                                                     child: Column(
@@ -994,44 +808,26 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Icon(
                                                           Icons.receipt_rounded,
-                                                          color: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .primary,
+                                                          color: AppTheme.primary,
                                                           size: 44,
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(0,
                                                                       8, 0, 4),
                                                           child: Text(
                                                             '2,200',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            style: FlutterFlowAppTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  letterSpacing:
-                                                                      0,
-                                                                ),
+                                                            style: AppTheme.headlineSmall,
                                                           ),
                                                         ),
                                                         Text(
                                                           'Orders Placed',
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0,
-                                                              ),
+                                                          style: AppTheme.labelMedium,
                                                         ),
                                                       ],
                                                     ),
@@ -1047,16 +843,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 child: Container(
                                                   width: 200,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowAppTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: AppTheme.secondaryBackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  child: Padding(
+                                                  child: const Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 12, 12, 12, 0),
                                                     child: Column(
@@ -1069,44 +863,26 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         Icon(
                                                           Icons
                                                               .ssid_chart_rounded,
-                                                          color: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .primary,
+                                                          color: AppTheme.primary,
                                                           size: 44,
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(0,
                                                                       8, 0, 4),
                                                           child: Text(
                                                             '\$212.4k',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            style: FlutterFlowAppTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  letterSpacing:
-                                                                      0,
-                                                                ),
+                                                            style: AppTheme.headlineSmall,
                                                           ),
                                                         ),
                                                         Text(
                                                           'Money Earned',
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0,
-                                                              ),
+                                                          style: AppTheme.labelMedium,
                                                         ),
                                                       ],
                                                     ),
@@ -1144,20 +920,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       .alternate,
                                             ),
                                           ),
-                                          child: Padding(
+                                          child: const Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16, 12, 0, 12),
                                             child: Text(
                                               'My Account Information',
                                               style:
-                                                  AppTheme
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  AppTheme.labelMedium,
                                             ),
                                           ),
                                         ),
@@ -1168,17 +938,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           child: Container(
                                             width: double.infinity,
                                             height: 60,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color:
                                                   AppTheme
                                                       .secondaryBackground,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 0,
-                                                  color: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  offset: const Offset(
+                                                  color: AppTheme.alternate,
+                                                  offset: Offset(
                                                     0,
                                                     1,
                                                   ),
@@ -1186,8 +954,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               ],
                                               shape: BoxShape.rectangle,
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                            child: const Padding(
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(16, 0, 16, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1200,26 +968,17 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     children: [
                                                       Text(
                                                         'Change Password',
-                                                        style: FlutterFlowAppTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              letterSpacing: 0,
-                                                            ),
+                                                        style: AppTheme.bodyLarge,
                                                       ),
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   1, 0),
                                                           child: Icon(
                                                             Icons
                                                                 .chevron_right_rounded,
-                                                            color: FlutterFlowAppTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: AppTheme.secondaryText,
                                                             size: 20,
                                                           ),
                                                         ),
@@ -1238,17 +997,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           child: Container(
                                             width: double.infinity,
                                             height: 60,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color:
                                                   AppTheme
                                                       .secondaryBackground,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 0,
-                                                  color: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  offset: const Offset(
+                                                  color: AppTheme.alternate,
+                                                  offset: Offset(
                                                     0,
                                                     1,
                                                   ),
@@ -1256,8 +1013,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               ],
                                               shape: BoxShape.rectangle,
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                            child: const Padding(
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(16, 0, 16, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1270,31 +1027,17 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     children: [
                                                       Text(
                                                         'Edit Profile',
-                                                        style:
-                                                            FlutterFlowAppTheme.of(
-                                                                    context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  letterSpacing:
-                                                                      0,
-                                                                ),
+                                                        style: AppTheme.bodyLarge,
                                                       ),
                                                       Expanded(
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   1, 0),
                                                           child: Icon(
                                                             Icons
                                                                 .chevron_right_rounded,
-                                                            color: FlutterFlowAppTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: AppTheme.secondaryText,
                                                             size: 20,
                                                           ),
                                                         ),
@@ -1324,19 +1067,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         .alternate,
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                            child: const Padding(
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(16, 12, 0, 12),
                                               child: Text(
                                                 'Support',
                                                 style:
-                                                    AppTheme
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0,
-                                                        ),
+                                                    AppTheme.labelMedium,
                                               ),
                                             ),
                                           ),
@@ -1350,36 +1087,35 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'SupportForm',
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType
-                                                            .rightToLeft,
-                                                    duration: const Duration(
-                                                        milliseconds: 250),
-                                                  ),
-                                                },
-                                              );
-                                            },
+                                            // TODO
+                                            // onTap: () async {
+                                            //   context.pushNamed(
+                                            //     'SupportForm',
+                                            //     extra: <String, dynamic>{
+                                            //       kTransitionInfoKey:
+                                            //           TransitionInfo(
+                                            //         hasTransition: true,
+                                            //         transitionType:
+                                            //             PageTransitionType
+                                            //                 .rightToLeft,
+                                            //         duration: const Duration(
+                                            //             milliseconds: 250),
+                                            //       ),
+                                            //     },
+                                            //   );
+                                            // },
                                             child: Container(
                                               width: double.infinity,
                                               height: 60,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color:
                                                     AppTheme
                                                         .secondaryBackground,
                                                 boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 0,
-                                                    color: FlutterFlowAppTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    offset: const Offset(
+                                                    color: AppTheme.alternate,
+                                                    offset: Offset(
                                                       0,
                                                       1,
                                                     ),
@@ -1387,8 +1123,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 ],
                                                 shape: BoxShape.rectangle,
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                              child: const Padding(
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(16, 0, 16, 0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1402,30 +1138,16 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Text(
                                                           'Bug or Feature Request',
-                                                          style: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0,
-                                                              ),
+                                                          style: AppTheme.bodyLarge,
                                                         ),
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     1, 0),
                                                             child: Icon(
-                                                              Icons
-                                                                  .chevron_right_rounded,
-                                                              color: FlutterFlowAppTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                              Icons.chevron_right_rounded,
+                                                              color: AppTheme.secondaryText,
                                                               size: 20,
                                                             ),
                                                           ),
@@ -1460,7 +1182,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     padding:
                                                         MediaQuery.viewInsetsOf(
                                                             context),
-                                                    child: PopupWidget(),
+                                                    child: const PopupWidget(),
                                                   );
                                                 },
                                               ).then((value) =>
@@ -1469,17 +1191,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Container(
                                               width: double.infinity,
                                               height: 60,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color:
                                                     AppTheme
                                                         .secondaryBackground,
                                                 boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 0,
-                                                    color: FlutterFlowAppTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    offset: const Offset(
+                                                    color: AppTheme.alternate,
+                                                    offset: Offset(
                                                       0,
                                                       1,
                                                     ),
@@ -1487,8 +1207,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 ],
                                                 shape: BoxShape.rectangle,
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                              child: const Padding(
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(16, 0, 16, 0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1502,27 +1222,16 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Text(
                                                           'Open-source licenses & other info',
-                                                          style: FlutterFlowAppTheme
-                                                                  .of(context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0,
-                                                              ),
+                                                          style: AppTheme.bodyLarge,
                                                         ),
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     1, 0),
                                                             child: Icon(
-                                                              Icons
-                                                                  .chevron_right_rounded,
-                                                              color: FlutterFlowAppTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                              Icons.chevron_right_rounded,
+                                                              color: AppTheme.secondaryText,
                                                               size: 20,
                                                             ),
                                                           ),
@@ -1553,9 +1262,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                                 border: Border.all(
-                                                  color: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: AppTheme.alternate,
                                                   width: 1,
                                                 ),
                                               ),
@@ -1577,52 +1284,28 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             Colors.transparent,
                                                         highlightColor:
                                                             Colors.transparent,
-                                                        onTap: () async {
-                                                          setDarkModeSetting(
-                                                              context,
-                                                              AppThemeMode.light);
-                                                        },
+                                                        // TODO
+                                                        // onTap: () async {
+                                                        //   setDarkModeSetting(
+                                                        //       context,
+                                                        //       AppThemeMode.light);
+                                                        // },
                                                         child: Container(
                                                           width: 115,
                                                           height: 100,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: AppTheme.of(context)
-                                                                        .brightness ==
-                                                                    Brightness
-                                                                        .light
-                                                                ? FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground
-                                                                : FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
+                                                            color: AppTheme.primaryBackground,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         10),
                                                             border: Border.all(
-                                                              color:
-                                                                  valueOrDefault<
-                                                                      Color>(
-                                                                AppTheme.of(context)
-                                                                            .brightness ==
-                                                                        Brightness
-                                                                            .light
-                                                                    ? FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .alternate
-                                                                    : FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                              ),
+                                                              color: AppTheme.primaryBackground,
                                                               width: 1,
                                                             ),
                                                           ),
-                                                          child: Row(
+                                                          child: const Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
@@ -1633,21 +1316,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               Icon(
                                                                 Icons
                                                                     .wb_sunny_rounded,
-                                                                color: AppTheme.of(context)
-                                                                            .brightness ==
-                                                                        Brightness
-                                                                            .light
-                                                                    ? FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .primaryText
-                                                                    : FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
+                                                                color: AppTheme.primaryTextColor,
                                                                 size: 16,
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4,
                                                                             0,
@@ -1655,19 +1329,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                             0),
                                                                 child: Text(
                                                                   'Light ',
-                                                                  style: FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: AppTheme.of(context).brightness ==
-                                                                                Brightness.light
-                                                                            ? AppTheme.primaryText
-                                                                            : AppTheme.secondaryText,
-                                                                        letterSpacing:
-                                                                            0,
-                                                                      ),
+                                                                  style: AppTheme.primaryText,
                                                                 ),
                                                               ),
                                                             ],
@@ -1685,45 +1347,28 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             Colors.transparent,
                                                         highlightColor:
                                                             Colors.transparent,
-                                                        onTap: () async {
-                                                          setDarkModeSetting(
-                                                              context,
-                                                              AppThemeMode.dark);
-                                                        },
+                                                        // TODO
+                                                        // onTap: () async {
+                                                        //   setDarkModeSetting(
+                                                        //       context,
+                                                        //       AppThemeMode.dark);
+                                                        // },
                                                         child: Container(
                                                           width: 115,
                                                           height: 100,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: AppTheme.of(context)
-                                                                        .brightness ==
-                                                                    Brightness
-                                                                        .dark
-                                                                ? FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground
-                                                                : FlutterFlowAppTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
+                                                            color: AppTheme.primaryBackground,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         10),
                                                             border: Border.all(
-                                                              color: AppTheme.of(context)
-                                                                          .brightness ==
-                                                                      Brightness
-                                                                          .dark
-                                                                  ? FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .alternate
-                                                                  : FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
+                                                              color: AppTheme.primaryBackground,
                                                               width: 1,
                                                             ),
                                                           ),
-                                                          child: Row(
+                                                          child: const Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
@@ -1734,21 +1379,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               Icon(
                                                                 Icons
                                                                     .nightlight_round,
-                                                                color: AppTheme.of(context)
-                                                                            .brightness ==
-                                                                        Brightness
-                                                                            .dark
-                                                                    ? FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .primaryText
-                                                                    : FlutterFlowAppTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
+                                                                color: AppTheme.secondaryText,
                                                                 size: 16,
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4,
                                                                             0,
@@ -1756,19 +1392,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                             0),
                                                                 child: Text(
                                                                   'Dark',
-                                                                  style: FlutterFlowAppTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: AppTheme.of(context).brightness ==
-                                                                                Brightness.dark
-                                                                            ? AppTheme.primaryText
-                                                                            : AppTheme.secondaryText,
-                                                                        letterSpacing:
-                                                                            0,
-                                                                      ),
+                                                                  style: AppTheme.bodyMedium,
                                                                 ),
                                                               ),
                                                             ],

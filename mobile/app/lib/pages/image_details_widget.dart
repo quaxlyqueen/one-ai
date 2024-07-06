@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
 import 'image_details_model.dart';
 export 'image_details_model.dart';
 
@@ -106,19 +107,20 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
         appBar: AppBar(
           backgroundColor: AppTheme.secondaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
+          leading: const FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
             borderWidth: 1,
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: AppTheme.primaryText,
+              color: AppTheme.primaryTextColor,
               size: 30,
             ),
-            onPressed: () async {
-              context.pop();
-            },
+            // TODO
+            // onPressed: () async {
+            //   context.pop();
+            // },
           ),
           actions: const [],
           centerTitle: false,
@@ -199,47 +201,30 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                SelectionArea(
+                                const SelectionArea(
                                     child: AutoSizeText(
                                   'Thanks so much! We really do appreciate it!',
                                   textAlign: TextAlign.start,
-                                  style: AppTheme
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0,
-                                        lineHeight: 1.5,
-                                      ),
+                                  style: AppTheme.bodyMedium,
                                 )),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                const Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 0),
                                   child: Text(
                                     'Just Now',
-                                    style: AppTheme
-                                        .labelSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0,
-                                        ),
+                                    style: AppTheme.labelSmall,
                                   ),
                                 ),
                               ].divide(const SizedBox(width: 4)),
                             ),
-                            Padding(
+                            const Padding(
                               padding:
-                                  const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                               child: SelectionArea(
                                   child: AutoSizeText(
                                 'Thanks so much! We really do appreciate it!',
                                 textAlign: TextAlign.start,
-                                style: AppTheme
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0,
-                                      lineHeight: 1.5,
-                                    ),
+                                style: AppTheme.labelLarge,
                               )),
                             ),
                           ],

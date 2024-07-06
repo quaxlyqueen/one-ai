@@ -1,8 +1,12 @@
+import 'dart:nativewrappers/_internal/vm/lib/internal_patch.dart';
+
 import '/components/conversation_options/conversation_options_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'package:app/theme.dart';
 
 import 'conversations_list_model.dart';
 export 'conversations_list_model.dart';
@@ -60,21 +64,26 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                       : FocusScope.of(context).unfocus(),
                   child: Padding(
                     padding: MediaQuery.viewInsetsOf(context),
-                    child: ConversationOptionsWidget(),
+                    child: const ConversationOptionsWidget(),
                   ),
                 );
               },
             ).then((value) => safeSetState(() {}));
 
-            context.pushNamed('Conversation');
+            // TODO
+            //context.pushNamed('Conversation');
           },
           child: FloatingActionButton(
-            onPressed: () async {
-              context.pushNamed('Conversation');
+            // TODO
+            // onPressed: () async {
+            //   context.pushNamed('Conversation');
+            // },
+            onPressed: () {
+              print("fab pressed");
             },
             backgroundColor: AppTheme.primary,
             elevation: 8,
-            child: Icon(
+            child: const Icon(
               Icons.add,
               color: AppTheme.info,
               size: 24,
@@ -84,12 +93,9 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
         appBar: AppBar(
           backgroundColor: AppTheme.secondaryBackground,
           automaticallyImplyLeading: false,
-          title: Text(
+          title: const Text(
             'My Chats',
-            style: AppTheme.headlineLarge.override(
-                  fontFamily: 'Outfit',
-                  letterSpacing: 0,
-                ),
+            style: AppTheme.headlineLarge,
           ),
           actions: const [],
           centerTitle: false,
@@ -101,14 +107,11 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+              const Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   'AI conversations',
-                  style: AppTheme.labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0,
-                      ),
+                  style: AppTheme.labelMedium,
                 ),
               ),
               Expanded(
@@ -126,9 +129,10 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed('Conversation');
-                          },
+                          // TODO
+                          // onTap: () async {
+                          //   context.pushNamed('Conversation');
+                          // },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -137,12 +141,12 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               Container(
                                 width: 100,
                                 height: 100,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: AppTheme
                                       .secondaryBackground,
                                 ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0, 0),
+                                child: const Align(
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.settings_outlined,
                                     color: AppTheme
@@ -161,12 +165,12 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                       minWidth:
                                           MediaQuery.sizeOf(context).width,
                                     ),
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppTheme
                                           .secondaryBackground,
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: Column(
+                                    child: const Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
@@ -175,40 +179,27 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1, 0),
+                                              AlignmentDirectional(-1, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Text(
                                                 'Hello World',
-                                                style:
-                                                    AppTheme
-                                                        .headlineLarge
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          letterSpacing: 0,
-                                                        ),
+                                                style: AppTheme.headlineLarge,
                                               ),
                                             ],
                                           ),
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1, 0),
+                                              AlignmentDirectional(-1, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Text(
                                                   'Hello World',
-                                                  style: FlutterFlowAppTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0,
-                                                      ),
+                                                  style: AppTheme.bodyMedium,
                                                 ),
                                               ),
                                             ],
@@ -222,11 +213,11 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               Container(
                                 width: 100,
                                 height: 100,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: AppTheme
                                       .secondaryBackground,
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.chevron_right_rounded,
                                   color: AppTheme
                                       .secondaryText,

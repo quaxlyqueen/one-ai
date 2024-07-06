@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'prompt_box_model.dart';
 export 'prompt_box_model.dart';
 
@@ -45,7 +47,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
+          color: AppTheme.secondaryBackground,
           borderRadius: BorderRadius.circular(10),
         ),
         alignment: const AlignmentDirectional(0, 0),
@@ -65,9 +67,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.file_upload_outlined,
-                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                        color: AppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -84,9 +86,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.photo_outlined,
-                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                        color: AppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -103,9 +105,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.mic_none,
-                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                        color: AppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -122,9 +124,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.videocam_outlined,
-                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                        color: AppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -141,9 +143,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.camera_alt_outlined,
-                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                        color: AppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -175,16 +177,10 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         isDense: false,
-                        counterStyle: AppAppAppAppAppAppAppAppAppTheme
-                            .bodyMedium
-                            .override(
-                              fontFamily: 'Readex Pro',
-                              color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
-                              letterSpacing: 0,
-                            ),
+                        counterStyle: AppTheme.bodyMedium,
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                          borderSide: const BorderSide(
+                            color: AppTheme.secondaryText,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
@@ -211,19 +207,14 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         filled: true,
-                        fillColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
-                        suffixIcon: Icon(
+                        fillColor: AppTheme.alternate,
+                        suffixIcon: const Icon(
                           Icons.send,
-                          color: AppAppAppAppAppAppAppAppAppTheme.primary,
+                          color: AppTheme.primary,
                           size: 30,
                         ),
                       ),
-                      style: AppAppAppAppAppAppAppAppAppTheme.bodyMedium.override(
-                            fontFamily: 'Lato',
-                            fontSize: 14,
-                            letterSpacing: 0,
-                            fontWeight: FontWeight.normal,
-                          ),
+                      style: AppTheme.bodyMedium,
                       textAlign: TextAlign.start,
                       maxLines: 5,
                       minLines: 1,

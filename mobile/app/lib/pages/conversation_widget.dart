@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '/theme.dart';
+import 'package:app/theme.dart';
 
 import 'conversation_model.dart';
 export 'conversation_model.dart';
@@ -44,37 +44,39 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: myAppTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.secondaryBackground,
         appBar: AppBar(
-          backgroundColor: myAppTheme.of(context).primaryBackground,
+          backgroundColor: AppTheme.primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
             borderWidth: 1,
             buttonSize: 60,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
-              color: AppTheme.primaryText,
+              color: AppTheme.primaryTextColor,
               size: 30,
             ),
             onPressed: () async {
-              context.goNamed(
-                'ConversationsList',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.leftToRight,
-                    duration: const Duration(milliseconds: 250),
-                  ),
-                },
-              );
+              print("something pressed in conversation_widget.dart");
+              // TODO
+              // context.goNamed(
+              //   'ConversationsList',
+              //   extra: <String, dynamic>{
+              //     kTransitionInfoKey: TransitionInfo(
+              //       hasTransition: true,
+              //       transitionType: PageTransitionType.leftToRight,
+              //       duration: const Duration(milliseconds: 250),
+              //     ),
+              //   },
+              // );
             },
           ),
           title: wrapWithModel(
             model: _model.modelItemModel,
             updateCallback: () => setState(() {}),
-            child: ModelItemWidget(),
+            child: const ModelItemWidget(),
           ),
           actions: [
             Padding(
@@ -85,9 +87,9 @@ class _ConversationWidgetState extends State<ConversationWidget> {
                 borderWidth: 2,
                 buttonSize: 40,
                 fillColor: AppTheme.primaryBackground,
-                icon: Icon(
+                icon: const Icon(
                   Icons.more_vert,
-                  color: AppTheme.primaryText,
+                  color: AppTheme.primaryTextColor,
                   size: 24,
                 ),
                 onPressed: () async {
@@ -104,7 +106,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
                             : FocusScope.of(context).unfocus(),
                         child: Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: ConversationDetailsOverlayWidget(),
+                          child: const ConversationDetailsOverlayWidget(),
                         ),
                       );
                     },
@@ -121,7 +123,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           child: wrapWithModel(
             model: _model.conversationThreadModel,
             updateCallback: () => setState(() {}),
-            child: ConversationThreadWidget(),
+            child: const ConversationThreadWidget(),
           ),
         ),
       ),

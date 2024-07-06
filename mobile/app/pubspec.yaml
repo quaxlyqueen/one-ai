@@ -43,6 +43,7 @@ dependencies:
   google_fonts: any
   provider: any
   easy_debounce: any
+  video_player: ^2.9.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

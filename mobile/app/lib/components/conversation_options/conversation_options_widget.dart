@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'conversation_options_model.dart';
 export 'conversation_options_model.dart';
 
@@ -40,8 +42,8 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
+      decoration: const BoxDecoration(
+        color: AppTheme.secondaryBackground,
       ),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
@@ -60,35 +62,30 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+                      color: AppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Icon(
                           Icons.share_rounded,
-                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                          color: AppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Share',
-                              style: AppAppAppAppAppAppAppAppAppTheme
-                                  .labelLarge
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              style: AppTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -109,35 +106,30 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+                      color: AppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Icon(
                           Icons.insert_link,
-                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                          color: AppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Get Link',
-                              style: AppAppAppAppAppAppAppAppAppTheme
-                                  .labelLarge
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              style: AppTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -158,35 +150,30 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+                      color: AppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Icon(
                           Icons.mode_edit,
-                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                          color: AppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Model selection',
-                              style: AppAppAppAppAppAppAppAppAppTheme
-                                  .labelLarge
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              style: AppTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -207,35 +194,30 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+                      color: AppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Icon(
                           Icons.hide_source,
-                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
+                          color: AppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Private',
-                              style: AppAppAppAppAppAppAppAppAppTheme
-                                  .labelLarge
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              style: AppTheme.labelLarge,
                             ),
                           ],
                         ),

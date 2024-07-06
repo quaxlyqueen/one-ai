@@ -4,6 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'setup_model.dart';
 export 'setup_model.dart';
 
@@ -155,30 +157,30 @@ class _SetupWidgetState extends State<SetupWidget>
               child: Container(
                 width: double.infinity,
                 height: 500,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       AppTheme.primary,
                       AppTheme.error,
                       AppTheme.tertiary
                     ],
-                    stops: const [0, 0.5, 1],
-                    begin: const AlignmentDirectional(-1, -1),
-                    end: const AlignmentDirectional(1, 1),
+                    stops: [0, 0.5, 1],
+                    begin: AlignmentDirectional(-1, -1),
+                    end: AlignmentDirectional(1, 1),
                   ),
                 ),
                 child: Container(
                   width: 100,
                   height: 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        const Color(0x00FFFFFF),
+                        Color(0x00FFFFFF),
                         AppTheme.secondaryBackground
                       ],
-                      stops: const [0, 1],
-                      begin: const AlignmentDirectional(0, -1),
-                      end: const AlignmentDirectional(0, 1),
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(0, -1),
+                      end: AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Column(
@@ -188,7 +190,7 @@ class _SetupWidgetState extends State<SetupWidget>
                       Container(
                         width: 120,
                         height: 120,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppTheme.accent4,
                           shape: BoxShape.circle,
                         ),
@@ -205,27 +207,18 @@ class _SetupWidgetState extends State<SetupWidget>
                           animationsMap['containerOnPageLoadAnimation2']!),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
-                        child: Text(
+                        child: const Text(
                           'Welcome!',
-                          style: AppTheme
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Outfit',
-                                letterSpacing: 0,
-                              ),
+                          style: AppTheme.displaySmall,
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation1']!),
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(44, 8, 44, 0),
-                        child: Text(
+                        child: const Text(
                           'Thanks for joining! Access or create your account below, and get started on your journey!',
                           textAlign: TextAlign.center,
-                          style:
-                              AppTheme.labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                          style: AppTheme.labelMedium,
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),
                       ),
@@ -258,13 +251,9 @@ class _SetupWidgetState extends State<SetupWidget>
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: AppTheme
                                 .secondaryBackground,
-                            textStyle:
-                                AppTheme.bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0,
-                                    ),
+                            textStyle: AppTheme.bodyLarge,
                             elevation: 0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: AppTheme.alternate,
                               width: 2,
                             ),
@@ -291,13 +280,7 @@ class _SetupWidgetState extends State<SetupWidget>
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: AppTheme.primary,
-                            textStyle: AppTheme
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0,
-                                ),
+                            textStyle: AppTheme.titleSmall,
                             elevation: 3,
                             borderSide: const BorderSide(
                               color: Colors.transparent,

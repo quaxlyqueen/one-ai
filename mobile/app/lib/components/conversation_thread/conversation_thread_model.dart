@@ -13,20 +13,19 @@ class ConversationThreadModel
 
   final formKey = GlobalKey<FormState>();
   // Model for ConversationBubbles component.
-  late ConversationBubblesModel conversationBubblesModel;
+  //late ConversationBubblesModel conversationBubblesModel;
   // Model for PromptBox component.
   late PromptBoxModel promptBoxModel;
 
   @override
   void initState(BuildContext context) {
-    conversationBubblesModel =
-        createModel(context, () => ConversationBubblesModel());
+    //conversationBubblesModel = createModel(context, () => ConversationBubblesModel());
     promptBoxModel = createModel(context, () => PromptBoxModel());
   }
 
   @override
   void dispose() {
-    conversationBubblesModel.dispose();
+    //conversationBubblesModel.dispose();
     promptBoxModel.dispose();
   }
 }

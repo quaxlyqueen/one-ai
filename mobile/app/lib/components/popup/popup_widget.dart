@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'popup_model.dart';
 export 'popup_model.dart';
 
@@ -78,20 +80,12 @@ class _PopupWidgetState extends State<PopupWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: Text(
                             'Refine the components modal.',
-                            style: AppAppAppAppAppAppAppAppAppTheme
-                                .headlineMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: const Color(0xFF14181B),
-                                  fontSize: 24,
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                            style: AppTheme.headlineMedium,
                           ),
                         ),
                       ),
@@ -116,15 +110,9 @@ class _PopupWidgetState extends State<PopupWidget> {
                     thickness: 2,
                     color: Color(0xFFF1F4F8),
                   ),
-                  Text(
+                  const Text(
                     'FlutterFlow is a visual development platform that allows you to easily create beautiful and responsive user interfaces for your mobile and web applications. With its drag-and-drop interface and pre-built components, you can quickly prototype and build your app without writing any code. \nAdditionally, FlutterFlow\'s real-time preview feature allows you to see your changes in real-time and make adjustments on the fly.',
-                    style: AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: const Color(0xFF57636C),
-                          fontSize: 14,
-                          letterSpacing: 0,
-                          fontWeight: FontWeight.normal,
-                        ),
+                    style: AppTheme.labelMedium,
                   ),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -144,14 +132,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: Colors.white,
-                            textStyle:
-                                AppAppAppAppAppAppAppAppAppTheme.bodySmall.override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0xFF14181B),
-                                      fontSize: 12,
-                                      letterSpacing: 0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                            textStyle: AppTheme.bodySmall,
                             elevation: 0,
                             borderSide: const BorderSide(
                               color: Color(0xFFF1F4F8),
@@ -174,15 +155,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: const Color(0xFF4B39EF),
-                            textStyle: AppAppAppAppAppAppAppAppAppTheme
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            textStyle: AppTheme.titleSmall,
                             elevation: 3,
                             borderSide: const BorderSide(
                               color: Colors.transparent,

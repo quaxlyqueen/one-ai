@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'no_chats_model.dart';
 export 'no_chats_model.dart';
 
@@ -59,11 +61,7 @@ class _NoChatsWidgetState extends State<NoChatsWidget> {
             child: Text(
               widget.title,
               textAlign: TextAlign.center,
-              style: AppAppAppAppAppAppAppAppAppTheme.headlineSmall.override(
-                    fontFamily: 'Outfit',
-                    color: AppAppAppAppAppAppAppAppAppTheme.primaryText,
-                    letterSpacing: 0,
-                  ),
+              style: AppTheme.headlineSmall,
             ),
           ),
           Padding(
@@ -71,10 +69,7 @@ class _NoChatsWidgetState extends State<NoChatsWidget> {
             child: Text(
               widget.body,
               textAlign: TextAlign.center,
-              style: AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
-                    fontFamily: 'Readex Pro',
-                    letterSpacing: 0,
-                  ),
+              style: AppTheme.labelMedium,
             ),
           ),
         ],

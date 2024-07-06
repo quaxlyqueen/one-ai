@@ -131,11 +131,11 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
             buttonSize: 60,
             icon: const Icon(
               Icons.arrow_back_rounded,
-              color: AppTheme.primaryText,
+              color: AppTheme.primaryTextColor,
               size: 30,
             ),
             onPressed: () async {
-              context.pop();
+              //TODO: context.pop();
             },
           ),
           title: const Text(

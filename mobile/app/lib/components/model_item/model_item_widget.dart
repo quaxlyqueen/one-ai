@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'model_item_model.dart';
 export 'model_item_model.dart';
 
@@ -48,7 +50,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
       }),
       child: Container(
         decoration: BoxDecoration(
-          color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+          color: AppTheme.primaryBackground,
           borderRadius: BorderRadius.circular(0),
         ),
         child: Padding(
@@ -60,29 +62,25 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: AppAppAppAppAppAppAppAppAppTheme.accent1,
+                  color: AppTheme.accent1,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: AppAppAppAppAppAppAppAppAppTheme.primary,
+                    color: AppTheme.primary,
                     width: 2,
                   ),
                 ),
-                child: Align(
-                  alignment: const AlignmentDirectional(0, 0),
+                child: const Align(
+                  alignment: AlignmentDirectional(0, 0),
                   child: Text(
                     'A',
                     textAlign: TextAlign.center,
-                    style: AppAppAppAppAppAppAppAppAppTheme.bodyLarge.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: AppTheme.bodyLarge,
                   ),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -90,22 +88,13 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                     children: [
                       Text(
                         'Randy Peterson',
-                        style: AppAppAppAppAppAppAppAppAppTheme.bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style: AppTheme.bodyMedium,
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                         child: Text(
                           'name@domainname.com',
-                          style:
-                              AppAppAppAppAppAppAppAppAppTheme.bodySmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: AppAppAppAppAppAppAppAppAppTheme.primary,
-                                    letterSpacing: 0,
-                                  ),
+                          style: AppTheme.bodySmall,
                         ),
                       ),
                     ],

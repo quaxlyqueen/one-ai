@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'conversation_thread_model.dart';
 export 'conversation_thread_model.dart';
 
@@ -44,8 +46,8 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
+      decoration: const BoxDecoration(
+        color: AppTheme.primaryBackground,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -71,20 +73,21 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                     minHeight: MediaQuery.sizeOf(context).height * 1,
                   ),
                   decoration: const BoxDecoration(),
-                  child: wrapWithModel(
-                    model: _model.conversationBubblesModel,
-                    updateCallback: () => setState(() {}),
-                    child: ConversationBubblesWidget(),
-                  ),
+                  //child: wrapWithModel(
+                    //model: _model.conversationBubblesModel,
+                    //updateCallback: () => setState(() {}),
+                    //child: ConversationBubblesWidget(),
+                    //child: const Text("test"),
+                  //),
                 ),
               ],
             ),
           ),
           Container(
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
-              boxShadow: const [
+            decoration: const BoxDecoration(
+              color: AppTheme.secondaryBackground,
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 3,
                   color: Color(0x33000000),
@@ -95,6 +98,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                 )
               ],
             ),
+            // TODO
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -110,44 +114,45 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              FlutterFlowMediaDisplay(
-                                path: '',
-                                imageBuilder: (path) => ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: CachedNetworkImage(
-                                    fadeInDuration: const Duration(milliseconds: 500),
-                                    fadeOutDuration:
-                                        const Duration(milliseconds: 500),
-                                    imageUrl: path,
-                                    width: 120,
-                                    height: 100,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                videoPlayerBuilder: (path) =>
-                                    FlutterFlowVideoPlayer(
-                                  path: path,
-                                  width: 300,
-                                  autoPlay: false,
-                                  looping: true,
-                                  showControls: true,
-                                  allowFullScreen: true,
-                                  allowPlaybackSpeedMenu: false,
-                                ),
-                              ),
+                              // FlutterFlowMediaDisplay(
+                              //   path: '',
+                              //   imageBuilder: (path) => ClipRRect(
+                              //     borderRadius: BorderRadius.circular(8),
+                              //     child: CachedNetworkImage(
+                              //       fadeInDuration: const Duration(milliseconds: 500),
+                              //       fadeOutDuration:
+                              //           const Duration(milliseconds: 500),
+                              //       imageUrl: path,
+                              //       width: 120,
+                              //       height: 100,
+                              //       fit: BoxFit.cover,
+                              //     ),
+                              //   ),
+                              // TODO
+                              //   videoPlayerBuilder: (path) =>
+                              //       FlutterFlowVideoPlayer(
+                              //     path: path,
+                              //     width: 300,
+                              //     autoPlay: false,
+                              //     looping: true,
+                              //     showControls: true,
+                              //     allowFullScreen: true,
+                              //     allowPlaybackSpeedMenu: false,
+                              //   ),
+                              // ),
                               Align(
                                 alignment: const AlignmentDirectional(-1, -1),
                                 child: FlutterFlowIconButton(
                                   borderColor:
-                                      AppAppAppAppAppAppAppAppAppTheme.error,
+                                      AppTheme.error,
                                   borderRadius: 20,
                                   borderWidth: 2,
                                   buttonSize: 40,
-                                  fillColor: AppAppAppAppAppAppAppAppAppTheme
+                                  fillColor: AppTheme
                                       .primaryBackground,
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.delete_outline_rounded,
-                                    color: AppAppAppAppAppAppAppAppAppTheme.error,
+                                    color: AppTheme.error,
                                     size: 24,
                                   ),
                                   onPressed: () {
@@ -173,7 +178,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                     child: wrapWithModel(
                       model: _model.promptBoxModel,
                       updateCallback: () => setState(() {}),
-                      child: PromptBoxWidget(),
+                      child: const PromptBoxWidget(),
                     ),
                   ),
                 ),

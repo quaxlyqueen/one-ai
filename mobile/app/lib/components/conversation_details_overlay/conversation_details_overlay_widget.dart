@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app/theme.dart';
+
 import 'conversation_details_overlay_model.dart';
 export 'conversation_details_overlay_model.dart';
 
@@ -73,29 +75,24 @@ class _ConversationDetailsOverlayWidgetState
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: Text(
                             'Chat Details',
-                            style: AppAppAppAppAppAppAppAppAppTheme
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  letterSpacing: 0,
-                                ),
+                            style: AppTheme.headlineSmall,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                           child: FlutterFlowIconButton(
-                            borderColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
+                            borderColor: AppTheme.alternate,
                             borderRadius: 12,
                             borderWidth: 1,
                             buttonSize: 40,
-                            fillColor: AppAppAppAppAppAppAppAppAppTheme.accent4,
-                            icon: Icon(
+                            fillColor: AppTheme.accent4,
+                            icon: const Icon(
                               Icons.close_rounded,
-                              color: AppAppAppAppAppAppAppAppAppTheme.primaryText,
+                              color: AppTheme.primaryTextColor,
                               size: 24,
                             ),
                             onPressed: () async {
@@ -109,38 +106,34 @@ class _ConversationDetailsOverlayWidgetState
                       padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 0, 4),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
+                        text: const TextSpan(
                           children: [
-                            const TextSpan(
+                            TextSpan(
                               text: 'Group Chat ID: ',
                               style: TextStyle(),
                             ),
                             TextSpan(
                               text: 'Hello World ',
                               style: TextStyle(
-                                color: AppAppAppAppAppAppAppAppAppTheme.primary,
+                                color: AppTheme.primary,
                                 fontWeight: FontWeight.bold,
                               ),
                             )
                           ],
-                          style:
-                              AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                          style: AppTheme.labelMedium,
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Align(
-                        alignment: const AlignmentDirectional(0, 0),
+                        alignment: AlignmentDirectional(0, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Divider(
                               thickness: 1,
-                              color: AppAppAppAppAppAppAppAppAppTheme.tertiary,
+                              color: AppTheme.tertiary,
                             ),
                           ],
                         ),
@@ -154,18 +147,18 @@ class _ConversationDetailsOverlayWidgetState
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: AppAppAppAppAppAppAppAppAppTheme
+                              color: AppTheme
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: AppAppAppAppAppAppAppAppAppTheme.alternate,
+                                color: AppTheme.alternate,
                               ),
                             ),
                             child: wrapWithModel(
                               model: _model.optionsDialogModel,
                               updateCallback: () => setState(() {}),
                               updateOnChange: true,
-                              child: OptionsDialogWidget(),
+                              child: const PopupWidget(),
                             ),
                           ),
                         ),
@@ -185,26 +178,20 @@ class _ConversationDetailsOverlayWidgetState
                           iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color:
-                              AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
-                          textStyle:
-                              AppAppAppAppAppAppAppAppAppTheme.titleLarge.override(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 18,
-                                    letterSpacing: 0,
-                                  ),
+                              AppTheme.secondaryBackground,
+                          textStyle: AppTheme.titleLarge,
                           elevation: 0,
-                          borderSide: BorderSide(
-                            color: AppAppAppAppAppAppAppAppAppTheme.alternate,
+                          borderSide: const BorderSide(
+                            color: AppTheme.alternate,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
-                          hoverColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
-                          hoverBorderSide: BorderSide(
-                            color: AppAppAppAppAppAppAppAppAppTheme.alternate,
+                          hoverColor: AppTheme.alternate,
+                          hoverBorderSide: const BorderSide(
+                            color: AppTheme.alternate,
                             width: 2,
                           ),
-                          hoverTextColor:
-                              AppAppAppAppAppAppAppAppAppTheme.primaryText,
+                          hoverTextColor: AppTheme.primaryTextColor,
                           hoverElevation: 3,
                         ),
                       ),

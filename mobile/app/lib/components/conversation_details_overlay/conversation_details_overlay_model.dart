@@ -11,11 +11,11 @@ class ConversationDetailsOverlayModel
   ///  State fields for stateful widgets in this component.
 
   // Model for OptionsDialog component.
-  late OptionsDialogModel optionsDialogModel;
+  late PopupModel optionsDialogModel;
 
   @override
   void initState(BuildContext context) {
-    optionsDialogModel = createModel(context, () => OptionsDialogModel());
+    optionsDialogModel = createModel(context, () => PopupModel());
   }
 
   @override
