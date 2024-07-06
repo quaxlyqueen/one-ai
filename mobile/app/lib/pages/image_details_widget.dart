@@ -1,8 +1,4 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -106,9 +102,9 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: AppTheme.secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -117,7 +113,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: AppTheme.primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -167,11 +163,11 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).accent1,
+                          color: AppTheme.accent1,
                           borderRadius: BorderRadius.circular(12),
                           shape: BoxShape.rectangle,
                           border: Border.all(
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: AppTheme.primary,
                             width: 2,
                           ),
                         ),
@@ -207,7 +203,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                     child: AutoSizeText(
                                   'Thanks so much! We really do appreciate it!',
                                   textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
+                                  style: AppTheme
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
@@ -220,7 +216,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                       0, 4, 0, 0),
                                   child: Text(
                                     'Just Now',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme
                                         .labelSmall
                                         .override(
                                           fontFamily: 'Readex Pro',
@@ -237,7 +233,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                   child: AutoSizeText(
                                 'Thanks so much! We really do appreciate it!',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
+                                style: AppTheme
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Readex Pro',

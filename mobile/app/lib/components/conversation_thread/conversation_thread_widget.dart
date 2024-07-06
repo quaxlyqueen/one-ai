@@ -1,10 +1,6 @@
 import '/components/conversation_bubbles/conversation_bubbles_widget.dart';
 import '/components/prompt_box/prompt_box_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_media_display.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,7 +45,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryBackground,
+        color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -87,7 +83,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
               boxShadow: const [
                 BoxShadow(
                   blurRadius: 3,
@@ -143,15 +139,15 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                                 alignment: const AlignmentDirectional(-1, -1),
                                 child: FlutterFlowIconButton(
                                   borderColor:
-                                      FlutterFlowTheme.of(context).error,
+                                      AppAppAppAppAppAppAppAppAppTheme.error,
                                   borderRadius: 20,
                                   borderWidth: 2,
                                   buttonSize: 40,
-                                  fillColor: FlutterFlowTheme.of(context)
+                                  fillColor: AppAppAppAppAppAppAppAppAppTheme
                                       .primaryBackground,
                                   icon: Icon(
                                     Icons.delete_outline_rounded,
-                                    color: FlutterFlowTheme.of(context).error,
+                                    color: AppAppAppAppAppAppAppAppAppTheme.error,
                                     size: 24,
                                   ),
                                   onPressed: () {

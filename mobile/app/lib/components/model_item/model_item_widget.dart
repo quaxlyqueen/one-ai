@@ -1,5 +1,4 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +48,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
       }),
       child: Container(
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBackground,
+          color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
           borderRadius: BorderRadius.circular(0),
         ),
         child: Padding(
@@ -61,10 +60,10 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).accent1,
+                  color: AppAppAppAppAppAppAppAppAppTheme.accent1,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: AppAppAppAppAppAppAppAppAppTheme.primary,
                     width: 2,
                   ),
                 ),
@@ -73,7 +72,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                   child: Text(
                     'A',
                     textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                    style: AppAppAppAppAppAppAppAppAppTheme.bodyLarge.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0,
                           fontWeight: FontWeight.bold,
@@ -91,7 +90,7 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                     children: [
                       Text(
                         'Randy Peterson',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: AppAppAppAppAppAppAppAppAppTheme.bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0,
                               fontWeight: FontWeight.bold,
@@ -102,9 +101,9 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                         child: Text(
                           'name@domainname.com',
                           style:
-                              FlutterFlowTheme.of(context).bodySmall.override(
+                              AppAppAppAppAppAppAppAppAppTheme.bodySmall.override(
                                     fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: AppAppAppAppAppAppAppAppAppTheme.primary,
                                     letterSpacing: 0,
                                   ),
                         ),

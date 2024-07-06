@@ -1,8 +1,4 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import 'support_form_model.dart';
 export 'support_form_model.dart';
+
+import 'package:app/theme.dart';
 
 class SupportFormWidget extends StatefulWidget {
   const SupportFormWidget({super.key});
@@ -122,30 +120,27 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: AppTheme.secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
             borderWidth: 1,
             buttonSize: 60,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: AppTheme.primaryText,
               size: 30,
             ),
             onPressed: () async {
               context.pop();
             },
           ),
-          title: Text(
+          title: const Text(
             'Submit Ticket',
-            style: FlutterFlowTheme.of(context).titleLarge.override(
-                  fontFamily: 'Outfit',
-                  letterSpacing: 0,
-                ),
+            style: AppTheme.titleLarge,
           ),
           actions: const [],
           centerTitle: false,
@@ -162,23 +157,15 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome to support',
-                      style: FlutterFlowTheme.of(context).labelLarge.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0,
-                          ),
+                      style: AppTheme.labelLarge,
                     ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                       child: Text(
                         'Submit a bug',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              letterSpacing: 0,
-                            ),
+                        style: AppTheme.headlineMedium,
                       ),
                     ),
                     Row(
@@ -194,16 +181,16 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                                 maxWidth: 500,
                               ),
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
+                                color: AppTheme
                                     .secondaryBackground,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.alternate,
                                   width: 2,
                                 ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                              child: const Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8, 16, 8, 16),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -213,21 +200,16 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                                     Icon(
                                       Icons.email_outlined,
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
+                                          AppTheme.primary,
                                       size: 36,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 12, 0, 0),
                                       child: Text(
                                         'Email Us',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0,
-                                            ),
+                                        style: AppTheme.bodyMedium,
                                       ),
                                     ),
                                   ],
@@ -247,16 +229,16 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                                 maxWidth: 500,
                               ),
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
+                                color: AppTheme
                                     .secondaryBackground,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.alternate,
                                   width: 2,
                                 ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                              child: const Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8, 16, 8, 16),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -266,21 +248,16 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                                     Icon(
                                       Icons.search_rounded,
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
+                                          AppTheme.primary,
                                       size: 36,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 12, 0, 0),
                                       child: Text(
                                         'Search FAQs',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0,
-                                            ),
+                                        style: AppTheme.bodyMedium,
                                       ),
                                     ),
                                   ],
@@ -304,42 +281,32 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Channel Name',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              labelStyle: AppTheme.labelMedium,
+                              hintStyle: AppTheme.labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
@@ -347,13 +314,8 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16, 12, 16, 12),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
-                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            style: AppTheme.bodyMedium,
+                            cursorColor: AppTheme.primary,
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
@@ -364,42 +326,32 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Channel ID',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              labelStyle: AppTheme.labelMedium,
+                              hintStyle: AppTheme.labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
@@ -407,13 +359,8 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16, 12, 16, 12),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
-                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            style: AppTheme.bodyMedium,
+                            cursorColor: AppTheme.primary,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),
@@ -423,44 +370,34 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              labelStyle: AppTheme.labelMedium,
                               hintText:
                                   'Short Description of what is going on...',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0,
-                                  ),
+                              hintStyle: AppTheme.labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                borderSide: const BorderSide(
+                                  color: AppTheme.error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
@@ -468,15 +405,10 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16, 24, 16, 12),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
+                            style: AppTheme.bodyMedium,
                             maxLines: 16,
                             minLines: 6,
-                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            cursorColor: AppTheme.primary,
                             validator: _model.textController3Validator
                                 .asValidator(context),
                           ),
@@ -492,35 +424,30 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                         ),
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              AppTheme.secondaryBackground,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: AppTheme.alternate,
                             width: 2,
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Icon(
                                 Icons.add_a_photo_rounded,
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: AppTheme.primary,
                                 size: 32,
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                                 child: Text(
                                   'Upload Screenshot',
                                   textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0,
-                                      ),
+                                  style: AppTheme.bodyMedium,
                                 ),
                               ),
                             ],
@@ -546,13 +473,8 @@ class _SupportFormWidgetState extends State<SupportFormWidget>
                           padding: const EdgeInsets.all(0),
                           iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0,
-                                  ),
+                          color: AppTheme.primary,
+                          textStyle: AppTheme.titleSmall,
                           elevation: 4,
                           borderSide: const BorderSide(
                             color: Colors.transparent,

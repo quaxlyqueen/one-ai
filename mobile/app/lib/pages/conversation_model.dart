@@ -1,10 +1,7 @@
 import '/components/conversation_details_overlay/conversation_details_overlay_widget.dart';
 import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'conversation_widget.dart' show ConversationWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

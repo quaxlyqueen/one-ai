@@ -1,7 +1,4 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +83,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: Text(
                             'Refine the components modal.',
-                            style: FlutterFlowTheme.of(context)
+                            style: AppAppAppAppAppAppAppAppAppTheme
                                 .headlineMedium
                                 .override(
                                   fontFamily: 'Outfit',
@@ -121,7 +118,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                   ),
                   Text(
                     'FlutterFlow is a visual development platform that allows you to easily create beautiful and responsive user interfaces for your mobile and web applications. With its drag-and-drop interface and pre-built components, you can quickly prototype and build your app without writing any code. \nAdditionally, FlutterFlow\'s real-time preview feature allows you to see your changes in real-time and make adjustments on the fly.',
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                    style: AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
                           fontFamily: 'Readex Pro',
                           color: const Color(0xFF57636C),
                           fontSize: 14,
@@ -148,7 +145,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: Colors.white,
                             textStyle:
-                                FlutterFlowTheme.of(context).bodySmall.override(
+                                AppAppAppAppAppAppAppAppAppTheme.bodySmall.override(
                                       fontFamily: 'Readex Pro',
                                       color: const Color(0xFF14181B),
                                       fontSize: 12,
@@ -177,7 +174,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: const Color(0xFF4B39EF),
-                            textStyle: FlutterFlowTheme.of(context)
+                            textStyle: AppAppAppAppAppAppAppAppAppTheme
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',

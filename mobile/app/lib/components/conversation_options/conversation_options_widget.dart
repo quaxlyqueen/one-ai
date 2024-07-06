@@ -1,5 +1,4 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +41,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
+        color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
       ),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
@@ -61,7 +60,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -70,7 +69,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.share_rounded,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
@@ -84,7 +83,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                           children: [
                             Text(
                               'Share',
-                              style: FlutterFlowTheme.of(context)
+                              style: AppAppAppAppAppAppAppAppAppTheme
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Readex Pro',
@@ -110,7 +109,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -119,7 +118,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.insert_link,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
@@ -133,7 +132,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                           children: [
                             Text(
                               'Get Link',
-                              style: FlutterFlowTheme.of(context)
+                              style: AppAppAppAppAppAppAppAppAppTheme
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Readex Pro',
@@ -159,7 +158,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -168,7 +167,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.mode_edit,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
@@ -182,7 +181,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                           children: [
                             Text(
                               'Model selection',
-                              style: FlutterFlowTheme.of(context)
+                              style: AppAppAppAppAppAppAppAppAppTheme
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Readex Pro',
@@ -208,7 +207,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                   children: [
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: AppAppAppAppAppAppAppAppAppTheme.primaryBackground,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -217,7 +216,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                         padding: const EdgeInsets.all(8),
                         child: Icon(
                           Icons.hide_source,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                           size: 20,
                         ),
                       ),
@@ -231,7 +230,7 @@ class _ConversationOptionsWidgetState extends State<ConversationOptionsWidget> {
                           children: [
                             Text(
                               'Private',
-                              style: FlutterFlowTheme.of(context)
+                              style: AppAppAppAppAppAppAppAppAppTheme
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Readex Pro',

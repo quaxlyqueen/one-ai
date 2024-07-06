@@ -1,7 +1,4 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -149,7 +146,7 @@ class _SetupWidgetState extends State<SetupWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.secondaryBackground,
         body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,9 +158,9 @@ class _SetupWidgetState extends State<SetupWidget>
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      FlutterFlowTheme.of(context).primary,
-                      FlutterFlowTheme.of(context).error,
-                      FlutterFlowTheme.of(context).tertiary
+                      AppTheme.primary,
+                      AppTheme.error,
+                      AppTheme.tertiary
                     ],
                     stops: const [0, 0.5, 1],
                     begin: const AlignmentDirectional(-1, -1),
@@ -177,7 +174,7 @@ class _SetupWidgetState extends State<SetupWidget>
                     gradient: LinearGradient(
                       colors: [
                         const Color(0x00FFFFFF),
-                        FlutterFlowTheme.of(context).secondaryBackground
+                        AppTheme.secondaryBackground
                       ],
                       stops: const [0, 1],
                       begin: const AlignmentDirectional(0, -1),
@@ -192,7 +189,7 @@ class _SetupWidgetState extends State<SetupWidget>
                         width: 120,
                         height: 120,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).accent4,
+                          color: AppTheme.accent4,
                           shape: BoxShape.circle,
                         ),
                         child: Padding(
@@ -210,7 +207,7 @@ class _SetupWidgetState extends State<SetupWidget>
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
                         child: Text(
                           'Welcome!',
-                          style: FlutterFlowTheme.of(context)
+                          style: AppTheme
                               .displaySmall
                               .override(
                                 fontFamily: 'Outfit',
@@ -225,7 +222,7 @@ class _SetupWidgetState extends State<SetupWidget>
                           'Thanks for joining! Access or create your account below, and get started on your journey!',
                           textAlign: TextAlign.center,
                           style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              AppTheme.labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0,
                                   ),
@@ -259,16 +256,16 @@ class _SetupWidgetState extends State<SetupWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context)
+                            color: AppTheme
                                 .secondaryBackground,
                             textStyle:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                AppTheme.bodyLarge.override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0,
                                     ),
                             elevation: 0,
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: AppTheme.alternate,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(12),
@@ -293,8 +290,8 @@ class _SetupWidgetState extends State<SetupWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
+                            color: AppTheme.primary,
+                            textStyle: AppTheme
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',

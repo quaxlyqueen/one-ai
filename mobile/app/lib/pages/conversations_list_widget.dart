@@ -1,7 +1,5 @@
 import '/components/conversation_options/conversation_options_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +41,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.secondaryBackground,
         floatingActionButton: InkWell(
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,
@@ -74,21 +72,21 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
             onPressed: () async {
               context.pushNamed('Conversation');
             },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: AppTheme.primary,
             elevation: 8,
             child: Icon(
               Icons.add,
-              color: FlutterFlowTheme.of(context).info,
+              color: AppTheme.info,
               size: 24,
             ),
           ),
         ),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: AppTheme.secondaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
             'My Chats',
-            style: FlutterFlowTheme.of(context).headlineLarge.override(
+            style: AppTheme.headlineLarge.override(
                   fontFamily: 'Outfit',
                   letterSpacing: 0,
                 ),
@@ -107,7 +105,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   'AI conversations',
-                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                  style: AppTheme.labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0,
                       ),
@@ -140,14 +138,14 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme
                                       .secondaryBackground,
                                 ),
                                 child: Align(
                                   alignment: const AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.settings_outlined,
-                                    color: FlutterFlowTheme.of(context)
+                                    color: AppTheme
                                         .secondaryText,
                                     size: 48,
                                   ),
@@ -164,7 +162,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                           MediaQuery.sizeOf(context).width,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .secondaryBackground,
                                       shape: BoxShape.rectangle,
                                     ),
@@ -184,7 +182,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               Text(
                                                 'Hello World',
                                                 style:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .headlineLarge
                                                         .override(
                                                           fontFamily: 'Outfit',
@@ -203,7 +201,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               Expanded(
                                                 child: Text(
                                                   'Hello World',
-                                                  style: FlutterFlowTheme.of(
+                                                  style: FlutterFlowAppTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
@@ -225,12 +223,12 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme
                                       .secondaryBackground,
                                 ),
                                 child: Icon(
                                   Icons.chevron_right_rounded,
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme
                                       .secondaryText,
                                   size: 48,
                                 ),

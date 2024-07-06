@@ -1,6 +1,4 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +45,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
           borderRadius: BorderRadius.circular(10),
         ),
         alignment: const AlignmentDirectional(0, 0),
@@ -69,7 +67,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: Icon(
                         Icons.file_upload_outlined,
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -88,7 +86,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: Icon(
                         Icons.photo_outlined,
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -107,7 +105,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: Icon(
                         Icons.mic_none,
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -126,7 +124,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: Icon(
                         Icons.videocam_outlined,
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -145,7 +143,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: Icon(
                         Icons.camera_alt_outlined,
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                         size: 30,
                       ),
                       onPressed: () {
@@ -177,16 +175,16 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         isDense: false,
-                        counterStyle: FlutterFlowTheme.of(context)
+                        counterStyle: AppAppAppAppAppAppAppAppAppTheme
                             .bodyMedium
                             .override(
                               fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                               letterSpacing: 0,
                             ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: AppAppAppAppAppAppAppAppAppTheme.secondaryText,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
@@ -213,14 +211,14 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         filled: true,
-                        fillColor: FlutterFlowTheme.of(context).alternate,
+                        fillColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
                         suffixIcon: Icon(
                           Icons.send,
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: AppAppAppAppAppAppAppAppAppTheme.primary,
                           size: 30,
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      style: AppAppAppAppAppAppAppAppAppTheme.bodyMedium.override(
                             fontFamily: 'Lato',
                             fontSize: 14,
                             letterSpacing: 0,

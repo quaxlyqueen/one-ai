@@ -1,8 +1,5 @@
 import '/components/popup/popup_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -91,14 +88,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: AppTheme.secondaryBackground,
       appBar: MediaQuery.sizeOf(context).width <= 991.0
           ? AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              backgroundColor: AppTheme.secondaryBackground,
               automaticallyImplyLeading: false,
               title: Text(
                 'My Profile',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                style: AppTheme.headlineMedium.override(
                       fontFamily: 'Outfit',
                       letterSpacing: 0,
                     ),
@@ -124,10 +121,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                     width: 270,
                     height: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: AppTheme.primaryBackground,
                       borderRadius: BorderRadius.circular(0),
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: AppTheme.alternate,
                         width: 1,
                       ),
                     ),
@@ -145,7 +142,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               children: [
                                 Icon(
                                   Icons.add_task_rounded,
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: AppTheme.primary,
                                   size: 32,
                                 ),
                                 Padding(
@@ -153,7 +150,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       12, 0, 0, 0),
                                   child: Text(
                                     'check.io',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme
                                         .headlineMedium
                                         .override(
                                           fontFamily: 'Outfit',
@@ -167,7 +164,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                           Divider(
                             height: 12,
                             thickness: 2,
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: AppTheme.alternate,
                           ),
                           Expanded(
                             child: Column(
@@ -179,7 +176,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       16, 12, 0, 0),
                                   child: Text(
                                     'Platform Navigation',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
@@ -196,7 +193,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
@@ -209,7 +206,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.space_dashboard,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryText,
                                             size: 24,
                                           ),
@@ -220,7 +217,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'Dashboard',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -243,7 +240,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
@@ -256,7 +253,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.forum_rounded,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryText,
                                             size: 24,
                                           ),
@@ -267,7 +264,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'Chats',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -290,7 +287,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
@@ -303,7 +300,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.work,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryText,
                                             size: 24,
                                           ),
@@ -314,7 +311,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'Projects',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -338,7 +335,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     height: 44,
                                     decoration: BoxDecoration(
                                       color:
-                                          FlutterFlowTheme.of(context).accent1,
+                                          AppTheme.accent1,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
                                     ),
@@ -350,7 +347,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.receipt_rounded,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primary,
                                             size: 24,
                                           ),
@@ -361,7 +358,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               child: Text(
                                                 'Recent Orders',
                                                 style:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -375,7 +372,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             height: 32,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .primary,
                                               borderRadius:
                                                   BorderRadius.circular(8),
@@ -388,14 +385,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     .fromSTEB(8, 4, 8, 4),
                                                 child: Text(
                                                   '12',
-                                                  style: FlutterFlowTheme.of(
+                                                  style: FlutterFlowAppTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color:
-                                                            FlutterFlowTheme.of(
+                                                            FlutterFlowAppTheme.of(
                                                                     context)
                                                                 .info,
                                                         letterSpacing: 0,
@@ -414,7 +411,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       16, 0, 0, 0),
                                   child: Text(
                                     'Settings',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
@@ -431,7 +428,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
@@ -444,7 +441,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.attach_money_rounded,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryText,
                                             size: 24,
                                           ),
@@ -455,7 +452,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'Billing',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -478,7 +475,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     width: double.infinity,
                                     height: 44,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .primaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       shape: BoxShape.rectangle,
@@ -491,7 +488,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         children: [
                                           Icon(
                                             Icons.wifi_tethering_rounded,
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryText,
                                             size: 24,
                                           ),
@@ -502,7 +499,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'Explore',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -528,12 +525,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                 width: 250,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme
                                       .primaryBackground,
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                        AppTheme.alternate,
                                     width: 1,
                                   ),
                                 ),
@@ -551,33 +548,33 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             setDarkModeSetting(
-                                                context, ThemeMode.light);
+                                                context, AppThemeMode.light);
                                           },
                                           child: Container(
                                             width: 115,
                                             height: 100,
                                             decoration: BoxDecoration(
-                                              color: Theme.of(context)
+                                              color: AppTheme.of(context)
                                                           .brightness ==
                                                       Brightness.light
-                                                  ? FlutterFlowTheme.of(context)
+                                                  ? AppTheme
                                                       .secondaryBackground
-                                                  : FlutterFlowTheme.of(context)
+                                                  : AppTheme
                                                       .primaryBackground,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
                                                 color: valueOrDefault<Color>(
-                                                  Theme.of(context)
+                                                  AppTheme.of(context)
                                                               .brightness ==
                                                           Brightness.light
-                                                      ? FlutterFlowTheme.of(
+                                                      ? FlutterFlowAppTheme.of(
                                                               context)
                                                           .alternate
-                                                      : FlutterFlowTheme.of(
+                                                      : FlutterFlowAppTheme.of(
                                                               context)
                                                           .primaryBackground,
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .alternate,
                                                 ),
                                                 width: 1,
@@ -590,13 +587,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               children: [
                                                 Icon(
                                                   Icons.wb_sunny_rounded,
-                                                  color: Theme.of(context)
+                                                  color: AppTheme.of(context)
                                                               .brightness ==
                                                           Brightness.light
-                                                      ? FlutterFlowTheme.of(
+                                                      ? FlutterFlowAppTheme.of(
                                                               context)
                                                           .primaryText
-                                                      : FlutterFlowTheme.of(
+                                                      : FlutterFlowAppTheme.of(
                                                               context)
                                                           .secondaryText,
                                                   size: 16,
@@ -607,20 +604,20 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   child: Text(
                                                     'Light Mode',
                                                     style:
-                                                        FlutterFlowTheme.of(
+                                                        FlutterFlowAppTheme.of(
                                                                 context)
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
                                                                   'Readex Pro',
-                                                              color: Theme.of(context)
+                                                              color: AppTheme.of(context)
                                                                           .brightness ==
                                                                       Brightness
                                                                           .light
-                                                                  ? FlutterFlowTheme.of(
+                                                                  ? FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .primaryText
-                                                                  : FlutterFlowTheme.of(
+                                                                  : FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .secondaryText,
                                                               letterSpacing: 0,
@@ -640,33 +637,33 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             setDarkModeSetting(
-                                                context, ThemeMode.dark);
+                                                context, AppThemeMode.dark);
                                           },
                                           child: Container(
                                             width: 115,
                                             height: 100,
                                             decoration: BoxDecoration(
-                                              color: Theme.of(context)
+                                              color: AppTheme.of(context)
                                                           .brightness ==
                                                       Brightness.dark
-                                                  ? FlutterFlowTheme.of(context)
+                                                  ? AppTheme
                                                       .secondaryBackground
-                                                  : FlutterFlowTheme.of(context)
+                                                  : AppTheme
                                                       .primaryBackground,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
                                                 color: valueOrDefault<Color>(
-                                                  Theme.of(context)
+                                                  AppTheme.of(context)
                                                               .brightness ==
                                                           Brightness.dark
-                                                      ? FlutterFlowTheme.of(
+                                                      ? FlutterFlowAppTheme.of(
                                                               context)
                                                           .alternate
-                                                      : FlutterFlowTheme.of(
+                                                      : FlutterFlowAppTheme.of(
                                                               context)
                                                           .primaryBackground,
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .primaryBackground,
                                                 ),
                                                 width: 1,
@@ -679,13 +676,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               children: [
                                                 Icon(
                                                   Icons.nightlight_round,
-                                                  color: Theme.of(context)
+                                                  color: AppTheme.of(context)
                                                               .brightness ==
                                                           Brightness.dark
-                                                      ? FlutterFlowTheme.of(
+                                                      ? FlutterFlowAppTheme.of(
                                                               context)
                                                           .primaryText
-                                                      : FlutterFlowTheme.of(
+                                                      : FlutterFlowAppTheme.of(
                                                               context)
                                                           .secondaryText,
                                                   size: 16,
@@ -696,20 +693,20 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                   child: Text(
                                                     'Dark Mode',
                                                     style:
-                                                        FlutterFlowTheme.of(
+                                                        FlutterFlowAppTheme.of(
                                                                 context)
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
                                                                   'Readex Pro',
-                                                              color: Theme.of(context)
+                                                              color: AppTheme.of(context)
                                                                           .brightness ==
                                                                       Brightness
                                                                           .dark
-                                                                  ? FlutterFlowTheme.of(
+                                                                  ? FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .primaryText
-                                                                  : FlutterFlowTheme.of(
+                                                                  : FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .secondaryText,
                                                               letterSpacing: 0,
@@ -730,7 +727,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                           Divider(
                             height: 12,
                             thickness: 2,
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: AppTheme.alternate,
                           ),
                           Padding(
                             padding:
@@ -742,11 +739,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).accent1,
+                                    color: AppTheme.accent1,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
+                                          AppTheme.primary,
                                       width: 2,
                                     ),
                                   ),
@@ -779,7 +776,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       children: [
                                         Text(
                                           'Casper Ghost',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: AppTheme
                                               .bodyLarge
                                               .override(
                                                 fontFamily: 'Readex Pro',
@@ -788,7 +785,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         ),
                                         Text(
                                           'admin@gmail.com',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: AppTheme
                                               .labelMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
@@ -811,7 +808,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               children: [
                                 Icon(
                                   Icons.menu_open_rounded,
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme
                                       .secondaryText,
                                   size: 24,
                                 ),
@@ -860,11 +857,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       maxWidth: 390,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
+                                        color: AppTheme
                                             .alternate,
                                         width: 1,
                                       ),
@@ -881,13 +878,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 width: 72,
                                                 height: 72,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
+                                                  color: FlutterFlowAppTheme.of(
                                                           context)
                                                       .accent1,
                                                   borderRadius:
                                                       BorderRadius.circular(12),
                                                   border: Border.all(
-                                                    color: FlutterFlowTheme.of(
+                                                    color: FlutterFlowAppTheme.of(
                                                             context)
                                                         .primary,
                                                     width: 2,
@@ -926,7 +923,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     children: [
                                                       Text(
                                                         'Casper Ghost',
-                                                        style: FlutterFlowTheme
+                                                        style: FlutterFlowAppTheme
                                                                 .of(context)
                                                             .headlineSmall
                                                             .override(
@@ -942,7 +939,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                     0, 4, 0, 0),
                                                         child: Text(
                                                           'casper@ghustbusters.com',
-                                                          style: FlutterFlowTheme
+                                                          style: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
@@ -963,7 +960,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         Divider(
                                           height: 2,
                                           thickness: 1,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: AppTheme
                                               .alternate,
                                         ),
                                         Row(
@@ -976,7 +973,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 child: Container(
                                                   width: 200,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
+                                                    color: FlutterFlowAppTheme.of(
                                                             context)
                                                         .secondaryBackground,
                                                     borderRadius:
@@ -997,7 +994,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Icon(
                                                           Icons.receipt_rounded,
-                                                          color: FlutterFlowTheme
+                                                          color: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .primary,
                                                           size: 44,
@@ -1011,7 +1008,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             '2,200',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterFlowAppTheme
                                                                     .of(context)
                                                                 .headlineSmall
                                                                 .override(
@@ -1026,7 +1023,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                           'Orders Placed',
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: FlutterFlowTheme
+                                                          style: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
@@ -1050,7 +1047,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                 child: Container(
                                                   width: 200,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
+                                                    color: FlutterFlowAppTheme.of(
                                                             context)
                                                         .secondaryBackground,
                                                     borderRadius:
@@ -1072,7 +1069,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         Icon(
                                                           Icons
                                                               .ssid_chart_rounded,
-                                                          color: FlutterFlowTheme
+                                                          color: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .primary,
                                                           size: 44,
@@ -1086,7 +1083,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             '\$212.4k',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterFlowAppTheme
                                                                     .of(context)
                                                                 .headlineSmall
                                                                 .override(
@@ -1101,7 +1098,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                           'Money Earned',
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: FlutterFlowTheme
+                                                          style: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
@@ -1137,13 +1134,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme
                                                 .primaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             border: Border.all(
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .alternate,
                                             ),
                                           ),
@@ -1154,7 +1151,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             child: Text(
                                               'My Account Information',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
@@ -1173,12 +1170,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             height: 60,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .secondaryBackground,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 0,
-                                                  color: FlutterFlowTheme.of(
+                                                  color: FlutterFlowAppTheme.of(
                                                           context)
                                                       .alternate,
                                                   offset: const Offset(
@@ -1203,7 +1200,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                     children: [
                                                       Text(
                                                         'Change Password',
-                                                        style: FlutterFlowTheme
+                                                        style: FlutterFlowAppTheme
                                                                 .of(context)
                                                             .bodyLarge
                                                             .override(
@@ -1220,7 +1217,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                           child: Icon(
                                                             Icons
                                                                 .chevron_right_rounded,
-                                                            color: FlutterFlowTheme
+                                                            color: FlutterFlowAppTheme
                                                                     .of(context)
                                                                 .secondaryText,
                                                             size: 20,
@@ -1243,12 +1240,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             height: 60,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .secondaryBackground,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 0,
-                                                  color: FlutterFlowTheme.of(
+                                                  color: FlutterFlowAppTheme.of(
                                                           context)
                                                       .alternate,
                                                   offset: const Offset(
@@ -1274,13 +1271,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       Text(
                                                         'Edit Profile',
                                                         style:
-                                                            FlutterFlowTheme.of(
+                                                            FlutterFlowAppTheme.of(
                                                                     context)
                                                                 .bodyLarge
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
+                                                                  color: FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .primaryText,
                                                                   letterSpacing:
@@ -1295,7 +1292,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                           child: Icon(
                                                             Icons
                                                                 .chevron_right_rounded,
-                                                            color: FlutterFlowTheme
+                                                            color: FlutterFlowAppTheme
                                                                     .of(context)
                                                                 .secondaryText,
                                                             size: 20,
@@ -1317,13 +1314,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             width: double.infinity,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme
                                                       .primaryBackground,
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                               border: Border.all(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .alternate,
                                               ),
                                             ),
@@ -1333,7 +1330,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               child: Text(
                                                 'Support',
                                                 style:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
@@ -1374,12 +1371,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               height: 60,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .secondaryBackground,
                                                 boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 0,
-                                                    color: FlutterFlowTheme.of(
+                                                    color: FlutterFlowAppTheme.of(
                                                             context)
                                                         .alternate,
                                                     offset: const Offset(
@@ -1405,13 +1402,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Text(
                                                           'Bug or Feature Request',
-                                                          style: FlutterFlowTheme
+                                                          style: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .bodyLarge
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
+                                                                color: FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .primaryText,
                                                                 letterSpacing:
@@ -1426,7 +1423,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             child: Icon(
                                                               Icons
                                                                   .chevron_right_rounded,
-                                                              color: FlutterFlowTheme
+                                                              color: FlutterFlowAppTheme
                                                                       .of(context)
                                                                   .secondaryText,
                                                               size: 20,
@@ -1474,12 +1471,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               height: 60,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .secondaryBackground,
                                                 boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 0,
-                                                    color: FlutterFlowTheme.of(
+                                                    color: FlutterFlowAppTheme.of(
                                                             context)
                                                         .alternate,
                                                     offset: const Offset(
@@ -1505,7 +1502,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                       children: [
                                                         Text(
                                                           'Open-source licenses & other info',
-                                                          style: FlutterFlowTheme
+                                                          style: FlutterFlowAppTheme
                                                                   .of(context)
                                                               .bodyLarge
                                                               .override(
@@ -1523,7 +1520,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                             child: Icon(
                                                               Icons
                                                                   .chevron_right_rounded,
-                                                              color: FlutterFlowTheme
+                                                              color: FlutterFlowAppTheme
                                                                       .of(context)
                                                                   .secondaryText,
                                                               size: 20,
@@ -1551,12 +1548,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                               ),
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    AppTheme
                                                         .primaryBackground,
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                                 border: Border.all(
-                                                  color: FlutterFlowTheme.of(
+                                                  color: FlutterFlowAppTheme.of(
                                                           context)
                                                       .alternate,
                                                   width: 1,
@@ -1583,21 +1580,21 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         onTap: () async {
                                                           setDarkModeSetting(
                                                               context,
-                                                              ThemeMode.light);
+                                                              AppThemeMode.light);
                                                         },
                                                         child: Container(
                                                           width: 115,
                                                           height: 100,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Theme.of(context)
+                                                            color: AppTheme.of(context)
                                                                         .brightness ==
                                                                     Brightness
                                                                         .light
-                                                                ? FlutterFlowTheme.of(
+                                                                ? FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .secondaryBackground
-                                                                : FlutterFlowTheme.of(
+                                                                : FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .primaryBackground,
                                                             borderRadius:
@@ -1608,17 +1605,17 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               color:
                                                                   valueOrDefault<
                                                                       Color>(
-                                                                Theme.of(context)
+                                                                AppTheme.of(context)
                                                                             .brightness ==
                                                                         Brightness
                                                                             .light
-                                                                    ? FlutterFlowTheme.of(
+                                                                    ? FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .alternate
-                                                                    : FlutterFlowTheme.of(
+                                                                    : FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .primaryBackground,
-                                                                FlutterFlowTheme.of(
+                                                                FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .alternate,
                                                               ),
@@ -1636,14 +1633,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               Icon(
                                                                 Icons
                                                                     .wb_sunny_rounded,
-                                                                color: Theme.of(context)
+                                                                color: AppTheme.of(context)
                                                                             .brightness ==
                                                                         Brightness
                                                                             .light
-                                                                    ? FlutterFlowTheme.of(
+                                                                    ? FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .primaryText
-                                                                    : FlutterFlowTheme.of(
+                                                                    : FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .secondaryText,
                                                                 size: 16,
@@ -1658,16 +1655,16 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                             0),
                                                                 child: Text(
                                                                   'Light ',
-                                                                  style: FlutterFlowTheme.of(
+                                                                  style: FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Readex Pro',
-                                                                        color: Theme.of(context).brightness ==
+                                                                        color: AppTheme.of(context).brightness ==
                                                                                 Brightness.light
-                                                                            ? FlutterFlowTheme.of(context).primaryText
-                                                                            : FlutterFlowTheme.of(context).secondaryText,
+                                                                            ? AppTheme.primaryText
+                                                                            : AppTheme.secondaryText,
                                                                         letterSpacing:
                                                                             0,
                                                                       ),
@@ -1691,21 +1688,21 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                         onTap: () async {
                                                           setDarkModeSetting(
                                                               context,
-                                                              ThemeMode.dark);
+                                                              AppThemeMode.dark);
                                                         },
                                                         child: Container(
                                                           width: 115,
                                                           height: 100,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Theme.of(context)
+                                                            color: AppTheme.of(context)
                                                                         .brightness ==
                                                                     Brightness
                                                                         .dark
-                                                                ? FlutterFlowTheme.of(
+                                                                ? FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .secondaryBackground
-                                                                : FlutterFlowTheme.of(
+                                                                : FlutterFlowAppTheme.of(
                                                                         context)
                                                                     .primaryBackground,
                                                             borderRadius:
@@ -1713,14 +1710,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                     .circular(
                                                                         10),
                                                             border: Border.all(
-                                                              color: Theme.of(context)
+                                                              color: AppTheme.of(context)
                                                                           .brightness ==
                                                                       Brightness
                                                                           .dark
-                                                                  ? FlutterFlowTheme.of(
+                                                                  ? FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .alternate
-                                                                  : FlutterFlowTheme.of(
+                                                                  : FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .primaryBackground,
                                                               width: 1,
@@ -1737,14 +1734,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                               Icon(
                                                                 Icons
                                                                     .nightlight_round,
-                                                                color: Theme.of(context)
+                                                                color: AppTheme.of(context)
                                                                             .brightness ==
                                                                         Brightness
                                                                             .dark
-                                                                    ? FlutterFlowTheme.of(
+                                                                    ? FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .primaryText
-                                                                    : FlutterFlowTheme.of(
+                                                                    : FlutterFlowAppTheme.of(
                                                                             context)
                                                                         .secondaryText,
                                                                 size: 16,
@@ -1759,16 +1756,16 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                                                             0),
                                                                 child: Text(
                                                                   'Dark',
-                                                                  style: FlutterFlowTheme.of(
+                                                                  style: FlutterFlowAppTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Readex Pro',
-                                                                        color: Theme.of(context).brightness ==
+                                                                        color: AppTheme.of(context).brightness ==
                                                                                 Brightness.dark
-                                                                            ? FlutterFlowTheme.of(context).primaryText
-                                                                            : FlutterFlowTheme.of(context).secondaryText,
+                                                                            ? AppTheme.primaryText
+                                                                            : AppTheme.secondaryText,
                                                                         letterSpacing:
                                                                             0,
                                                                       ),

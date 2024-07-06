@@ -1,13 +1,12 @@
 import '/components/conversation_details_overlay/conversation_details_overlay_widget.dart';
 import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '/theme.dart';
 
 import 'conversation_model.dart';
 export 'conversation_model.dart';
@@ -45,9 +44,9 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: myAppTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: myAppTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -56,7 +55,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: AppTheme.primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -81,14 +80,14 @@ class _ConversationWidgetState extends State<ConversationWidget> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
               child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).alternate,
+                borderColor: AppTheme.alternate,
                 borderRadius: 12,
                 borderWidth: 2,
                 buttonSize: 40,
-                fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                fillColor: AppTheme.primaryBackground,
                 icon: Icon(
                   Icons.more_vert,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: AppTheme.primaryText,
                   size: 24,
                 ),
                 onPressed: () async {

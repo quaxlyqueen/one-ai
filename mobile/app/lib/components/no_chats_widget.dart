@@ -1,5 +1,4 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -60,9 +59,9 @@ class _NoChatsWidgetState extends State<NoChatsWidget> {
             child: Text(
               widget.title,
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).headlineSmall.override(
+              style: AppAppAppAppAppAppAppAppAppTheme.headlineSmall.override(
                     fontFamily: 'Outfit',
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: AppAppAppAppAppAppAppAppAppTheme.primaryText,
                     letterSpacing: 0,
                   ),
             ),
@@ -72,7 +71,7 @@ class _NoChatsWidgetState extends State<NoChatsWidget> {
             child: Text(
               widget.body,
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).labelMedium.override(
+              style: AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
                     fontFamily: 'Readex Pro',
                     letterSpacing: 0,
                   ),

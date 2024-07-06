@@ -1,8 +1,5 @@
 import '/components/options_dialog/options_dialog_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -80,7 +77,7 @@ class _ConversationDetailsOverlayWidgetState
                           padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: Text(
                             'Chat Details',
-                            style: FlutterFlowTheme.of(context)
+                            style: AppAppAppAppAppAppAppAppAppTheme
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'Outfit',
@@ -91,14 +88,14 @@ class _ConversationDetailsOverlayWidgetState
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                           child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
                             borderRadius: 12,
                             borderWidth: 1,
                             buttonSize: 40,
-                            fillColor: FlutterFlowTheme.of(context).accent4,
+                            fillColor: AppAppAppAppAppAppAppAppAppTheme.accent4,
                             icon: Icon(
                               Icons.close_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: AppAppAppAppAppAppAppAppAppTheme.primaryText,
                               size: 24,
                             ),
                             onPressed: () async {
@@ -121,13 +118,13 @@ class _ConversationDetailsOverlayWidgetState
                             TextSpan(
                               text: 'Hello World ',
                               style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: AppAppAppAppAppAppAppAppAppTheme.primary,
                                 fontWeight: FontWeight.bold,
                               ),
                             )
                           ],
                           style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              AppAppAppAppAppAppAppAppAppTheme.labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0,
                                   ),
@@ -143,7 +140,7 @@ class _ConversationDetailsOverlayWidgetState
                           children: [
                             Divider(
                               thickness: 1,
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: AppAppAppAppAppAppAppAppAppTheme.tertiary,
                             ),
                           ],
                         ),
@@ -157,11 +154,11 @@ class _ConversationDetailsOverlayWidgetState
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
+                              color: AppAppAppAppAppAppAppAppAppTheme
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: AppAppAppAppAppAppAppAppAppTheme.alternate,
                               ),
                             ),
                             child: wrapWithModel(
@@ -188,26 +185,26 @@ class _ConversationDetailsOverlayWidgetState
                           iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              AppAppAppAppAppAppAppAppAppTheme.secondaryBackground,
                           textStyle:
-                              FlutterFlowTheme.of(context).titleLarge.override(
+                              AppAppAppAppAppAppAppAppAppTheme.titleLarge.override(
                                     fontFamily: 'Outfit',
                                     fontSize: 18,
                                     letterSpacing: 0,
                                   ),
                           elevation: 0,
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: AppAppAppAppAppAppAppAppAppTheme.alternate,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(12),
-                          hoverColor: FlutterFlowTheme.of(context).alternate,
+                          hoverColor: AppAppAppAppAppAppAppAppAppTheme.alternate,
                           hoverBorderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: AppAppAppAppAppAppAppAppAppTheme.alternate,
                             width: 2,
                           ),
                           hoverTextColor:
-                              FlutterFlowTheme.of(context).primaryText,
+                              AppAppAppAppAppAppAppAppAppTheme.primaryText,
                           hoverElevation: 3,
                         ),
                       ),
