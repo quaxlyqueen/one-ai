@@ -1,10 +1,11 @@
-import '/components/conversation_bubbles/conversation_bubbles_widget.dart';
+import 'package:app/components/conversation_thread/conversation.dart';
+
+import '/components/conversation_thread/chat_bubble_widget.dart';
+import 'package:app/components/conversation_thread/conversation_thread_model.dart';
 import '/components/prompt_box/prompt_box_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
 
@@ -31,7 +32,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConversationThreadModel());
+    _model = createModel(context, () => ConversationThreadModel(0)); // TODO
   }
 
   @override
@@ -43,6 +44,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Conversation c = _model.conversation;
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -54,28 +56,14 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: ListView(
+            child: ListView.builder(
+              itemCount: c.chats.length,
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 24,),
-              reverse: true,
+              reverse: false,
               scrollDirection: Axis.vertical,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(),
-                ),
-                Container(
-                  height: MediaQuery.sizeOf(context).height * 1,
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.sizeOf(context).height * 1,
-                  ),
-                  decoration: const BoxDecoration(),
-                  //child: wrapWithModel(
-                    //model: _model.conversationBubblesModel,
-                    //updateCallback: () => setState(() {}),
-                    //child: ConversationBubblesWidget(),
-                    //child: const Text("test"),
-                  //),
-                ),
-              ],
+              itemBuilder: (BuildContext context, int index) {
+                return ChatBubbleWidget(c: c.chats[index]);
+              },
             ),
           ),
           Container(

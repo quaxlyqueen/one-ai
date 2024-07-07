@@ -1,18 +1,26 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'package:app/components/conversation_thread/chat.dart';
+
 import 'package:app/util/speech_to_text.dart';
 
 class Server {
   // TODO: One-time process to establish server connection is required for easy setup/maintenance.
+  // Server variables
   final url = "http://10.0.2.2:11434";
-  final headers = {'Content-Type': 'application/json'};
+  Map<String, String> headers = {'Content-Type': 'application/json'};
 
+  // Model variables
   final SpeechToText stt = SpeechToText();
+
+  // Status variables
   late bool _speechEnabled;
 
+  // Runtime variables
   String prompt = "";
   String response = "";
+  int conversationID = 0;
 
   Server() {
     // Speech-To-Text engine activation.
@@ -20,6 +28,18 @@ class Server {
 
     // TODO: Initialize all different components of STT, TTS, LLM, etc.
     // TODO: Handshake w/ server to validate identity
+  }
+
+  List<Chat> getConversationByID(conversationID) {
+    this.conversationID = conversationID;
+
+    // TODO: Implement conversation IDs & retrieval from server
+    List<Chat> chats = [
+      (Chat("hello world!", true)),
+      (Chat("hello to you too!", false)),
+    ];
+
+    return chats;
   }
 
   // Using native on-device Speech-To-Text capability, get the server response when ready.
