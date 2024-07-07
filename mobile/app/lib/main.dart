@@ -53,7 +53,7 @@ class MyApp extends ConsumerWidget {
   // This list holds the pages to navigate between
   final List<Widget> _pages = [
     // Replace with the widget for your first page (e.g., HomeScreen())
-    Center(child: ConversationsListWidget()),
+    const Center(child: ConversationsListWidget()),
     // Replace with the widget for your second page (e.g., SettingsPage())
     const Center(child: SettingsWidget()),
   ];

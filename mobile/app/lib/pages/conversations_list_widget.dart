@@ -1,20 +1,19 @@
-import 'package:app/pages/conversation_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app/theme.dart';
 
-import '/components/conversation_options/conversation_options_widget.dart';
+import 'package:app/pages/conversation_widget.dart';
+import 'package:app/components/conversation_options/conversation_options_widget.dart';
+
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import 'package:app/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'conversations_list_model.dart';
 export 'conversations_list_model.dart';
 
 final conversationIndex = ValueNotifier<int>(0);
 
-
+// State controller using flutter_riverpod API.
+// This handles changing between different conversations.
 class MyState with ChangeNotifier {
   int get selectedIndex => conversationIndex.value;
 
@@ -36,12 +35,10 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   late ConversationsListModel _model;
   final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
 
-  final List<Widget> _pages = [
-    // Replace with the widget for your first page (e.g., HomeScreen())
-    Center(child: ConversationWidget()),
-
+  final List<Widget> conversations = [
     // TODO: Dynamically generate list of pages based upon existing conversations.
     // This requires retrievable conversations from the server side.
+    const Center(child: ConversationWidget()),
   ];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -55,7 +52,6 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -186,9 +182,11 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               ],
                             ),
                             onTap: () => {
+                              // TODO: Need to implement.
                               print("opening existing conversation")
                             },
                             onLongPress: () => {
+                              // TODO: Need to implement.
                               print("opening options")
                             },
                           ),
