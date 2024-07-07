@@ -3,8 +3,6 @@ import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
 
@@ -48,6 +46,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
         appBar: AppBar(
           backgroundColor: AppTheme.primaryBackground,
           automaticallyImplyLeading: false,
+          // ---------- Back Button
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
@@ -81,6 +80,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           actions: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+              // ---------- Options Button
               child: FlutterFlowIconButton(
                 borderColor: AppTheme.alternate,
                 borderRadius: 12,

@@ -55,12 +55,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
         children: [
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.fromLTRB(
-                0,
-                12,
-                0,
-                24,
-              ),
+              padding: const EdgeInsets.fromLTRB(0, 12, 0, 24,),
               reverse: true,
               scrollDirection: Axis.vertical,
               children: [
@@ -142,14 +137,14 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                               // ),
                               Align(
                                 alignment: const AlignmentDirectional(-1, -1),
+                                // TODO: Make the delete button conditional upon media upload.
                                 child: FlutterFlowIconButton(
                                   borderColor:
                                       AppTheme.error,
                                   borderRadius: 20,
                                   borderWidth: 2,
                                   buttonSize: 40,
-                                  fillColor: AppTheme
-                                      .primaryBackground,
+                                  fillColor: AppTheme.primaryBackground,
                                   icon: const Icon(
                                     Icons.delete_outline_rounded,
                                     color: AppTheme.error,

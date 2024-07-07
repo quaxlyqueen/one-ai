@@ -1,4 +1,4 @@
-import '/components/conversation_bubbles/conversation_bubbles_widget.dart';
+import '../conversation_bubbles/conversation_bubbles_model.dart';
 import '/components/prompt_box/prompt_box_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'conversation_thread_widget.dart' show ConversationThreadWidget;
@@ -13,7 +13,8 @@ class ConversationThreadModel
 
   final formKey = GlobalKey<FormState>();
   // Model for ConversationBubbles component.
-  //late ConversationBubblesModel conversationBubblesModel;
+  late ConversationBubblesModel conversationBubblesModel;
+
   // Model for PromptBox component.
   late PromptBoxModel promptBoxModel;
 

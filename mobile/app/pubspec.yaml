@@ -45,6 +45,7 @@ dependencies:
   easy_debounce: any
   video_player: ^2.9.1
   flutter_riverpod: ^2.5.1
+  speech_to_text: ^6.6.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
