@@ -1,3 +1,4 @@
+import 'package:app/pages/conversation_widget.dart';
 import 'package:app/pages/settings_widget.dart';
 import 'package:app/pages/conversations_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,16 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
   IconData iconData = Icons.error;
   switch (index) {
     case 0:
+      label = 'Settings';
+      iconData = Icons.settings;
+      break;
+    case 1:
       label = 'Home';
       iconData = Icons.home;
       break;
-    case 1:
-      label = 'Settings';
-      iconData = Icons.settings;
+    case 2:
+      label = 'Chat';
+      iconData = Icons.bubble_chart;
       break;
   }
   return BottomNavigationBarItem(
@@ -48,14 +53,13 @@ void main() {
 class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
-  final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
+  final selectedIndexProvider = StateProvider<int>((_) => 2); // Initial state
 
   // This list holds the pages to navigate between
   final List<Widget> _pages = [
-    // Replace with the widget for your first page (e.g., HomeScreen())
-    const Center(child: ConversationsListWidget()),
-    // Replace with the widget for your second page (e.g., SettingsPage())
     const Center(child: SettingsWidget()),
+    const Center(child: ConversationsListWidget()),
+    const Center(child: ConversationWidget()),
   ];
 
   // This widget is the root of your application.
