@@ -235,8 +235,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
   }
 
   void updateFromLatestInput(String input) {
-    Server s = Server();
-    s.setPrompt(input);
-    print(s.getResponse());
+    Server().getResponseWhenReady(input);
+    // TODO: Refresh the page with the prompt & response.
   }
 }

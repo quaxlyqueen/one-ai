@@ -5,17 +5,33 @@ import 'package:app/components/conversation_thread/chat.dart';
 
 import 'package:app/util/speech_to_text.dart';
 
+// Uses Singleton design pattern to ensure that any server references across the app are using the same instance.
 class Server {
+
+  // STT variables
+  static final SpeechToText stt = SpeechToText();
+  static late bool _speechEnabled;
+
+  static final Server _single_server = Server._internal();
+
+  // TODO: Verify all different components of STT, TTS, LLM, etc have been initialized.
+  // TODO: Handshake w/ server to validate identity
+  factory Server() {
+    // Speech-To-Text engine activation.
+    _speechEnabled = stt.isSpeechEnabled();
+
+    return _single_server;
+  }
+
+  Server._internal();
+
   // TODO: One-time process to establish server connection is required for easy setup/maintenance.
   // Server variables
-  final url = "http://10.0.2.2:11434";
+  final url = "http://10.0.2.2:11434/api/";
+  String endpoint = "";
   Map<String, String> headers = {'Content-Type': 'application/json'};
-
-  // Model variables
-  final SpeechToText stt = SpeechToText();
-
+  
   // Status variables
-  late bool _speechEnabled;
   bool _historyEnabled = true;
 
   // Context variables
@@ -28,14 +44,6 @@ class Server {
   String prompt = "";
   String response = "";
   int conversationID = 0;
-
-  Server() {
-    // Speech-To-Text engine activation.
-    _speechEnabled = stt.isSpeechEnabled();
-
-    // TODO: Initialize all different components of STT, TTS, LLM, etc.
-    // TODO: Handshake w/ server to validate identity
-  }
 
   List<Chat> getConversationByID(conversationID) {
     // TODO: Implement conversation IDs & retrieval from server
@@ -61,7 +69,7 @@ class Server {
     // TODO: In case on-device STT is unavailable, use server-side STT service.
     if (!_speechEnabled) "Unable to process Speech-To-Text on-device.";
 
-    setPrompt(stt.getTextWhenReady() as String);
+    prompt = stt.getTextWhenReady() as String;
     httpSendRequest();
 
     return response;
@@ -72,9 +80,6 @@ class Server {
     httpSendRequest();
     return response;
   }
-
-  // Arbitrary prompt, used for standard text interaction rather than STT.
-  void setPrompt(String p) => prompt = p;
 
   // Get the last response or request a response from the server.
   String getResponse() {
@@ -94,6 +99,7 @@ class Server {
 
     if(_historyEnabled) {
       chats = [...chats, Chat(prompt, true)];
+      endpoint = "chat";
 
       List<Map<String, String>> messageList = convertMessages();
 
@@ -104,6 +110,7 @@ class Server {
       };
     }
     else {
+      endpoint = "generate";
       data = {
         "model": "llama3",
         "prompt": prompt,
@@ -118,11 +125,7 @@ class Server {
   // Send the HTTP request to the server.
   void httpSendRequest() async {
     String json = constructPrompt();
-    print("\n\n$json\n\n");
-
-    String endpoint = "/api/";
-    if(_historyEnabled) endpoint += "chat";
-    else endpoint += "generate";
+    print("\n\nJSON:\n$json\n\n");
 
     // Send the HTTP POST request
     final serverResponse = await http.post(
@@ -133,10 +136,17 @@ class Server {
 
     if (serverResponse.statusCode == 200) {
       Map<String, dynamic> re = jsonDecode(serverResponse.body);
-      response = re["response"]!;
-    } else {
-      response = ('Error: ${serverResponse.statusCode}');
+      if(_historyEnabled) {
+        response = re["message"]["content"];
+        chats = [...chats, Chat(response, false)];
+      } else {
+        response = re["response"];
+      }
     }
-    chats.add(Chat(response, false));
+    print("\n\nresponse:\n$response");
+    print("\nRaw chats variable:\n");
+    for(Chat c in chats) {
+      print(c.content);
+    }
   }
 }
