@@ -1,3 +1,4 @@
+import 'package:app/util/server.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,9 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
+              // TODO: Implement the context upload buttons
               children: [
-                Expanded(
+                Expanded( // TODO: File context upload
                   child: Padding(
                     padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
@@ -78,7 +80,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded(
+                Expanded( // TODO: Photo context upload
                   child: Padding(
                     padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
@@ -97,7 +99,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded(
+                Expanded( // TODO: Microphone context upload -> or STT??
                   child: Padding(
                     padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
@@ -116,7 +118,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded(
+                Expanded( // TODO: Video context upload
                   child: Padding(
                     padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
@@ -135,7 +137,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded(
+                Expanded( // TODO: Camera context upload
                   child: Padding(
                     padding: const EdgeInsets.all(14),
                     child: FlutterFlowIconButton(
@@ -173,8 +175,6 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       ),
                       autofocus: true,
                       textCapitalization: TextCapitalization.none,
-                      textInputAction: TextInputAction.go,
-                      obscureText: false,
                       decoration: InputDecoration(
                         isDense: false,
                         counterStyle: AppTheme.bodyMedium,
@@ -218,8 +218,11 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       textAlign: TextAlign.start,
                       maxLines: 5,
                       minLines: 1,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
+                      validator: _model.textControllerValidator.asValidator(context),
+                      textInputAction: TextInputAction.send, // "Send" on keyboard
+                      onFieldSubmitted: (text) {
+                        updateFromLatestInput(text); // TODO: Connect with multimedia
+                      },
                     ),
                   ),
                 ),
@@ -229,5 +232,11 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
         ),
       ),
     );
+  }
+
+  void updateFromLatestInput(String input) {
+    Server s = Server();
+    s.setPrompt(input);
+    print(s.getResponse());
   }
 }

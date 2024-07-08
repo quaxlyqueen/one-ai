@@ -16,6 +16,13 @@ class Server {
 
   // Status variables
   late bool _speechEnabled;
+  bool _historyEnabled = true;
+
+  // Context variables
+  List<Chat> chats = [
+    (Chat("This is just a test. Only reply Yes.", true)),
+    (Chat("Yes.", false)),
+  ];
 
   // Runtime variables
   String prompt = "";
@@ -31,15 +38,22 @@ class Server {
   }
 
   List<Chat> getConversationByID(conversationID) {
-    this.conversationID = conversationID;
-
     // TODO: Implement conversation IDs & retrieval from server
-    List<Chat> chats = [
-      (Chat("hello world!", true)),
-      (Chat("hello to you too!", false)),
-    ];
-
+    this.conversationID = conversationID;
     return chats;
+  }
+
+  // TODO: Integrate with getConversationByID()
+  List<Map<String, String>> convertMessages() {
+    List<Map<String, String>> messageList = [];
+    for (Chat c in chats) {
+      messageList.add({
+        "role": c.role ? "user" : "assistant",
+        "content": c.content,
+      });
+    }
+
+    return messageList;
   }
 
   // Using native on-device Speech-To-Text capability, get the server response when ready.
@@ -48,9 +62,14 @@ class Server {
     if (!_speechEnabled) "Unable to process Speech-To-Text on-device.";
 
     setPrompt(stt.getTextWhenReady() as String);
-    constructPrompt();
     httpSendRequest();
 
+    return response;
+  }
+
+  Future<String> getResponseWhenReady(String p) async {
+    prompt = p;
+    httpSendRequest();
     return response;
   }
 
@@ -59,12 +78,8 @@ class Server {
 
   // Get the last response or request a response from the server.
   String getResponse() {
-    if(response.isEmpty) {
-      constructPrompt();
       httpSendRequest();
-    }
-
-    return response;
+      return response;
   }
 
   // Get the latest prompt.
@@ -72,28 +87,46 @@ class Server {
 
   // Formats the prompt in JSON.
   String constructPrompt() {
-    // Construct the JSON payload
-    final Map<String, dynamic> data = {
-      "model":
-      "llama3", // TODO: Allow for different models to be dynamically selected.
-      "prompt": prompt,
-      "stream": false // TODO: Allow for toggleable states between stream
-      // TODO: Allow for additional flags, ie. continuous conversation, images, etc.
-    };
+    // TODO: Allow for additional flags, ie. continuous conversation, images, etc.
+    // TODO: Allow for toggleable states between stream
+    // TODO: Allow for different models to be dynamically selected.
+    Map<String, dynamic> data;
+
+    if(_historyEnabled) {
+      chats = [...chats, Chat(prompt, true)];
+
+      List<Map<String, String>> messageList = convertMessages();
+
+      data = {
+        "model": "llama3",
+        "messages": messageList,
+        "stream": false,
+      };
+    }
+    else {
+      data = {
+        "model": "llama3",
+        "prompt": prompt,
+        "stream": false,
+      };
+    }
 
     // Encode the JSON payload
-    final String body = json.encode(data);
-
-    return body;
+    return json.encode(data);
   }
 
   // Send the HTTP request to the server.
   void httpSendRequest() async {
     String json = constructPrompt();
+    print("\n\n$json\n\n");
+
+    String endpoint = "/api/";
+    if(_historyEnabled) endpoint += "chat";
+    else endpoint += "generate";
 
     // Send the HTTP POST request
     final serverResponse = await http.post(
-      Uri.parse('$url/api/generate'),
+      Uri.parse('$url$endpoint'),
       headers: headers,
       body: json,
     );
@@ -104,46 +137,6 @@ class Server {
     } else {
       response = ('Error: ${serverResponse.statusCode}');
     }
+    chats.add(Chat(response, false));
   }
 }
-//
-//
-// // GUI components
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Container(
-//               padding: const EdgeInsets.all(16),
-//               child: const Text(
-//                 'Recognized words:',
-//                 style: TextStyle(fontSize: 20.0),
-//               ),
-//             ),
-//             Expanded(
-//               child: Container(
-//                 padding: const EdgeInsets.all(16),
-//                 child: Text(
-//                   // If listening is active show the recognized words
-//                   _speechToText.isListening
-//                       ? prompt
-//                   // If listening isn't active but could be tell the user
-//                   // how to start it, otherwise indicate that speech
-//                   // recognition is not yet ready or not supported on
-//                   // the target device
-//                       : _speechEnabled
-//                       ? responseFromAI
-//                       : 'Speech disabled',
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed:
-//         // If not yet listening for speech start, otherwise stop
-//         //sendPrompt,
-//         _speechToText.isNotListening ? _startListening : sendPrompt,
-//         tooltip: 'Listen',
-//         child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
-//       ),
