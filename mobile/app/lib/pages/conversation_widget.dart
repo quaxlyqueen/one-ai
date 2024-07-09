@@ -1,3 +1,5 @@
+import 'package:app/components/conversation_thread/conversation.dart';
+
 import '/components/conversation_details_overlay/conversation_details_overlay_widget.dart';
 import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
@@ -10,22 +12,24 @@ import 'conversation_model.dart';
 export 'conversation_model.dart';
 
 class ConversationWidget extends StatefulWidget {
-  const ConversationWidget({super.key});
+  final Conversation conversation;
+  const ConversationWidget({super.key, required this.conversation});
 
   @override
-  State<ConversationWidget> createState() => _ConversationWidgetState();
+  State<ConversationWidget> createState() => _ConversationWidgetState(conversation);
 }
 
 class _ConversationWidgetState extends State<ConversationWidget> {
   late ConversationModel _model;
+  Conversation conversation;
 
-  _ConversationWidgetState();
+  _ConversationWidgetState(this.conversation);
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConversationModel());
+    _model = createModel(context, () => ConversationModel(conversation));
   }
 
   @override
@@ -124,7 +128,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           child: wrapWithModel(
             model: _model.conversationThreadModel,
             updateCallback: () => setState(() {}),
-            child: const ConversationThreadWidget(),
+            child: ConversationThreadWidget(conversation: conversation),
           ),
         ),
       ),

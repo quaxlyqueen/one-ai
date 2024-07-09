@@ -2,7 +2,6 @@ import 'package:app/components/conversation_thread/conversation.dart';
 import 'package:app/theme.dart';
 
 import 'package:app/pages/conversation_widget.dart';
-import 'package:app/components/conversation_options/conversation_options_widget.dart';
 import 'package:app/util/server.dart';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -22,14 +21,8 @@ class ConversationsListWidget extends StatefulWidget {
 
 class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   late ConversationsListModel _model;
-  final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
 
-  late List<Widget> conversations = [];
-  // = [
-  //   // TODO: Dynamically generate list of pages based upon existing conversations.
-  //   // This requires retrievable conversations from the server side.
-  //   const Center(child: ConversationWidget()),
-  // ];
+  static List<ConversationWidget> conversations = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,9 +30,12 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   void initState() {
     super.initState();
     Server().init();
-    List<Conversation> convos = Server.conversations;
-    for(Conversation c in convos) {
-      conversations.add(const ConversationWidget());
+
+    if(conversations.isEmpty) {
+      List<Conversation> convoys = Server.conversations;
+      for(Conversation c in convoys) {
+        conversations.add(ConversationWidget(conversation: c,));
+      }
     }
 
     _model = createModel(context, () => ConversationsListModel());
@@ -53,7 +49,6 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<Conversation> conversations = Server.getConversationsList();
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -133,7 +128,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  conversations[index].conversationLabel,
+                                                  conversations[index].conversation.conversationLabel,
                                                   style: AppTheme.headlineLarge,
                                                 ),
                                               ],
@@ -147,7 +142,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                               children: [
                                                 Expanded(
                                                   child: Text(
-                                                    conversations[index].conversationSubLabel,
+                                                    conversations[index].conversation.conversationSubLabel,
                                                     style: AppTheme.bodyMedium,
                                                   ),
                                                 ),
@@ -181,7 +176,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const ConversationWidget(),
+                                  builder: (context) => ConversationWidget(conversation: Server.getLoadedConversation(),),
                                 ),
                               )
                             },

@@ -15,15 +15,19 @@ import 'conversation_thread_model.dart';
 export 'conversation_thread_model.dart';
 
 class ConversationThreadWidget extends StatefulWidget {
-  const ConversationThreadWidget({super.key});
+  final Conversation conversation;
+  const ConversationThreadWidget({super.key, required this.conversation});
 
   @override
   State<ConversationThreadWidget> createState() =>
-      _ConversationThreadWidgetState();
+      _ConversationThreadWidgetState(conversation);
 }
 
 class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
   late ConversationThreadModel _model;
+  Conversation conversation;
+
+  _ConversationThreadWidgetState(this.conversation);
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +38,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConversationThreadModel());
+    _model = createModel(context, () => ConversationThreadModel(conversation));
   }
 
   @override
@@ -66,11 +70,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                     reverse: false,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      if(Server.getLoadedConversation().chats.last.role) {
-                        return ChatBubbleWidget(c: Server.getLoadedConversation().chats[index]);
-                      } else {
-
-                      }
+                      return ChatBubbleWidget(c: Server.getLoadedConversation().chats[index]);
                     },
                   );
                 },

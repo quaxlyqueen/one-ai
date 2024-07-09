@@ -14,11 +14,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 class ConversationThreadModel extends FlutterFlowModel<ConversationThreadWidget> {
   final formKey = GlobalKey<FormState>();
   late PromptBoxModel promptBoxModel;
-  late Conversation conversation;
+  Conversation conversation;
 
-  void updateConversation() {
-    conversation = Server.getLoadedConversation();
-  }
+  ConversationThreadModel(this.conversation);
 
   @override
   void initState(BuildContext context) {

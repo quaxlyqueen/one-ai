@@ -31,10 +31,6 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
       label = 'Home';
       iconData = Icons.home;
       break;
-    case 2:
-      label = 'Chat';
-      iconData = Icons.bubble_chart;
-      break;
   }
   return BottomNavigationBarItem(
     icon: Icon(iconData),
@@ -56,7 +52,7 @@ class MyApp extends ConsumerWidget {
   final selectedIndexProvider = StateProvider<int>((_) => 1); // Initial state
 
   // This list holds the pages to navigate between
-  final List<Widget> _pages = [
+  static final List<Widget> _pages = [
     const Center(child: SettingsWidget()),
     const Center(child: ConversationsListWidget()),
   ];

@@ -12,7 +12,8 @@ class Server {
   static final Server _single_server = Server._internal();
   Server._internal();
   // TODO: One-time process to establish server connection is required for easy setup/maintenance.
-  static final url = "http://10.0.2.2:11434/api/";
+  static final url = "http://10.0.2.2:11434/api/"; // For emulated device in testing
+  //static final url = "http://192.168.1.68:11434/api"; // For local access to home server
   static String endpoint = "";
   static final Map<String, String> headers = {'Content-Type': 'application/json'};
 
@@ -55,26 +56,26 @@ class Server {
     conversations.add(
       Conversation.completeConversation(
         0,
-        "Test label",
-        "Test sub-label",
+        "Test Conversation",
+        "Testing Functionality",
         [
-          (Chat("This is just a test. Only reply Yes.", true)),
-          (Chat("Yes.", false)),
+          (Chat("Hello there! You are part of a prototype and are running locally on my Macbook Air. Please keep your responses brief as every prompt freezes my computer.", true)),
+          (Chat("Understood! How can I help?", false)),
         ]
       )
     );
 
-    conversations.add(
-        Conversation.completeConversation(
-            1,
-            "Label test",
-            "Sub-label Test",
-            [
-              (Chat("A different test. Only reply No.", true)),
-              (Chat("No.", false)),
-            ]
-        )
-    );
+    // conversations.add(
+    //     Conversation.completeConversation(
+    //         1,
+    //         "Label test",
+    //         "Sub-label Test",
+    //         [
+    //           (Chat("A different test. Only reply No.", true)),
+    //           (Chat("No.", false)),
+    //         ]
+    //     )
+    // );
   }
 
 

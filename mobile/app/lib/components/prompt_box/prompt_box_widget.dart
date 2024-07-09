@@ -221,6 +221,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       onFieldSubmitted: (text) {
                         // TODO: Clear text box
                         Server.respondWhenReady(text); // TODO: Connect with multimedia
+                        _model.textController?.clear(); // Clear the text field
                       },
                     ),
                   ),

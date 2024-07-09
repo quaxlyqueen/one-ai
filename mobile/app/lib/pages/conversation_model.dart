@@ -1,3 +1,5 @@
+import 'package:app/components/conversation_thread/conversation.dart';
+
 import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -13,9 +15,13 @@ class ConversationModel extends FlutterFlowModel<ConversationWidget> {
   // Model for ModelItem component.
   late ModelItemModel modelItemModel;
 
+  late Conversation conversation;
+
+  ConversationModel(this.conversation);
+
   @override
   void initState(BuildContext context) {
-    conversationThreadModel = createModel(context, () => ConversationThreadModel()); // TODO
+    conversationThreadModel = createModel(context, () => ConversationThreadModel(conversation)); // TODO
     modelItemModel = createModel(context, () => ModelItemModel());
   }
 
