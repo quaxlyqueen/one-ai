@@ -53,13 +53,12 @@ void main() {
 class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
-  final selectedIndexProvider = StateProvider<int>((_) => 2); // Initial state
+  final selectedIndexProvider = StateProvider<int>((_) => 1); // Initial state
 
   // This list holds the pages to navigate between
   final List<Widget> _pages = [
     const Center(child: SettingsWidget()),
     const Center(child: ConversationsListWidget()),
-    const Center(child: ConversationWidget()),
   ];
 
   // This widget is the root of your application.

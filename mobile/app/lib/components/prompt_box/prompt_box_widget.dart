@@ -2,8 +2,6 @@ import 'package:app/util/server.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
 
@@ -221,7 +219,8 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       validator: _model.textControllerValidator.asValidator(context),
                       textInputAction: TextInputAction.send, // "Send" on keyboard
                       onFieldSubmitted: (text) {
-                        updateFromLatestInput(text); // TODO: Connect with multimedia
+                        // TODO: Clear text box
+                        Server.respondWhenReady(text); // TODO: Connect with multimedia
                       },
                     ),
                   ),
@@ -232,10 +231,5 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
         ),
       ),
     );
-  }
-
-  void updateFromLatestInput(String input) {
-    Server().getResponseWhenReady(input);
-    // TODO: Refresh the page with the prompt & response.
   }
 }

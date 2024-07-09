@@ -19,8 +19,9 @@ class ConversationWidget extends StatefulWidget {
 class _ConversationWidgetState extends State<ConversationWidget> {
   late ConversationModel _model;
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  _ConversationWidgetState();
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();

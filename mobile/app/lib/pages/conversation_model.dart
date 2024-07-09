@@ -15,8 +15,7 @@ class ConversationModel extends FlutterFlowModel<ConversationWidget> {
 
   @override
   void initState(BuildContext context) {
-    conversationThreadModel =
-        createModel(context, () => ConversationThreadModel(0)); // TODO
+    conversationThreadModel = createModel(context, () => ConversationThreadModel()); // TODO
     modelItemModel = createModel(context, () => ModelItemModel());
   }
 

@@ -14,16 +14,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 class ConversationThreadModel extends FlutterFlowModel<ConversationThreadWidget> {
   final formKey = GlobalKey<FormState>();
   late PromptBoxModel promptBoxModel;
-  late int ?conversationID;
   late Conversation conversation;
 
-  // If there's a conversation ID, retrieve the conversation history.
-  // Otherwise, start a new conversation with user defaults.
-  ConversationThreadModel(this.conversationID);
+  void updateConversation() {
+    conversation = Server.getLoadedConversation();
+  }
 
   @override
   void initState(BuildContext context) {
-    conversation = Conversation(conversationID!);
+    conversation = Server.getLoadedConversation();
     promptBoxModel = createModel(context, () => PromptBoxModel());
   }
 

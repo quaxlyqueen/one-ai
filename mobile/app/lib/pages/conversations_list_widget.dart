@@ -1,7 +1,9 @@
+import 'package:app/components/conversation_thread/conversation.dart';
 import 'package:app/theme.dart';
 
 import 'package:app/pages/conversation_widget.dart';
 import 'package:app/components/conversation_options/conversation_options_widget.dart';
+import 'package:app/util/server.dart';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -9,19 +11,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'conversations_list_model.dart';
 export 'conversations_list_model.dart';
-
-final conversationIndex = ValueNotifier<int>(0);
-
-// State controller using flutter_riverpod API.
-// This handles changing between different conversations.
-class MyState with ChangeNotifier {
-  int get selectedIndex => conversationIndex.value;
-
-  set selectedIndex(int value) {
-    conversationIndex.value = value;
-    notifyListeners();
-  }
-}
 
 class ConversationsListWidget extends StatefulWidget {
   const ConversationsListWidget({super.key});
@@ -35,17 +24,24 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
   late ConversationsListModel _model;
   final selectedIndexProvider = StateProvider<int>((_) => 0); // Initial state
 
-  final List<Widget> conversations = [
-    // TODO: Dynamically generate list of pages based upon existing conversations.
-    // This requires retrievable conversations from the server side.
-    const Center(child: ConversationWidget()),
-  ];
+  late List<Widget> conversations = [];
+  // = [
+  //   // TODO: Dynamically generate list of pages based upon existing conversations.
+  //   // This requires retrievable conversations from the server side.
+  //   const Center(child: ConversationWidget()),
+  // ];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    Server().init();
+    List<Conversation> convos = Server.conversations;
+    for(Conversation c in convos) {
+      conversations.add(const ConversationWidget());
+    }
+
     _model = createModel(context, () => ConversationsListModel());
   }
 
@@ -57,6 +53,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<Conversation> conversations = Server.getConversationsList();
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -77,12 +74,13 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                 Expanded(
                   child: Align(
                     alignment: const AlignmentDirectional(0, 0),
-                    child: ListView(
+                    child: ListView.builder(
+                      itemCount: conversations.length,
                       padding: EdgeInsets.zero,
                       reverse: true,
                       scrollDirection: Axis.vertical,
-                      children: [
-                        Align(
+                      itemBuilder: (context, index) {
+                        return Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -101,9 +99,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                 Container(
                                   width: 100,
                                   height: 100,
-                                  decoration: const BoxDecoration(
-                                    color: AppTheme.secondaryBackground,
-                                  ),
+                                  decoration: const BoxDecoration(color: AppTheme.secondaryBackground,),
                                   child: const Align(
                                     alignment: AlignmentDirectional(0, 0),
                                     child: Icon(
@@ -120,28 +116,24 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                       width: 100,
                                       height: 100,
                                       constraints: BoxConstraints(
-                                        minWidth:
-                                            MediaQuery.sizeOf(context).width,
+                                        minWidth: MediaQuery.sizeOf(context).width,
                                       ),
                                       decoration: const BoxDecoration(
                                         color: AppTheme.secondaryBackground,
                                         shape: BoxShape.rectangle,
                                       ),
-                                      child: const Column(
+                                      child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Align(
-                                            alignment:
-                                                AlignmentDirectional(-1, 0),
+                                            alignment: const AlignmentDirectional(-1, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Hello World', // TODO: Dynamically obtain conversation title from server.
+                                                  conversations[index].conversationLabel,
                                                   style: AppTheme.headlineLarge,
                                                 ),
                                               ],
@@ -149,13 +141,13 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(-1, 0),
+                                                const AlignmentDirectional(-1, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Expanded(
                                                   child: Text(
-                                                    'Hello World', // TODO: Summary or list of models used
+                                                    conversations[index].conversationSubLabel,
                                                     style: AppTheme.bodyMedium,
                                                   ),
                                                 ),
@@ -183,15 +175,23 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                             ),
                             onTap: () => {
                               // TODO: Need to implement.
-                              print("opening existing conversation")
+                              // Get the conversation object based on the index
+                              // Use Navigator to push a new ConversationWidget with conversation data
+                              Server.loadConversation(index),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ConversationWidget(),
+                                ),
+                              )
                             },
                             onLongPress: () => {
                               // TODO: Need to implement.
                               print("opening options")
                             },
                           ),
-                        ),
-                      ],
+                        );
+                      }
                     ),
                   ),
                 ),
