@@ -1,3 +1,4 @@
+import 'package:app/components/conversation_thread/conversation.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,14 +10,18 @@ import 'model_item_model.dart';
 export 'model_item_model.dart';
 
 class ModelItemWidget extends StatefulWidget {
-  const ModelItemWidget({super.key});
+  final Conversation conversation;
+  const ModelItemWidget({super.key, required this.conversation});
 
   @override
-  State<ModelItemWidget> createState() => _ModelItemWidgetState();
+  State<ModelItemWidget> createState() => _ModelItemWidgetState(conversation);
 }
 
 class _ModelItemWidgetState extends State<ModelItemWidget> {
   late ModelItemModel _model;
+  late Conversation conversation;
+
+  _ModelItemWidgetState(this.conversation);
 
   @override
   void setState(VoidCallback callback) {
@@ -78,22 +83,22 @@ class _ModelItemWidgetState extends State<ModelItemWidget> {
                   ),
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Randy Peterson',
+                      Text( // Label
+                        conversation.conversationLabel,
                         style: AppTheme.bodyMedium,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                        child: Text(
-                          'name@domainname.com',
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text( // Sub-label
+                          conversation.conversationSubLabel,
                           style: AppTheme.bodySmall,
                         ),
                       ),

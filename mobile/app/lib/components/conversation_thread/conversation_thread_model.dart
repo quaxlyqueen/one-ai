@@ -20,7 +20,7 @@ class ConversationThreadModel extends FlutterFlowModel<ConversationThreadWidget>
 
   @override
   void initState(BuildContext context) {
-    conversation = Server.getLoadedConversation();
+    conversation = Backend.getLoadedConversation();
     promptBoxModel = createModel(context, () => PromptBoxModel());
   }
 

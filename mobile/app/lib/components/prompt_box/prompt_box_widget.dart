@@ -17,6 +17,7 @@ class PromptBoxWidget extends StatefulWidget {
 
 class _PromptBoxWidgetState extends State<PromptBoxWidget> {
   late PromptBoxModel _model;
+  late String entry_text;
 
   @override
   void setState(VoidCallback callback) {
@@ -69,7 +70,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: const Icon(
                         Icons.file_upload_outlined,
-                        color: AppTheme.secondaryText,
+                        color: AppTheme.darkest,
                         size: 30,
                       ),
                       onPressed: () {
@@ -88,7 +89,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: const Icon(
                         Icons.photo_outlined,
-                        color: AppTheme.secondaryText,
+                        color: AppTheme.darkest,
                         size: 30,
                       ),
                       onPressed: () {
@@ -105,13 +106,28 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 40,
-                      icon: const Icon(
-                        Icons.mic_none,
-                        color: AppTheme.secondaryText,
+                      icon: // Backend.stt.speechToText.isListening ?
+                      // const Icon(
+                      //   Icons.mic_none,
+                      //   color: AppTheme.error,
+                      //   size: 30,
+                      // ) :
+                      const Icon(
+                        Icons.mic_off_outlined,
+                        color: AppTheme.darkest,
                         size: 30,
                       ),
                       onPressed: () {
-                        print('IconButton pressed ...');
+                        if(Backend.stt.isSpeechEnabled()) {
+                          if(Backend.stt.speechToText.isListening) {
+                            print('De-activating STT.');
+                            Backend.stt.stopListening();
+                          }
+                          print('Activating STT.');
+                          entry_text = Backend.stt.startListening() as String;
+                        } else {
+                          print('Microphone is unavailable for STT');
+                        }
                       },
                     ),
                   ),
@@ -126,7 +142,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: const Icon(
                         Icons.videocam_outlined,
-                        color: AppTheme.secondaryText,
+                        color: AppTheme.darkest,
                         size: 30,
                       ),
                       onPressed: () {
@@ -145,7 +161,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       buttonSize: 40,
                       icon: const Icon(
                         Icons.camera_alt_outlined,
-                        color: AppTheme.secondaryText,
+                        color: AppTheme.darkest,
                         size: 30,
                       ),
                       onPressed: () {
@@ -206,21 +222,28 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                         ),
                         filled: true,
                         fillColor: AppTheme.alternate,
-                        suffixIcon: const Icon(
-                          Icons.send,
-                          color: AppTheme.primary,
-                          size: 30,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            // TODO: Connect with multimedia
+                            entry_text = _model.textController.text;
+                            Backend.respondWhenReady(entry_text);
+                            _model.textController?.clear(); // Clear the text field
+                          },
+                          child: const Icon(
+                            Icons.send,
+                            color: AppTheme.primary,
+                            size: 30,
+                          ),
                         ),
                       ),
-                      style: AppTheme.bodyMedium,
+                      style: AppTheme.displayMedium,
                       textAlign: TextAlign.start,
                       maxLines: 5,
                       minLines: 1,
                       validator: _model.textControllerValidator.asValidator(context),
                       textInputAction: TextInputAction.send, // "Send" on keyboard
                       onFieldSubmitted: (text) {
-                        // TODO: Clear text box
-                        Server.respondWhenReady(text); // TODO: Connect with multimedia
+                        Backend.respondWhenReady(text); // TODO: Connect with multimedia
                         _model.textController?.clear(); // Clear the text field
                       },
                     ),

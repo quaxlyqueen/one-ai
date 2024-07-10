@@ -18,7 +18,7 @@ class Conversation with ChangeNotifier {
   }
 
   void loadChats() {
-    chats = Server.getChatsByConversationID(conversationID);
+    chats = Backend.getChatsByConversationID(conversationID);
   }
 
   void setLabel() {

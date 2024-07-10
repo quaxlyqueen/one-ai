@@ -59,7 +59,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
             buttonSize: 60,
             icon: const Icon(
               Icons.arrow_back_rounded,
-              color: AppTheme.primaryTextColor,
+              color: AppTheme.lightest,
               size: 30,
             ),
             onPressed: () async {
@@ -80,21 +80,16 @@ class _ConversationWidgetState extends State<ConversationWidget> {
           title: wrapWithModel(
             model: _model.modelItemModel,
             updateCallback: () => setState(() {}),
-            child: const ModelItemWidget(),
+            child: ModelItemWidget(conversation: conversation,),
           ),
           actions: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
               // ---------- Options Button
               child: FlutterFlowIconButton(
-                borderColor: AppTheme.alternate,
-                borderRadius: 12,
-                borderWidth: 2,
-                buttonSize: 40,
-                fillColor: AppTheme.primaryBackground,
                 icon: const Icon(
                   Icons.more_vert,
-                  color: AppTheme.primaryTextColor,
+                  color: AppTheme.lightest,
                   size: 24,
                 ),
                 onPressed: () async {

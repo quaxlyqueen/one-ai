@@ -6,11 +6,13 @@ import 'package:app/components/conversation_thread/chat.dart';
 
 import 'package:app/util/speech_to_text.dart';
 
+import 'model.dart';
+
 // Uses Singleton design pattern to ensure that any server references across the app are using the same instance.
-class Server {
+class Backend {
   //     SERVER VARIABLES
-  static final Server _single_server = Server._internal();
-  Server._internal();
+  static final Backend _single_backend = Backend._internal();
+  Backend._internal();
   // TODO: One-time process to establish server connection is required for easy setup/maintenance.
   static final url = "http://10.0.2.2:11434/api/"; // For emulated device in testing
   //static final url = "http://192.168.1.68:11434/api"; // For local access to home server
@@ -28,29 +30,35 @@ class Server {
   //     PRIVACY VARIABLES
   static bool _historyEnabled = true;
   static late int conversationID;
+  static late int maxConversationID;
   static List<Conversation> conversations = [];
   static List<Chat> loadedChats = [];
 
 
 
   //     RUNTIME & STATUS VARIABLES
+  static late Model model;
   static String prompt = "";
   static String response = "";
   static bool initiated = false;
 
   // TODO: Verify all different components of STT, TTS, LLM, etc have been initialized.
   // TODO: Handshake w/ server to validate identity
-  factory Server() {
+  factory Backend() {
     // Speech-To-Text engine activation.
     _speechEnabled = stt.isSpeechEnabled();
 
     // loadedChats = conversations[conversationID].chats;
 
-    return _single_server;
+    return _single_backend;
   }
 
   void init() {
     initiated = true;
+
+    // TODO: Dynamically get available models and models that can be pulled.
+    // TODO: Dynamically get the user's default model
+    model = Model("llama3"); // Primarily used llama3, testing gemma2
 
     // TODO: Dynamically obtain conversations.
     conversations.add(
@@ -64,6 +72,8 @@ class Server {
         ]
       )
     );
+
+    maxConversationID = conversations.length;
 
     // conversations.add(
     //     Conversation.completeConversation(
@@ -81,9 +91,12 @@ class Server {
 
 
   //     PRIMARY INTERFACE
+  @Deprecated("Use STT interface directly and use respondWhenReady().")
   static Future<String> sttGetResponseWhenReady() async {
     // TODO: In case on-device STT is unavailable, use server-side STT service.
-    if (!_speechEnabled) "Unable to process Speech-To-Text on-device.";
+    if (!_speechEnabled) {
+      return "Unable to process Speech-To-Text on-device.";
+    }
 
     prompt = stt.getTextWhenReady() as String;
     conversations[conversationID].add(Chat(prompt, true));
@@ -109,6 +122,11 @@ class Server {
   // Load conversation should be called prior to any other server requests.
   static void loadConversation(id) {
     conversationID = id;
+    if(maxConversationID == id) {
+      conversations.add(Conversation(conversationID, "Conversation $id", "Another AI conversation"));
+      maxConversationID++;
+    }
+
     loadedChats = conversations[conversationID].chats;
   }
 
@@ -144,7 +162,7 @@ class Server {
       List<Map<String, String>> messageList = convertMessages();
 
       data = {
-        "model": "llama3",
+        "model": model.name,
         "messages": messageList,
         "stream": false,
       };
@@ -152,7 +170,7 @@ class Server {
     else {
       endpoint = "generate";
       data = {
-        "model": "llama3",
+        "model": model.name,
         "prompt": prompt,
         "stream": false,
       };

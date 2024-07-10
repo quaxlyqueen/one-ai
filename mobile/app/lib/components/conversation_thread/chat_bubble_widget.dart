@@ -1,3 +1,4 @@
+import 'package:app/theme.dart';
 import 'package:flutter/material.dart';
 import 'chat.dart';
 
@@ -26,9 +27,12 @@ class ChatBubbleWidget extends StatelessWidget{
               bottomRight: c.role ? const Radius.circular(12.0) : const Radius
                   .circular(0.0),
             ),
-            color: c.role ? Colors.blue[200] : Colors.grey[200],
+            color: c.role ? AppTheme.darkest : AppTheme.dark,
           ),
-          child: Text(c.content),
+          child: Text(
+            c.content,
+            style: AppTheme.bodyMedium,
+          ),
         ),
       ],
     );

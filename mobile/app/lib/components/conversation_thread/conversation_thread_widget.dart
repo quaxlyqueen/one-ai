@@ -53,9 +53,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
       return Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          color: AppTheme.primaryBackground,
-        ),
+
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,12 +63,12 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
                 listenable: _model.conversation,
                 builder: (BuildContext context, Widget? child) {
                   return ListView.builder(
-                    itemCount: Server.getLoadedConversation().chats.length,
+                    itemCount: Backend.getLoadedConversation().chats.length,
                     padding: const EdgeInsets.fromLTRB(0, 12, 0, 24,),
                     reverse: false,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      return ChatBubbleWidget(c: Server.getLoadedConversation().chats[index]);
+                      return ChatBubbleWidget(c: Backend.getLoadedConversation().chats[index]);
                     },
                   );
                 },
@@ -79,7 +77,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
             Container(
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: AppTheme.secondaryBackground,
+                color: AppTheme.medium,
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 3,
@@ -95,74 +93,74 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // FlutterFlowMediaDisplay(
-                                //   path: '',
-                                //   imageBuilder: (path) => ClipRRect(
-                                //     borderRadius: BorderRadius.circular(8),
-                                //     child: CachedNetworkImage(
-                                //       fadeInDuration: const Duration(milliseconds: 500),
-                                //       fadeOutDuration:
-                                //           const Duration(milliseconds: 500),
-                                //       imageUrl: path,
-                                //       width: 120,
-                                //       height: 100,
-                                //       fit: BoxFit.cover,
-                                //     ),
-                                //   ),
-                                // TODO
-                                //   videoPlayerBuilder: (path) =>
-                                //       FlutterFlowVideoPlayer(
-                                //     path: path,
-                                //     width: 300,
-                                //     autoPlay: false,
-                                //     looping: true,
-                                //     showControls: true,
-                                //     allowFullScreen: true,
-                                //     allowPlaybackSpeedMenu: false,
-                                //   ),
-                                // ),
-                                Align(
-                                  alignment: const AlignmentDirectional(-1, -1),
-                                  // TODO: Make the delete button conditional upon media upload.
-                                  child: FlutterFlowIconButton(
-                                    borderColor:
-                                    AppTheme.error,
-                                    borderRadius: 20,
-                                    borderWidth: 2,
-                                    buttonSize: 40,
-                                    fillColor: AppTheme.primaryBackground,
-                                    icon: const Icon(
-                                      Icons.delete_outline_rounded,
-                                      color: AppTheme.error,
-                                      size: 24,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ),
-                              ]
-                                  .divide(const SizedBox(width: 8))
-                                  .addToStart(const SizedBox(width: 16))
-                                  .addToEnd(const SizedBox(width: 16)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisSize: MainAxisSize.max,
+                  //   children: [
+                  //     Expanded(
+                  //       child: Padding(
+                  //         padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                  //         child: SingleChildScrollView(
+                  //           scrollDirection: Axis.horizontal,
+                  //           child: Row(
+                  //             mainAxisSize: MainAxisSize.max,
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               FlutterFlowMediaDisplay(
+                  //                 path: '',
+                  //                 imageBuilder: (path) => ClipRRect(
+                  //                   borderRadius: BorderRadius.circular(8),
+                  //                   child: CachedNetworkImage(
+                  //                     fadeInDuration: const Duration(milliseconds: 500),
+                  //                     fadeOutDuration:
+                  //                         const Duration(milliseconds: 500),
+                  //                     imageUrl: path,
+                  //                     width: 120,
+                  //                     height: 100,
+                  //                     fit: BoxFit.cover,
+                  //                   ),
+                  //                 ),
+                  //               // TODO
+                  //                 videoPlayerBuilder: (path) =>
+                  //                     FlutterFlowVideoPlayer(
+                  //                   path: path,
+                  //                   width: 300,
+                  //                   autoPlay: false,
+                  //                   looping: true,
+                  //                   showControls: true,
+                  //                   allowFullScreen: true,
+                  //                   allowPlaybackSpeedMenu: false,
+                  //                 ),
+                  //               ),
+                  //               Align(
+                  //                 alignment: const AlignmentDirectional(-1, -1),
+                  //                 // TODO: Make the delete button conditional upon media upload.
+                  //                 child: FlutterFlowIconButton(
+                  //                   borderColor:
+                  //                   AppTheme.error,
+                  //                   borderRadius: 20,
+                  //                   borderWidth: 2,
+                  //                   buttonSize: 40,
+                  //                   fillColor: AppTheme.primaryBackground,
+                  //                   icon: const Icon(
+                  //                     Icons.delete_outline_rounded,
+                  //                     color: AppTheme.error,
+                  //                     size: 24,
+                  //                   ),
+                  //                   onPressed: () {
+                  //                     print('IconButton pressed ...');
+                  //                   },
+                  //                 ),
+                  //               ),
+                  //             ]
+                  //                 .divide(const SizedBox(width: 8))
+                  //                 .addToStart(const SizedBox(width: 16))
+                  //                 .addToEnd(const SizedBox(width: 16)),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Form(
                     key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,

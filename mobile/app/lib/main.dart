@@ -28,13 +28,14 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
       iconData = Icons.settings;
       break;
     case 1:
-      label = 'Home';
-      iconData = Icons.home;
+      label = 'Chats';
+      iconData = Icons.chat;
       break;
   }
   return BottomNavigationBarItem(
     icon: Icon(iconData),
     label: label,
+    backgroundColor: AppTheme.lightest,
   );
 }
 
@@ -63,15 +64,15 @@ class MyApp extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     return MaterialApp(
-      title: 'App',
+      title: 'One AI',
       home: Scaffold(
-        backgroundColor: AppTheme.secondaryBackground,
+        backgroundColor: AppTheme.medium,
         appBar: AppBar(
             backgroundColor: AppTheme.secondaryBackground,
             automaticallyImplyLeading: false,
             title: const Text(
-              'App',
-              style: AppTheme.headlineLarge,
+              'One AI',
+              style: AppTheme.displayLarge,
             ),
             actions: const [],
             centerTitle: false,
@@ -79,6 +80,8 @@ class MyApp extends ConsumerWidget {
           ),
         body: _pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: AppTheme.darkest,
+          selectedItemColor: AppTheme.lightest,
           // Set the number of items to the length of the pages list
           items: List.generate(_pages.length, (index) => _buildNavigationItem(index)),
           currentIndex: selectedIndex,
