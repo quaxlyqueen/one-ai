@@ -98,40 +98,6 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded( // TODO: Microphone context upload -> or STT??
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 40,
-                      icon: // Backend.stt.speechToText.isListening ?
-                      // const Icon(
-                      //   Icons.mic_none,
-                      //   color: AppTheme.error,
-                      //   size: 30,
-                      // ) :
-                      const Icon(
-                        Icons.mic_off_outlined,
-                        color: AppTheme.darkest,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        if(Backend.stt.isSpeechEnabled()) {
-                          if(Backend.stt.speechToText.isListening) {
-                            print('De-activating STT.');
-                            Backend.stt.stopListening();
-                          }
-                          print('Activating STT.');
-                          entry_text = Backend.stt.startListening() as String;
-                        } else {
-                          print('Microphone is unavailable for STT');
-                        }
-                      },
-                    ),
-                  ),
-                ),
                 Expanded( // TODO: Video context upload
                   child: Padding(
                     padding: const EdgeInsets.all(14),

@@ -39,5 +39,5 @@ class SpeechToText {
 
   /// This is the callback that the SpeechToText plugin calls when
   /// the platform returns recognized words.
-  String onSpeechResult(SpeechRecognitionResult result) => (text = result.recognizedWords);
+  void onSpeechResult(SpeechRecognitionResult result) => (text = result.recognizedWords);
 }
