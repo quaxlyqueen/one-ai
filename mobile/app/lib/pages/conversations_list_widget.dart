@@ -2,11 +2,12 @@ import 'package:app/components/conversation_thread/conversation.dart';
 import 'package:app/theme.dart';
 
 import 'package:app/pages/conversation_widget.dart';
-import 'package:app/util/server.dart';
+import 'package:app/util/backend.dart';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app/components/options_dialog/options_dialog_widget.dart';
 import 'conversations_list_model.dart';
 export 'conversations_list_model.dart';
 
@@ -48,6 +49,20 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // Clean conversation list prior to building widgets, to prevent bloating UI with empty conversations.
+    // Additionally, delete conversations that have history disabled.
+    for(int i = 0; i < conversations.length; i++) {
+      if(
+        conversations[i].conversation.getChats().isEmpty ||
+        !conversations[i].conversation.history
+      ) {
+        Backend.conversations.removeAt(i);
+        conversations.removeAt(i);
+        Backend.maxConversationID--; // maxConversationID will eventually be deprecated with better ID system.
+        i--;
+      }
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -181,6 +196,24 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                     )
                                   },
                                   onLongPress: () => {
+                                      showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor:
+                                        Colors.transparent,
+                                        enableDrag: false,
+                                        useSafeArea: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding:
+                                            MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: const PopupWidget(),
+                                          );
+                                        },
+                                      ).then((value) =>
+                                          safeSetState(() {})),
+
                                     // TODO: Need to implement.
                                     print("opening options")
                                   },
@@ -197,7 +230,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                   right: 20.0, // Adjust positioning as needed
                   child: FloatingActionButton(
                     onPressed: () => {
-                      Backend.loadConversation(Backend.maxConversationID), // TODO: Dynamically get the next ID
+                      Backend.loadConversation(Backend.createConversation()), // TODO: Dynamically get the next ID
                       conversations.add(ConversationWidget(conversation: Backend.getLoadedConversation())),
                       Navigator.push(
                         context,

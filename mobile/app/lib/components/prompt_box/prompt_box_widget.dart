@@ -1,4 +1,4 @@
-import 'package:app/util/server.dart';
+import 'package:app/util/backend.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -209,7 +209,8 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       validator: _model.textControllerValidator.asValidator(context),
                       textInputAction: TextInputAction.send, // "Send" on keyboard
                       onFieldSubmitted: (text) {
-                        Backend.respondWhenReady(text); // TODO: Connect with multimedia
+                        entry_text = _model.textController.text;
+                        Backend.respondWhenReady(entry_text); // TODO: Connect with multimedia
                         _model.textController?.clear(); // Clear the text field
                       },
                     ),

@@ -1,5 +1,5 @@
 import 'package:app/components/conversation_thread/conversation.dart';
-import 'package:app/util/server.dart';
+import 'package:app/util/backend.dart';
 import 'package:provider/provider.dart';
 
 import '/components/conversation_thread/chat_bubble_widget.dart';

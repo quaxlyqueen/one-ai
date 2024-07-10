@@ -5,6 +5,7 @@ import '/components/conversation_thread/conversation_thread_widget.dart';
 import '/components/model_item/model_item_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:app/theme.dart';
 
@@ -64,17 +65,9 @@ class _ConversationWidgetState extends State<ConversationWidget> {
             ),
             onPressed: () async {
               print("something pressed in conversation_widget.dart");
-              // TODO
-              // context.goNamed(
-              //   'ConversationsList',
-              //   extra: <String, dynamic>{
-              //     kTransitionInfoKey: TransitionInfo(
-              //       hasTransition: true,
-              //       transitionType: PageTransitionType.leftToRight,
-              //       duration: const Duration(milliseconds: 250),
-              //     ),
-              //   },
-              // );
+              // TODO: Smooth out the animation to prevent the conversations list from loading half-way up the screen.
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+              Navigator.pop(context);
             },
           ),
           title: wrapWithModel(

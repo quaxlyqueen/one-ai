@@ -1,7 +1,7 @@
 import 'package:app/components/conversation_thread/chat_bubble_model.dart';
 import 'package:app/components/conversation_thread/chat.dart';
 import 'package:app/components/conversation_thread/conversation.dart';
-import 'package:app/util/server.dart';
+import 'package:app/util/backend.dart';
 
 import 'package:app/components/prompt_box/prompt_box_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';

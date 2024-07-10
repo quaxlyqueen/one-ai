@@ -84,7 +84,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: Text(
-                            'Refine the components modal.',
+                            'A popup',
                             style: AppTheme.headlineMedium,
                           ),
                         ),
@@ -106,12 +106,12 @@ class _PopupWidgetState extends State<PopupWidget> {
                     ],
                   ),
                   const Divider(
-                    height: 24,
+                    height: 12,
                     thickness: 2,
                     color: Color(0xFFF1F4F8),
                   ),
                   const Text(
-                    'FlutterFlow is a visual development platform that allows you to easily create beautiful and responsive user interfaces for your mobile and web applications. With its drag-and-drop interface and pre-built components, you can quickly prototype and build your app without writing any code. \nAdditionally, FlutterFlow\'s real-time preview feature allows you to see your changes in real-time and make adjustments on the fly.',
+                    'Test',
                     style: AppTheme.labelMedium,
                   ),
                   Padding(
@@ -147,7 +147,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                           onPressed: () {
                             print('Button pressed ...');
                           },
-                          text: 'Create Task',
+                          text: 'Action',
                           options: FFButtonOptions(
                             width: 130,
                             height: 40,

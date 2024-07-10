@@ -11,10 +11,10 @@ import 'model.dart';
 // Uses Singleton design pattern to ensure that any server references across the app are using the same instance.
 class Backend {
   //     SERVER VARIABLES
-  static final Backend _single_backend = Backend._internal();
+  static final Backend singleBackend = Backend._internal();
   Backend._internal();
   // TODO: One-time process to establish server connection is required for easy setup/maintenance.
-  static final url = "http://10.0.2.2:11434/api/"; // For emulated device in testing
+  static const url = "http://10.0.2.2:11434/api/"; // For emulated device in testing
   //static final url = "http://192.168.1.68:11434/api"; // For local access to home server
   static String endpoint = "";
   static final Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -27,16 +27,16 @@ class Backend {
 
 
 
-  //     PRIVACY VARIABLES
-  static bool _historyEnabled = true;
-  static late int conversationID;
-  static late int maxConversationID;
+  //     PRIVACY-FOCUSED VARIABLES
+  // TODO: Reorder based on most recent usage.
   static List<Conversation> conversations = [];
   static List<Chat> loadedChats = [];
-
+  static late Conversation loadedConversation;
 
 
   //     RUNTIME & STATUS VARIABLES
+  static late int conversationID;
+  static late int maxConversationID;
   static late Model model;
   static String prompt = "";
   static String response = "";
@@ -50,7 +50,7 @@ class Backend {
 
     // loadedChats = conversations[conversationID].chats;
 
-    return _single_backend;
+    return singleBackend;
   }
 
   void init() {
@@ -61,31 +61,19 @@ class Backend {
     model = Model("llama3"); // Primarily used llama3, testing gemma2
 
     // TODO: Dynamically obtain conversations.
-    conversations.add(
-      Conversation.completeConversation(
-        0,
-        "Test Conversation",
-        "Testing Functionality",
-        [
-          (Chat("Hello there! You are part of a prototype and are running locally on my Macbook Air. Please keep your responses brief as every prompt freezes my computer.", true)),
-          (Chat("Understood! How can I help?", false)),
-        ]
-      )
-    );
+    // conversations.add(
+    //   Conversation.completeConversation(
+    //     0,
+    //     "Test Conversation",
+    //     "Testing Functionality",
+    //     [
+    //       (Chat("Hello there! You are part of a prototype and are running locally on my Macbook Air. Please keep your responses brief as every prompt freezes my computer.", true)),
+    //       (Chat("Understood! How can I help?", false)),
+    //     ]
+    //   )
+    // );
 
     maxConversationID = conversations.length;
-
-    // conversations.add(
-    //     Conversation.completeConversation(
-    //         1,
-    //         "Label test",
-    //         "Sub-label Test",
-    //         [
-    //           (Chat("A different test. Only reply No.", true)),
-    //           (Chat("No.", false)),
-    //         ]
-    //     )
-    // );
   }
 
 
@@ -115,21 +103,32 @@ class Backend {
 
 
   //     CONVERSATION MANAGEMENT
+  @Deprecated("")
   static List<Conversation> getConversationsList() { return conversations; }
 
-  static Conversation getLoadedConversation() { return conversations[conversationID]; }
+  static Conversation getLoadedConversation() { return loadedConversation; }
 
   // Load conversation should be called prior to any other server requests.
   static void loadConversation(id) {
     conversationID = id;
-    if(maxConversationID == id) {
-      conversations.add(Conversation(conversationID, "Conversation $id", "Another AI conversation"));
-      maxConversationID++;
-    }
 
-    loadedChats = conversations[conversationID].chats;
+    loadedConversation = conversations[id];
+    loadedChats = loadedConversation.chats;
   }
 
+  // TODO: Better conversation ID management is needed. Preferably randomized IDs to not indicate the number of conversations.
+  static int createConversation() {
+    int id = conversations.length;
+    conversations.add(Conversation(id, "Conversation $id", "Another AI conversation"));
+    return id;
+  }
+
+  static void deleteConversation(id) {
+    loadedChats = conversations[conversationID].chats; // TODO: Temporarily saving the chats for "undo" popup.
+    conversations.removeAt(id);
+  }
+
+  @Deprecated('Just directly get loadedChats list. Unless multiple chats can be opened simultaneously?')
   static List<Chat> getChatsByConversationID(id) { return conversations[id].chats; }
 
 
@@ -155,7 +154,7 @@ class Backend {
     // TODO: Allow for different models to be dynamically selected.
     Map<String, dynamic> data;
 
-    if(_historyEnabled) {
+    if(conversations[conversationID].conversationContext) {
       loadedChats = [...loadedChats, Chat(prompt, true)];
       endpoint = "chat";
 
@@ -164,7 +163,7 @@ class Backend {
       data = {
         "model": model.name,
         "messages": messageList,
-        "stream": false,
+        "stream": loadedConversation.stream,
       };
     }
     else {
@@ -172,7 +171,7 @@ class Backend {
       data = {
         "model": model.name,
         "prompt": prompt,
-        "stream": false,
+        "stream": loadedConversation.stream,
       };
     }
 
@@ -182,6 +181,8 @@ class Backend {
 
   // Send the HTTP request to the server.
   static void httpSendRequest() async {
+    // TODO: Add AES256 encryption to the prompt/messages thread.
+    // TODO: Add SHA256 checksum to be sent and verified to prevent/notify in case of data loss.
     String json = constructPrompt();
 
     // Send the HTTP POST request
@@ -193,7 +194,7 @@ class Backend {
 
     if (serverResponse.statusCode == 200) {
       Map<String, dynamic> re = jsonDecode(serverResponse.body);
-      if(_historyEnabled) {
+      if(conversations[conversationID].conversationContext) {
         response = re["message"]["content"];
         loadedChats = [...loadedChats, Chat(response, false)];
       } else {

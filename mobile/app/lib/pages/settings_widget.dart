@@ -1169,6 +1169,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
+                                            // TODO: Should open in a browser rather than in-app?
                                             onTap: () async {
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
