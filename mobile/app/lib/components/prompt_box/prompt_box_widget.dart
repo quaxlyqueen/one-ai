@@ -1,10 +1,17 @@
-import 'package:app/util/backend.dart';
+import 'dart:io';
+
+import 'package:app/components/util/backend.dart';
+import 'package:camera/camera.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/theme.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../conversation_thread/chat.dart';
 import 'prompt_box_model.dart';
 export 'prompt_box_model.dart';
 
@@ -17,7 +24,7 @@ class PromptBoxWidget extends StatefulWidget {
 
 class _PromptBoxWidgetState extends State<PromptBoxWidget> {
   late PromptBoxModel _model;
-  late String entry_text;
+  String entryText = "";
 
   @override
   void setState(VoidCallback callback) {
@@ -43,6 +50,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
 
   @override
   Widget build(BuildContext context) {
+    const double buttonPadding = 4;
     return SafeArea(
       child: Container(
         width: double.infinity,
@@ -62,50 +70,59 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
               children: [
                 Expanded( // TODO: File context upload
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 40,
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: IconButton(
                       icon: const Icon(
                         Icons.file_upload_outlined,
                         color: AppTheme.darkest,
                         size: 30,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        final picker = FilePicker.platform;
+                        final result = await picker.pickFiles(allowMultiple: true); // Allow multiple files
+                        if (result != null) {
+                          for (final platformFile in result.files) {
+                            // TODO: Upload file to server
+                            final file = File(platformFile.path!);
+                          }
+                        } else {
+                          print('User canceled file selection');
+                        }
                       },
                     ),
                   ),
                 ),
-                Expanded( // TODO: Photo context upload
+                Expanded( // TODO: Gallery context upload
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 40,
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: IconButton(
                       icon: const Icon(
                         Icons.photo_outlined,
                         color: AppTheme.darkest,
                         size: 30,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        final picker = ImagePicker();
+                        final image = await picker.pickImage(source: ImageSource.gallery);
+
+                        // TODO: Allow for multiple pictures/photos to be selected.
+                        // final images = await picker.pickMultiImage();
+                        if (image != null) {
+
+                          // TODO: Upload to server and add to conversation.chats
+                          String i = Backend.convertToBase64(File(image.path)).toString();
+                          Backend.loadedConversation.add(Chat.image(i, true, 1));
+                        } else {
+                          print('User canceled image selection');
+                        }
                       },
                     ),
                   ),
                 ),
                 Expanded( // TODO: Video context upload
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 40,
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: IconButton(
                       icon: const Icon(
                         Icons.videocam_outlined,
                         color: AppTheme.darkest,
@@ -119,19 +136,48 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                 ),
                 Expanded( // TODO: Camera context upload
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 40,
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: IconButton(
                       icon: const Icon(
                         Icons.camera_alt_outlined,
                         color: AppTheme.darkest,
                         size: 30,
                       ),
+                      onPressed: () async {
+                        final picker = ImagePicker();
+                        final image = await picker.pickImage(source: ImageSource.camera);
+
+                        if (image != null) {
+                          // TODO: Upload to server and add to conversation.chats
+                          final i = Backend.convertToBase64(File(image.path));
+                          Backend.loadedConversation.add(Chat.image(i.toString(), true, 1));
+                        } else {
+                          print('User canceled photo capture');
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: IconButton(
+                      icon: Icon(
+                        Backend.stt.speechToText.isNotListening ? Icons.mic_off_outlined : Icons.mic_none,
+                        color: AppTheme.darkest,
+                        size: 30,
+                      ),
                       onPressed: () {
-                        print('IconButton pressed ...');
+                        // TODO: Audio input is still buggy, it appears to only enter the text field once the button is pressed again to stop.
+                        if(Backend.stt.speechToText.isNotListening) {
+                          print('STT engine starting ...');
+                          Backend.stt.startListening();
+                          updateText();
+                        } else {
+                          print('STT engine stopping');
+                          Backend.stt.stopListening();
+                          updateText();
+                        }
                       },
                     ),
                   ),
@@ -190,10 +236,13 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                         fillColor: AppTheme.alternate,
                         suffixIcon: GestureDetector(
                           onTap: () {
-                            // TODO: Connect with multimedia
-                            entry_text = _model.textController.text;
-                            Backend.respondWhenReady(entry_text);
-                            _model.textController?.clear(); // Clear the text field
+                            if(_model.textController.text != "") {
+                              // TODO: Connect with multimedia
+                              entryText = _model.textController.text;
+                              Backend.respondWhenReady(entryText);
+                              _model.textController?.clear(); // Clear the text field
+                              SystemChannels.textInput.invokeMethod('TextInput.hide');
+                            }
                           },
                           child: const Icon(
                             Icons.send,
@@ -206,12 +255,14 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                       textAlign: TextAlign.start,
                       maxLines: 5,
                       minLines: 1,
-                      validator: _model.textControllerValidator.asValidator(context),
                       textInputAction: TextInputAction.send, // "Send" on keyboard
                       onFieldSubmitted: (text) {
-                        entry_text = _model.textController.text;
-                        Backend.respondWhenReady(entry_text); // TODO: Connect with multimedia
-                        _model.textController?.clear(); // Clear the text field
+                        // Don't take any action unless there's an actual input.
+                        if(_model.textController.text != "") {
+                          entryText = _model.textController.text;
+                          Backend.respondWhenReady(entryText); // TODO: Connect with multimedia
+                          _model.textController?.clear(); // Clear the text field
+                        }
                       },
                     ),
                   ),
@@ -222,5 +273,13 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
         ),
       ),
     );
+  }
+
+  void updateText() {
+    _model.textController.text = Backend.stt.text;
+    entryText = _model.textController.text;
+    print(entryText);
+    print(_model.textController.text);
+    Backend.stt.reset();
   }
 }

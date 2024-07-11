@@ -1,15 +1,15 @@
 import 'package:app/components/conversation_thread/conversation.dart';
 import 'package:app/theme.dart';
 
-import 'package:app/pages/conversation_widget.dart';
-import 'package:app/util/backend.dart';
+import 'package:app/components/conversation_widget.dart';
+import 'package:app/components/util/backend.dart';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/components/options_dialog/options_dialog_widget.dart';
-import 'conversations_list_model.dart';
-export 'conversations_list_model.dart';
+import '../components/conversations_list_model.dart';
+export '../components/conversations_list_model.dart';
 
 class ConversationsListWidget extends StatefulWidget {
   const ConversationsListWidget({super.key});
@@ -213,9 +213,6 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                         },
                                       ).then((value) =>
                                           safeSetState(() {})),
-
-                                    // TODO: Need to implement.
-                                    print("opening options")
                                   },
                                 ),
                               );
@@ -235,7 +232,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ConversationWidget(conversation: Backend.getLoadedConversation(),),
+                          builder: (context) => ConversationWidget(conversation: Backend.loadedConversation,),
                         ),
                       ), // Handle the button press
                     },

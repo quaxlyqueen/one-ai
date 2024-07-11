@@ -1,5 +1,5 @@
 import 'package:app/components/conversation_thread/conversation.dart';
-import 'package:app/util/backend.dart';
+import 'package:app/components/util/backend.dart';
 import 'package:provider/provider.dart';
 
 import '/components/conversation_thread/chat_bubble_widget.dart';
@@ -50,6 +50,7 @@ class _ConversationThreadWidgetState extends State<ConversationThreadWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Add a scrollbar
       return Container(
         width: double.infinity,
         height: double.infinity,

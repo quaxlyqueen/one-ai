@@ -1,6 +1,6 @@
-import 'package:app/pages/conversation_widget.dart';
-import 'package:app/pages/settings_widget.dart';
-import 'package:app/pages/conversations_list_widget.dart';
+import 'package:app/components/conversation_widget.dart';
+import 'package:app/components/settings_widget.dart';
+import 'package:app/components/conversations_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +36,7 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
     icon: Icon(iconData),
     label: label,
     backgroundColor: AppTheme.lightest,
+
   );
 }
 
@@ -67,21 +68,14 @@ class MyApp extends ConsumerWidget {
       title: 'One AI',
       home: Scaffold(
         backgroundColor: AppTheme.medium,
-        appBar: AppBar(
-            backgroundColor: AppTheme.secondaryBackground,
-            automaticallyImplyLeading: false,
-            title: const Text(
-              'One AI',
-              style: AppTheme.displayLarge,
-            ),
-            actions: const [],
-            centerTitle: false,
-            elevation: 0,
-          ),
         body: _pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.darkest,
           selectedItemColor: AppTheme.lightest,
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          iconSize: 30,
+
           // Set the number of items to the length of the pages list
           items: List.generate(_pages.length, (index) => _buildNavigationItem(index)),
           currentIndex: selectedIndex,

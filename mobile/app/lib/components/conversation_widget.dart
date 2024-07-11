@@ -9,8 +9,8 @@ import 'package:flutter/services.dart';
 
 import 'package:app/theme.dart';
 
-import 'conversation_model.dart';
-export 'conversation_model.dart';
+import '../components/conversation_model.dart';
+export '../components/conversation_model.dart';
 
 class ConversationWidget extends StatefulWidget {
   final Conversation conversation;
@@ -64,8 +64,8 @@ class _ConversationWidgetState extends State<ConversationWidget> {
               size: 30,
             ),
             onPressed: () async {
-              print("something pressed in conversation_widget.dart");
               // TODO: Smooth out the animation to prevent the conversations list from loading half-way up the screen.
+              // Note: that only applies if the input was already selected.
               SystemChannels.textInput.invokeMethod('TextInput.hide');
               Navigator.pop(context);
             },

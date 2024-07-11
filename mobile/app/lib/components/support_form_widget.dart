@@ -4,8 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'support_form_model.dart';
-export 'support_form_model.dart';
+import '../components/support_form_model.dart';
+export '../components/support_form_model.dart';
 
 import 'package:app/theme.dart';
 

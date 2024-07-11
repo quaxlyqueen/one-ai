@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:app/components/util/backend.dart';
 import 'package:app/theme.dart';
 import 'package:flutter/material.dart';
 import 'chat.dart';
@@ -29,10 +32,20 @@ class ChatBubbleWidget extends StatelessWidget{
             ),
             color: c.role ? AppTheme.darkest : AppTheme.dark,
           ),
-          child: Text(
-            c.content,
-            style: AppTheme.bodyMedium,
-          ),
+          child:
+             // TODO: Properly display filetypes in the thread.
+             c.chatType == 0 ? Text(
+               c.content,
+               style: AppTheme.bodyMedium,
+             )
+             : c.chatType == 1 ? Image(image: Backend.convertFromBase64(c.content))
+             : c.chatType == 2 ? const Icon(
+                 Icons.file_copy,
+             ) : const Text("null"),
+          // Text(
+          //   c.content,
+          //   style: AppTheme.bodyMedium,
+          // ),
         ),
       ],
     );

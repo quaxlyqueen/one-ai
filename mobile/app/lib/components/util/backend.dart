@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 import 'package:app/components/conversation_thread/conversation.dart';
+import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:app/components/conversation_thread/chat.dart';
 
-import 'package:app/util/speech_to_text.dart';
+import 'package:app/components/util/speech_to_text.dart';
 
 import 'model.dart';
 
@@ -18,6 +22,7 @@ class Backend {
   //static final url = "http://192.168.1.68:11434/api"; // For local access to home server
   static String endpoint = "";
   static final Map<String, String> headers = {'Content-Type': 'application/json'};
+  static final bool UI_TESTING = true;
 
 
 
@@ -27,11 +32,13 @@ class Backend {
 
 
 
-  //     PRIVACY-FOCUSED VARIABLES
+  //     PRIVACY-NECESSARY VARIABLES
   // TODO: Reorder based on most recent usage.
   static List<Conversation> conversations = [];
   static List<Chat> loadedChats = [];
   static late Conversation loadedConversation;
+  static late List<CameraDescription> cameras;
+  static late CameraController controller;
 
 
   //     RUNTIME & STATUS VARIABLES
@@ -45,40 +52,35 @@ class Backend {
   // TODO: Verify all different components of STT, TTS, LLM, etc have been initialized.
   // TODO: Handshake w/ server to validate identity
   factory Backend() {
-    // Speech-To-Text engine activation.
-    _speechEnabled = stt.isSpeechEnabled();
 
-    // loadedChats = conversations[conversationID].chats;
 
     return singleBackend;
   }
 
-  void init() {
-    initiated = true;
+  void init() async {
+    // Prevent multiple initiations
+    if(!initiated) {
+      initiated = true;
+      // Speech-To-Text engine activation.
+      _speechEnabled = stt.isSpeechEnabled();
+
+      model = Model("llama3"); // Primarily used llama3, testing gemma2
+      maxConversationID = conversations.length;
+
+      cameras = await availableCameras();
+      controller = CameraController(cameras[0], ResolutionPreset.max);
+      controller.initialize(); // TODO: Add error catching on camera
+    }
 
     // TODO: Dynamically get available models and models that can be pulled.
     // TODO: Dynamically get the user's default model
-    model = Model("llama3"); // Primarily used llama3, testing gemma2
-
     // TODO: Dynamically obtain conversations.
-    // conversations.add(
-    //   Conversation.completeConversation(
-    //     0,
-    //     "Test Conversation",
-    //     "Testing Functionality",
-    //     [
-    //       (Chat("Hello there! You are part of a prototype and are running locally on my Macbook Air. Please keep your responses brief as every prompt freezes my computer.", true)),
-    //       (Chat("Understood! How can I help?", false)),
-    //     ]
-    //   )
-    // );
-
-    maxConversationID = conversations.length;
+    // TODO: Obtain all user permissions at once.
   }
 
 
 
-  //     PRIMARY INTERFACE
+  //     PRIMARY INTERFACES
   @Deprecated("Use STT interface directly and use respondWhenReady().")
   static Future<String> sttGetResponseWhenReady() async {
     // TODO: In case on-device STT is unavailable, use server-side STT service.
@@ -87,19 +89,38 @@ class Backend {
     }
 
     prompt = stt.getTextWhenReady() as String;
-    conversations[conversationID].add(Chat(prompt, true));
-    httpSendRequest();
-    conversations[conversationID].add(Chat(response, false));
+    conversations[conversationID].add(Chat(prompt, true, 0));
+    if(!UI_TESTING) {
+      httpSendRequest();
+    }
+    conversations[conversationID].add(Chat(response, false, 0));
 
     return response;
   }
 
   static void respondWhenReady(String p) async {
     prompt = p;
-    conversations[conversationID].add(Chat(prompt, true));
-    httpSendRequest();
+    conversations[conversationID].add(Chat(prompt, true, 0));
+    if(!UI_TESTING) {
+      httpSendRequest();
+    }
   }
 
+  static ImageProvider convertFromBase64(img) {
+    Uint8List imageBytes = base64Decode(img);
+
+    return Image.memory(imageBytes).image;
+  }
+
+  // Converts image to base64 encoded string for data transfer.
+  static String convertToBase64(f)  {
+    List<int> imageBytes = f.readAsBytesSync();
+    String img = base64Encode(imageBytes);
+
+    // TODO: Add special handling for images included in prompts.
+    conversations[conversationID].add(Chat.image(img, true, 1));
+    return img;
+  }
 
 
   //     CONVERSATION MANAGEMENT
@@ -155,7 +176,7 @@ class Backend {
     Map<String, dynamic> data;
 
     if(conversations[conversationID].conversationContext) {
-      loadedChats = [...loadedChats, Chat(prompt, true)];
+      loadedChats = [...loadedChats, Chat(prompt, true, 0)];
       endpoint = "chat";
 
       List<Map<String, String>> messageList = convertMessages();
@@ -196,12 +217,13 @@ class Backend {
       Map<String, dynamic> re = jsonDecode(serverResponse.body);
       if(conversations[conversationID].conversationContext) {
         response = re["message"]["content"];
-        loadedChats = [...loadedChats, Chat(response, false)];
+        // TODO: Modify in case of different response types.
+        loadedChats = [...loadedChats, Chat(response, false, 0)];
       } else {
         response = re["response"];
       }
     }
-    conversations[conversationID].add(Chat(response, false));
+    conversations[conversationID].add(Chat(response, false, 0));
 
     prompt = "";
     response = "";

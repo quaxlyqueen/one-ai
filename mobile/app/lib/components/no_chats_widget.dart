@@ -5,9 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'package:app/theme.dart';
 
-import 'no_chats_model.dart';
-export 'no_chats_model.dart';
-
 class NoChatsWidget extends StatefulWidget {
   const NoChatsWidget({
     super.key,
@@ -26,24 +23,19 @@ class NoChatsWidget extends StatefulWidget {
 }
 
 class _NoChatsWidgetState extends State<NoChatsWidget> {
-  late NoChatsModel _model;
 
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NoChatsModel());
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
     super.dispose();
   }
 
