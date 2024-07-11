@@ -87,10 +87,6 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                               return Align(
                                 alignment: const AlignmentDirectional(0, 0),
                                 child: InkWell(
-                                  splashColor: AppTheme.accent,
-                                  focusColor: AppTheme.lightest,
-                                  hoverColor: AppTheme.dark,
-                                  highlightColor: AppTheme.darkest,
                                   // TODO
                                   // onTap: () async {
                                   //   context.pushNamed('Conversation');
@@ -111,7 +107,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                         Container(
                                           width: 100,
                                           height: 100,
-                                          decoration: const BoxDecoration(color: AppTheme.lightest,),
+                                          decoration: const BoxDecoration(color: AppTheme.medium,),
                                           child: const Align(
                                             alignment: AlignmentDirectional(0, 0),
                                             child: Icon(
@@ -131,7 +127,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                                 minWidth: MediaQuery.sizeOf(context).width,
                                               ),
                                               decoration: const BoxDecoration(
-                                                color: AppTheme.lightest,
+                                                color: AppTheme.medium,
                                                 shape: BoxShape.rectangle,
                                               ),
                                               child: Column(
@@ -175,7 +171,7 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                                           width: 100,
                                           height: 100,
                                           decoration: const BoxDecoration(
-                                            color: AppTheme.lightest,
+                                            color: AppTheme.medium,
                                           ),
                                           child: const Icon(
                                             Icons.chevron_right_rounded,
@@ -236,10 +232,10 @@ class _ConversationsListWidgetState extends State<ConversationsListWidget> {
                         ),
                       ), // Handle the button press
                     },
-                    backgroundColor: AppTheme.darkest,
+                    backgroundColor: AppTheme.accent,
                     child: const Icon(
                       Icons.bubble_chart,
-                      color: AppTheme.lightest,
+                      color: AppTheme.light,
                     ),
                   ),
                 ),

@@ -60,7 +60,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
             buttonSize: 60,
             icon: const Icon(
               Icons.arrow_back_rounded,
-              color: AppTheme.lightest,
+              color: AppTheme.lighterest,
               size: 30,
             ),
             onPressed: () async {
@@ -82,7 +82,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
               child: FlutterFlowIconButton(
                 icon: const Icon(
                   Icons.more_vert,
-                  color: AppTheme.lightest,
+                  color: AppTheme.lighterest,
                   size: 24,
                 ),
                 onPressed: () async {

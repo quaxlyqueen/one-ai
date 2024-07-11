@@ -35,8 +35,6 @@ BottomNavigationBarItem _buildNavigationItem(int index) {
   return BottomNavigationBarItem(
     icon: Icon(iconData),
     label: label,
-    backgroundColor: AppTheme.lightest,
-
   );
 }
 
@@ -67,11 +65,12 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: 'One AI',
       home: Scaffold(
-        backgroundColor: AppTheme.medium,
+        backgroundColor: AppTheme.dark,
         body: _pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.darkest,
-          selectedItemColor: AppTheme.lightest,
+          selectedItemColor: AppTheme.accent2,
+          unselectedItemColor: AppTheme.light,
           showUnselectedLabels: false,
           showSelectedLabels: false,
           iconSize: 30,

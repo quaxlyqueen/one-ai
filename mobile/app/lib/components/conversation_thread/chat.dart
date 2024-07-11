@@ -14,6 +14,7 @@ class Chat {
 }
 
 // TODO: Add proper filetype support. File should either be parsed on-device, or uploaded to the server.
+// TODO: See https://github.com/adithya-s-k/omniparse
 // TODO: Implement dynamic pathing based upon filetypes.
 enum Filetype {
   pdf,

@@ -68,26 +68,17 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
               crossAxisAlignment: CrossAxisAlignment.end,
               // TODO: Implement the context upload buttons
               children: [
-                Expanded( // TODO: File context upload
+                Expanded( // TODO: Video context upload
                   child: Padding(
                     padding: const EdgeInsets.all(buttonPadding),
                     child: IconButton(
                       icon: const Icon(
-                        Icons.file_upload_outlined,
-                        color: AppTheme.darkest,
+                        Icons.videocam_outlined,
+                        color: AppTheme.accent2,
                         size: 30,
                       ),
-                      onPressed: () async {
-                        final picker = FilePicker.platform;
-                        final result = await picker.pickFiles(allowMultiple: true); // Allow multiple files
-                        if (result != null) {
-                          for (final platformFile in result.files) {
-                            // TODO: Upload file to server
-                            final file = File(platformFile.path!);
-                          }
-                        } else {
-                          print('User canceled file selection');
-                        }
+                      onPressed: () {
+                        print('IconButton pressed ...');
                       },
                     ),
                   ),
@@ -98,7 +89,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     child: IconButton(
                       icon: const Icon(
                         Icons.photo_outlined,
-                        color: AppTheme.darkest,
+                        color: AppTheme.accent2,
                         size: 30,
                       ),
                       onPressed: () async {
@@ -119,28 +110,37 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     ),
                   ),
                 ),
-                Expanded( // TODO: Video context upload
+                Expanded( // TODO: File context upload
                   child: Padding(
                     padding: const EdgeInsets.all(buttonPadding),
                     child: IconButton(
                       icon: const Icon(
-                        Icons.videocam_outlined,
-                        color: AppTheme.darkest,
+                        Icons.file_upload_outlined,
+                        color: AppTheme.accent2,
                         size: 30,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        final picker = FilePicker.platform;
+                        final result = await picker.pickFiles(allowMultiple: true); // Allow multiple files
+                        if (result != null) {
+                          for (final platformFile in result.files) {
+                            // TODO: Upload file to server
+                            final file = File(platformFile.path!);
+                          }
+                        } else {
+                          print('User canceled file selection');
+                        }
                       },
                     ),
                   ),
                 ),
-                Expanded( // TODO: Camera context upload
+                Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(buttonPadding),
                     child: IconButton(
                       icon: const Icon(
                         Icons.camera_alt_outlined,
-                        color: AppTheme.darkest,
+                        color: AppTheme.accent2,
                         size: 30,
                       ),
                       onPressed: () async {
@@ -148,11 +148,10 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                         final image = await picker.pickImage(source: ImageSource.camera);
 
                         if (image != null) {
-                          // TODO: Upload to server and add to conversation.chats
                           final i = Backend.convertToBase64(File(image.path));
+
+                          // TODO: Add to widget rather than display in conversation thread.
                           Backend.loadedConversation.add(Chat.image(i.toString(), true, 1));
-                        } else {
-                          print('User canceled photo capture');
                         }
                       },
                     ),
@@ -164,7 +163,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                     child: IconButton(
                       icon: Icon(
                         Backend.stt.speechToText.isNotListening ? Icons.mic_off_outlined : Icons.mic_none,
-                        color: AppTheme.darkest,
+                        color: AppTheme.accent2,
                         size: 30,
                       ),
                       onPressed: () {
@@ -192,6 +191,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                     child: TextFormField(
+                      keyboardAppearance: Brightness.dark,
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
@@ -246,7 +246,7 @@ class _PromptBoxWidgetState extends State<PromptBoxWidget> {
                           },
                           child: const Icon(
                             Icons.send,
-                            color: AppTheme.primary,
+                            color: AppTheme.accent,
                             size: 30,
                           ),
                         ),
