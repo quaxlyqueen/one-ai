@@ -16,7 +16,7 @@ import (
 )
 
 // TEST VALUES:
-// KEY: passphrasewhichneedstobe32bytes! // TODO: Test with 256 bytes
+// KEY: passphrasewhichneedstobe32bytes! // TODO: Test with 256 bits
 // INPUT: The ultimate question: of life, the universe, of everything!
 // SHA-1 HASH: 0c6ca28f5607d86e5426b46795e0fa827f1627d6
 // BASE64 HASH: string DGyij1YH2G5UJrRnleD6gn8WJ9Y=
@@ -33,7 +33,7 @@ type request struct {
 
 var requests []request
 
-// TODO: Test if 256 byte key works.
+// TODO: Test if 256 bit key works.
 // TODO: Dynamically get key? Need to research best way to store private keys between two devices.
 var key = []byte("passphrasewhichneedstobe32bytes!")
 
