@@ -2,11 +2,10 @@ package main
 
 import (
 	"encoding/base64"
-	//"encoding/json"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"net/http"
-	"time"
 
 	"crypto/aes"
 	"crypto/cipher"
@@ -18,106 +17,82 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 )
 
-// TODO: Test with 256 bits
-// TEST VALUES:
-// KEY: passphrasewhichneedstobe32bytes! 
-// INPUT: The ultimate question: of life, the universe, of everything!
-// SHA-1 HASH: 0c6ca28f5607d86e5426b46795e0fa827f1627d6
-// BASE64 HASH: string DGyij1YH2G5UJrRnleD6gn8WJ9Y=
-// AES OUTPUT: []uint8{104, 215, 184, 35, 194, 120, 115, 112, 133, 21, 160, 158, 11, 136, 201, 160, 233, 3, 12, 29, 133, 211, 207, 98, 35, 199, 89, 31, 203, 230, 39, 210, 225, 99, 96, 101, 3, 5, 198, 82, 243, 179, 176, 217, 8, 4, 63, 22, 134, 184, 68, 102, 255, 183, 176, 172, 6, 176, 249, 28, 127, 120, 235, 135, 73, 235, 249, 118, 194, 4, 137, 27, 158, 190, 134, 68, 21, 105, 26, 134, 10, 224, 233, 115, 28, 0, 153, 209}
-// HEX AES: "68 D7 B8 23 C2 78 73 70 85 15 A0 9E B 88 C9 A0 E9 3 C 1D 85 D3 CF 62 23 C7 59 1F CB E6 27 D2 E1 63 60 65 3 5 C6 52 F3 B3 B0 D9 8 4 3F 16 86 B8 44 66 FF B7 B0 AC 6 B0 F9 1C 7F 78 EB 87 49 EB F9 76 C2 4 89 1B 9E BE 86 44 15 69 1A 86 A E0 E9 73 1C 0 99 D1"
-
-var rawHash = "DGyij1YH2G5UJrRnleD6gn8WJ9Y="
-
-type Request struct {
-	//UserID    string `json:"id"`
-	Prompt string `json:"prompt"`
-	Sum    string `json:"sum"`
+type Communication struct {
+	Communication string `json:"communication"`
+	Hash          string `json:"hash"`
 }
 
-var requests []Request
+var requests []Communication
 
 // TODO: Test if 256 bit key works.
 // TODO: Dynamically get key? Need to research best way to store private keys between two devices.
 var key = []byte("passphrasewhichneedstobe32bytes!")
 
-func verifyToken(tokenString string) error {
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		return key, nil
-	})
-
-	if err != nil {
-		return err
-	}
-
-	if !token.Valid {
-		return fmt.Errorf("invalid token")
-	}
-
-	return nil
+func hash(text string) string {
+	hasher := sha1.New()
+	hasher.Write([]byte(text))
+	return base64.URLEncoding.EncodeToString(hasher.Sum(nil))
 }
 
-func createToken(username string) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256,
-		jwt.MapClaims{
-			"username": username,
-			"exp":      time.Now().Add(time.Hour * 24).Unix(),
-		})
-
-	tokenString, err := token.SignedString(key)
-	if err != nil {
-		return "", err
+func encrypt(gc *gin.Context) {
+	var newCommunication Communication
+	if err := gc.BindJSON(&newCommunication); err != nil {
+		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
 	}
 
-	return tokenString, nil
-}
+	text := []byte(newCommunication.Communication)
 
-func encrypt() {
-	text := []byte("The ultimate question: of life, the universe, of everything!")
-
-	// generate a new aes cipher using our 32 byte long key
 	c, err := aes.NewCipher(key)
-	// if there are any errors, handle them
 	if err != nil {
-		fmt.Println(err)
+		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
-	// gcm or Galois/Counter Mode, is a mode of operation
-	// for symmetric key cryptographic block ciphers
-	// - https://en.wikipedia.org/wiki/Galois/Counter_Mode
 	gcm, err := cipher.NewGCM(c)
-	// if any error generating new GCM
-	// handle them
 	if err != nil {
-		fmt.Println(err)
+		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
-	// creates a new byte array the size of the nonce
-	// which must be passed to Seal
 	nonce := make([]byte, gcm.NonceSize())
-	// populates our nonce with a cryptographically secure
-	// random sequence
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		fmt.Println(err)
+		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
-	// here we encrypt our text using the Seal function
-	// Seal encrypts and authenticates plaintext, authenticates the
-	// additional data and appends the result to dst, returning the updated
-	// slice. The nonce must be NonceSize() bytes long and unique for all
-	// time, for a given key.
-	fmt.Println(gcm.Seal(nonce, nonce, text, nil))
+	var b []byte = gcm.Seal(nonce, nonce, text, nil)
+	hex, err := convertBytesToHex(b)
+	if(err != nil) {
+		fmt.Println(err)
+	}
+	var test string = "{data: " + hex + ", hash: " + hash(string(text)) + "}"
 
-	//// the WriteFile method returns an error if unsuccessful
-	//err = ioutil.WriteFile("myfile", gcm.Seal(nonce, nonce, text, nil), 0777)
-	//// handle this error
-	//if err != nil {
-	//	// print it out
-	//	fmt.Println(err)
-	//}
+	gc.IndentedJSON(http.StatusCreated, gin.H{"message": test})
+}
+
+func convertBytesToHex(b []byte) (string, error) {
+	// Handle nil pointer case
+	if b == nil {
+		return "", errors.New("nil pointer provided for hex string")
+	}
+
+	// Split the hex string by spaces
+	var h string = hex.EncodeToString(b)
+	var builder strings.Builder
+  for i := 0; i < len(h); i += 2 {
+  	end := i + 2
+    if end > len(h) {
+        end = len(h)
+    }
+    chunk := h[i:end]
+    builder.WriteString(chunk)
+    if end < len(h) {
+        builder.WriteString(" ")
+    }
+	}
+
+	// Return the slice of uint8 and any errors encountered
+	return builder.String(), nil
 }
 
 func convertHexToBytes(hexString *string) ([]uint8, error) {
@@ -148,9 +123,9 @@ func convertHexToBytes(hexString *string) ([]uint8, error) {
 	return data, nil
 }
 
-func decrypt(input *Request) bool {
+func decrypt(input *Communication) bool {
 	//ciphertext, err := ioutil.ReadFile("myfile")
-	ciphertext, err := convertHexToBytes(&input.Prompt)
+	ciphertext, err := convertHexToBytes(&input.Communication)
 
 	// if our program was unable to read the file
 	// print out the reason why it can't
@@ -179,30 +154,30 @@ func decrypt(input *Request) bool {
 		fmt.Println(err)
 	}
 	s := string(plaintext)
-	if validateHash(s) {
-		input.Prompt = s
+	if validateHash(s, input.Hash) {
+		input.Communication = s
 		return true
 	}
-	input.Prompt = "DATA CORRUPTED OR TAMPERED"
+	input.Communication = "DATA CORRUPTED OR TAMPERED"
 	return false
 }
 
 // Validate there's no tampering with SHA-1 sum. The decrypted hash and the transmitted hash should be identical.
-func validateHash(decrypted string) bool {
+func validateHash(decrypted string, hash string) bool {
 	// Calculate the SHA256 sum of the decrypted request
 	hasher := sha1.New()
 	hasher.Write([]byte(decrypted))
 	decryptedHashString := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
 
 	// TODO: Add error handling if hash doesn't match.
-	return decryptedHashString == rawHash
+	return decryptedHashString == hash
 }
 
 // User HTTP GET request has the prompt decrypted and verified with a SHA-1 checksum.
 // If there's been no data corruption, re-construct user prompt for ollama
 // TODO: Eventually, add additional logic that will allow for re-direction and contextual awareness (pre-processing)
-func promptRequest(c *gin.Context) {
-	var newInput Request
+func request(c *gin.Context) {
+	var newInput Communication
 
 	//Call BindJSON to bind the received JSON to
 	if err := c.BindJSON(&newInput); err != nil {
@@ -220,7 +195,8 @@ func promptRequest(c *gin.Context) {
 
 func main() {
 	router := gin.Default()
-	router.POST("/prompt", promptRequest)
+	router.POST("/request", request)
+	router.POST("/encrypt", encrypt)
 
 	err := router.Run("0.0.0.0:8000")
 	if err != nil {
