@@ -1,34 +1,65 @@
 package main
 
 import (
-	"encoding/base64"
-	"encoding/hex"
-	"fmt"
-	"io"
-	"net/http"
-
+	//"context"
 	"crypto/aes"
 	"crypto/cipher"
+	//"sync"
+
 	"crypto/rand"
 	"crypto/sha1"
-
+	"encoding/base64"
+	"encoding/hex"
+	//"encoding/json"
 	"errors"
+	"fmt"
+
+	"io"
+	"log"
+	"net/http"
+
+	//"os"
+	//"os/signal"
 	"strconv"
 	"strings"
+	"time"
 
-	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
+	"github.com/gorilla/mux"
 )
 
-type Communication struct {
-	Communication string `json:"communication"`
-	Hash          string `json:"hash"`
-}
-
-var requests []Communication
-
-// TODO: Test if 256 bit key works.
 // TODO: Dynamically get key? Need to research best way to store private keys between two devices.
 var key = []byte("passphrasewhichneedstobe32bytes!")
+
+func createToken(username string) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256,
+		jwt.MapClaims{
+			"username": username,
+			"exp":      time.Now().Add(time.Hour * 24).Unix(),
+		})
+
+	jwtToken, err := token.SignedString(key)
+	if err != nil {
+		return "Error creating JWT.", err
+	}
+	return jwtToken, nil
+}
+
+func verifyToken(tokenString string) error {
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return key, nil
+	})
+
+	if err != nil {
+		return err
+	}
+
+	if !token.Valid {
+		return fmt.Errorf("invalid token")
+	}
+
+	return nil
+}
 
 func hash(text string) string {
 	hasher := sha1.New()
@@ -36,38 +67,37 @@ func hash(text string) string {
 	return base64.URLEncoding.EncodeToString(hasher.Sum(nil))
 }
 
-func encrypt(gc *gin.Context) {
+func encrypt() {
 	var newCommunication Communication
-	if err := gc.BindJSON(&newCommunication); err != nil {
-		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
-		return
-	}
 
 	text := []byte(newCommunication.Communication)
 
 	c, err := aes.NewCipher(key)
 	if err != nil {
-		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+		//gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
 	gcm, err := cipher.NewGCM(c)
 	if err != nil {
-		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+		//gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
 	nonce := make([]byte, gcm.NonceSize())
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+		//gc.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
 	}
 
 	var b []byte = gcm.Seal(nonce, nonce, text, nil)
 	hex, err := convertBytesToHex(b)
-	if(err != nil) {
+	if err != nil {
 		fmt.Println(err)
 	}
 	var test string = "{data: " + hex + ", hash: " + hash(string(text)) + "}"
-
-	gc.IndentedJSON(http.StatusCreated, gin.H{"message": test})
+	log.Println("encrypted string:" + test)
+	//gc.IndentedJSON(http.StatusCreated, gin.H{"message": test})
 }
 
 func convertBytesToHex(b []byte) (string, error) {
@@ -79,16 +109,16 @@ func convertBytesToHex(b []byte) (string, error) {
 	// Split the hex string by spaces
 	var h string = hex.EncodeToString(b)
 	var builder strings.Builder
-  for i := 0; i < len(h); i += 2 {
-  	end := i + 2
-    if end > len(h) {
-        end = len(h)
-    }
-    chunk := h[i:end]
-    builder.WriteString(chunk)
-    if end < len(h) {
-        builder.WriteString(" ")
-    }
+	for i := 0; i < len(h); i += 2 {
+		end := i + 2
+		if end > len(h) {
+			end = len(h)
+		}
+		chunk := h[i:end]
+		builder.WriteString(chunk)
+		if end < len(h) {
+			builder.WriteString(" ")
+		}
 	}
 
 	// Return the slice of uint8 and any errors encountered
@@ -123,7 +153,8 @@ func convertHexToBytes(hexString *string) ([]uint8, error) {
 	return data, nil
 }
 
-func decrypt(input *Communication) bool {
+func decrypt(input *Communication, output *Chat) bool {
+	// TODO: Add testing flag for easier manipulation.
 	//ciphertext, err := ioutil.ReadFile("myfile")
 	ciphertext, err := convertHexToBytes(&input.Communication)
 
@@ -155,7 +186,7 @@ func decrypt(input *Communication) bool {
 	}
 	s := string(plaintext)
 	if validateHash(s, input.Hash) {
-		input.Communication = s
+		output.Content = s
 		return true
 	}
 	input.Communication = "DATA CORRUPTED OR TAMPERED"
@@ -173,33 +204,27 @@ func validateHash(decrypted string, hash string) bool {
 	return decryptedHashString == hash
 }
 
-// User HTTP GET request has the prompt decrypted and verified with a SHA-1 checksum.
-// If there's been no data corruption, re-construct user prompt for ollama
-// TODO: Eventually, add additional logic that will allow for re-direction and contextual awareness (pre-processing)
-func request(c *gin.Context) {
-	var newInput Communication
-
-	//Call BindJSON to bind the received JSON to
-	if err := c.BindJSON(&newInput); err != nil {
-		return
+// Serve the authentication and encryption layer to a provided local port.
+// Authentication takes place solely on the backend.
+func serveAuthentication(
+	router *mux.Router,
+	port int,
+) {
+	// TODO: Add error handling
+	authR := router.Host("http://localhost").Subrouter()
+	authSrv := &http.Server{
+		Addr:         "0.0.0.0:" + string(port),
+		WriteTimeout: time.Second * 15,
+		ReadTimeout:  time.Second * 15,
+		IdleTimeout:  time.Second * 60,
+		Handler:      authR,
 	}
 
-	if decrypt(&newInput) {
-		requests = append(requests, newInput)
-		c.IndentedJSON(http.StatusCreated, newInput) // TODO: Formulate prompt and transfer to AI layer to formulate new JSON response back
-	} else {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Failed checksum. Presumably data corrupted."})
+	go func() {
+		if err := authSrv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Println(err)
+		}
+	}()
 
-	}
-}
-
-func main() {
-	router := gin.Default()
-	router.POST("/request", request)
-	router.POST("/encrypt", encrypt)
-
-	err := router.Run("0.0.0.0:8000")
-	if err != nil {
-		return
-	}
+	log.Println("Auth server is running on port " + string(port))
 }
