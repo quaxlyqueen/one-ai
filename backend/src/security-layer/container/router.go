@@ -181,45 +181,43 @@ func convertHexToBytes(hexString *string) ([]uint8, error) {
 }
 
 func decrypt(input *Communication, output *Chat) bool {
-	return true // TODO: Add testing flag for easier manipulation.
-	/*
-		//ciphertext, err := ioutil.ReadFile("myfile")
-		ciphertext, err := convertHexToBytes(&input.Communication)
+	// TODO: Add testing flag for easier manipulation.
+	//ciphertext, err := ioutil.ReadFile("myfile")
+	ciphertext, err := convertHexToBytes(&input.Communication)
 
-		// if our program was unable to read the file
-		// print out the reason why it can't
-		if err != nil {
-			fmt.Println(err)
-		}
+	// if our program was unable to read the file
+	// print out the reason why it can't
+	if err != nil {
+		fmt.Println(err)
+	}
 
-		c, err := aes.NewCipher(key)
-		if err != nil {
-			fmt.Println(err)
-		}
+	c, err := aes.NewCipher(key)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-		gcm, err := cipher.NewGCM(c)
-		if err != nil {
-			fmt.Println(err)
-		}
+	gcm, err := cipher.NewGCM(c)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-		nonceSize := gcm.NonceSize()
-		if len(ciphertext) < nonceSize {
-			fmt.Println(err)
-		}
+	nonceSize := gcm.NonceSize()
+	if len(ciphertext) < nonceSize {
+		fmt.Println(err)
+	}
 
-		nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
-		plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
-		if err != nil {
-			fmt.Println(err)
-		}
-		s := string(plaintext)
-		if validateHash(s, input.Hash) {
-			output.Content = s
-			return true
-		}
-		input.Communication = "DATA CORRUPTED OR TAMPERED"
-		return false
-	*/
+	nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
+	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	s := string(plaintext)
+	if validateHash(s, input.Hash) {
+		output.Content = s
+		return true
+	}
+	input.Communication = "DATA CORRUPTED OR TAMPERED"
+	return false
 }
 
 // Validate there's no tampering with SHA-1 sum. The decrypted hash and the transmitted hash should be identical.
