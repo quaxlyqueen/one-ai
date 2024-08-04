@@ -53,7 +53,6 @@ In the meantime:
    be a command like `sudo cloudflared service install areallylonghash@sha-256?`
 
 TODO:
-
   Urgent:
   - [x] Basic Documentation
 
@@ -62,10 +61,10 @@ TODO:
     - [ ] Cloudflare Tunnel setup via cloudflared
     - [ ] Daemonize service
 
-  - [ ] Encryption
+  - [x] Encryption
     - [x] SHA-1 hash API request/response
     - [x] Encrypt API request
-    - [ ] Encrypt API response
+    - [x] Encrypt API response
 
   - [ ] Dockerize backend
     - [ ] Broke Dockerfile, need to expose additional ports.

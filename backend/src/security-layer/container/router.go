@@ -105,7 +105,7 @@ func createToken(username string) (string, error) {
 
 func verifyToken(tokenString string) error {
    token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-      return secretKey, nil
+      return key, nil
    })
   
    if err != nil {
