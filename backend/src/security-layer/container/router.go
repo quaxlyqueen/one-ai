@@ -24,6 +24,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/gorilla/mux"
 )
 
@@ -87,6 +88,36 @@ var chats []Chat
 // TODO: Test if 256 bit key works.
 // TODO: Dynamically get key? Need to research best way to store private keys between two devices.
 var key = []byte("passphrasewhichneedstobe32bytes!")
+
+func createToken(username string) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256,
+			jwt.MapClaims {
+			"username": username,
+			"exp": time.Now().Add(time.Hour * 24).Unix(),
+			})
+
+	jwtToken, err := token.SignedString(key)
+	if err != nil {
+		return "Error creating JWT.", err
+	}
+	return jwtToken, nil
+}
+
+func verifyToken(tokenString string) error {
+   token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+      return secretKey, nil
+   })
+  
+   if err != nil {
+      return err
+   }
+  
+   if !token.Valid {
+      return fmt.Errorf("invalid token")
+   }
+  
+   return nil
+}
 
 func hash(text string) string {
 	hasher := sha1.New()
@@ -334,7 +365,8 @@ func main() {
 	var wg sync.WaitGroup
 
 	r := mux.NewRouter()
-	portfolioDir := "/home/violet/documents/development/portfolio/public_html/"
+	portfolioDir := "/Users/ashton/Documents/Development/portfolio/public_html/" // MacBook dir
+	//portfolioDir := "/home/violet/documents/development/portfolio/public_html/" // ThinkPad dir
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(portfolioDir)))
 
 	srv := &http.Server{
