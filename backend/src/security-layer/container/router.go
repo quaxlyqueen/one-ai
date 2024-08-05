@@ -14,64 +14,11 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+
+	"github.com/quaxlyqueen/services"
 )
 
-type Communication struct {
-	Communication string `json:"communication"`
-	Hash          string `json:"hash"`
-}
-
-type Response struct {
-	Model         string `json:"model"`
-	CreatedAt     string `json:"created_at"`
-	Response      string `json:"response"`
-	Done          bool   `json:"done"`
-	DoneReason    string `json:"done_reason"`
-	Context       []int  `json:"context"`
-	TotalDuration int    `json:"total_duration"`
-	LoadDuration  int    `json:"load_duration"`
-	PromptEC      int    `json:"prompt_eval_count"`
-	PromptED      int    `json:"prompt_eval_duration"`
-	EvalCount     int    `json:"eval_count"`
-	EvalDuration  int    `json:"eval_duration"`
-}
-
-// Chats are updated once the content is decrypted. Since this is never leaving
-// the server once decrypted, and possibly will not be saved (depending on user
-// settings), it will remain decrypted until it's time to transform into a
-// Communication JSON object, which is the HTTP response that is re-encrypted.
-
-// TODO: If the user has enabled conversation history, then save the encrypted
-// chats to the server's drive. Additionally, only accept incoming additional
-// messages from the user, rather than having the client re-send Chats already
-// stored on the server.
-type Chat struct {
-	Role    bool   `json:"role"`
-	Content string `json:"content"`
-}
-
-type PromptWHistory struct {
-	Model    string `json:"model"`
-	Messages []Chat `json:"messages"`
-	Stream   bool   `json:"stream"`
-}
-
-type ResponseWHistory struct {
-	Model         string `json:"model"`
-	CreatedAt     string `json:"created_at"`
-	Message       Chat   `json:"message"`
-	Done          bool   `json:"done"`
-	DoneReason    string `json:"done_reason"`
-	Context       []int  `json:"context"`
-	TotalDuration int    `json:"total_duration"`
-	LoadDuration  int    `json:"load_duration"`
-	PromptEC      int    `json:"prompt_eval_count"`
-	PromptED      int    `json:"prompt_eval_duration"`
-	EvalCount     int    `json:"eval_count"`
-	EvalDuration  int    `json:"eval_duration"`
-}
-
-var chats []Chat
+var chats []services.Chat
 
 // User HTTP GET request has the prompt decrypted and verified with a SHA-1 checksum.
 // If there's been no data corruption, re-construct user prompt for ollama
@@ -85,17 +32,17 @@ func chat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer r.Body.Close()
-	prompt := Communication{}
+	prompt := services.Communication{}
 	json.Unmarshal(input, &prompt)
 
-	newChat := Chat{}
+	newChat := services.Chat{}
 	newChat.Role = true
 	newChat.Content = prompt.Communication
 
-	if decrypt(&prompt, &newChat) {
+	if services.decrypt(&prompt, &newChat) {
 		chats = append(chats, newChat)
 
-		apiCall := PromptWHistory{}
+		apiCall := services.PromptWHistory{}
 		apiCall.Model = model
 		apiCall.Messages = chats
 		apiCall.Stream = false // TODO: Allow for this as a user setting...
@@ -119,7 +66,7 @@ func chat(w http.ResponseWriter, r *http.Request) {
 		}
 
 		defer r.Body.Close()
-		response := ResponseWHistory{}
+		response := services.ResponseWHistory{}
 		json.Unmarshal(output, &response)
 		log.Println(response)
 
@@ -128,14 +75,14 @@ func chat(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func request(w http.ResponseWriter, r *http.Request) {
+func generate(w http.ResponseWriter, r *http.Request) {
 	input, err := io.ReadAll(r.Body)
 	if err != nil {
 		return
 	}
 
 	defer r.Body.Close()
-	prompt := Communication{}
+	prompt := services.Communication{}
 	json.Unmarshal(input, &prompt)
 
 	// TODO: Add support for dynamically changing models.
@@ -162,7 +109,7 @@ func request(w http.ResponseWriter, r *http.Request) {
 	defer resp.Body.Close()
 
 	defer r.Body.Close()
-	response := Response{}
+	response := services.Response{}
 	json.Unmarshal(output, &response)
 
 	fmt.Println(response.Response) // Print the body as a string
@@ -171,15 +118,21 @@ func request(w http.ResponseWriter, r *http.Request) {
 }
 
 func serve() {
-
-}
-
-func init() {
 	var wg sync.WaitGroup
 
-	r := mux.NewRouter()
 	portfolioDir := "/home/violet/documents/development/portfolio/public_html/"
-	servePage(r, portfolioDir, "/", 1112)
+	endpoint := []string{
+		"/generate",
+		"/chat",
+	}
+	function := []func(http.ResponseWriter, *http.Request){
+		generate,
+		chat,
+	}
+
+	r := mux.NewRouter()
+	services.servePage(r, portfolioDir, "/", 1112)
+	services.serveApi(r, "ai.joshashton.dev", endpoint, function, 1113)
 
 	srv := &http.Server{
 		Addr: "0.0.0.0:1111",
