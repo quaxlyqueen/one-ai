@@ -16,39 +16,104 @@ import (
 	"github.com/gorilla/mux"
   "github.com/spf13/pflag"
   "github.com/spf13/viper"
-
-	"github.com/quaxlyqueen/services"
 )
 
-type WebpagesStructure struct {
-  Domain          string                `mapstructure:"domain"`
-  WebpageDir      string                `mapstructure:"webpage_dir"`
-  WebpagePort     string                `mapstructure:"webpage_port"`
-}
-
-type ConfigStructure struct {
-  TextModel       string                `mapstructure:"text_model"`
-  ImageModel      string                `mapstructure:"image_model"`
-  VideoModel      string                `mapstructure:"video_model"`
-  DocModel        string                `mapstructure:"doc_model"`
-  ResponseStream  string                `mapstructure:"response_stream"`
-
-  Domain          string                `mapstructure:"domain"`
-  RouterPort      string                `mapstructure:"router_port"`
-  API             string                `mapstructure:"api"`
-  APIPort         string                `mapstructure:"api_port"`
-  Webpages        WebpagesStructure     `mapstructure:"webpages"`
-}
-
-var CONFIG_DIR string
+var CONFIG_FILE string
 var config ConfigStructure
-var chats []services.Chat
+var chats []Chat
+
+// Interfaces with the internal API to encrypt a message and return it in a
+// Communication struct (see types.go). This should be called after a
+// response has been received from the internal API for the AI, but before
+// sending a HTTP response to the client.
+func encryptMessage(response string) Communication {
+	encryptedMessage := Communication{}
+	msgToEncrypt := Communication{}
+	msgToEncrypt.Communication = response
+	msgToEncrypt.Hash = ""
+	j, err := json.Marshal(msgToEncrypt)
+	if err != nil {
+		msgToEncrypt.Communication = ""
+		return msgToEncrypt
+	}
+	buf := strings.NewReader(string(j))
+
+	resp, err := http.Post("http://localhost:1113/encrypt", "application/json", buf)
+	if err != nil {
+		encryptedMessage.Communication = "Error connecting to internal auth API."
+		return encryptedMessage
+	}
+	defer resp.Body.Close()
+
+	// Decode the JSON response into a temporary struct
+	var responseData struct {
+		Communication string `json:"communication"`
+		Hash          string `json:"hash"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&responseData); err != nil {
+		encryptedMessage.Communication = "Error decoding JSON response from internal auth API."
+		return encryptedMessage
+	}
+
+	// Extract the desired fields and assign them to Communication struct
+	encryptedMessage.Communication = responseData.Communication
+	encryptedMessage.Hash = responseData.Hash
+
+	return encryptedMessage
+}
+
+// Interfaces with the internal API to decrypt a message and return the prompt
+// as a string.
+// TODO: Allow for additional fields for the client, ie. streaming, model, etc.
+func decryptMessage(comm Communication) Communication {
+	j, err := json.Marshal(comm)
+	if err != nil {
+		return Communication{}
+	}
+	buf := strings.NewReader(string(j))
+
+	resp, err := http.Post("http://localhost:1113/decrypt", "application/json", buf)
+	if err != nil {
+		return Communication{}
+	}
+	defer resp.Body.Close()
+
+	// Decode the JSON response into a temporary struct
+	var responseData struct {
+		Filetype      string `json:"filetype"`
+		Communication string `json:"communication"`
+		Hash          string `json:"hash"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&responseData); err != nil {
+		return Communication{}
+	}
+
+	return responseData
+}
+
+func sendError(w http.ResponseWriter, msg string) {
+	w.WriteHeader(http.StatusBadRequest)
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprintf(w, msg)
+}
+
+func sendResponse(w http.ResponseWriter, encryptedMessage Communication) {
+	encryptedResponse, err := json.Marshal(encryptedMessage)
+	if err != nil {
+		sendError(w, "Error marshalling JSON of encrypted message.")
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprintf(w, string(encryptedResponse))
+}
 
 // User HTTP GET request has the prompt decrypted and verified with a SHA-1 checksum.
 // If there's been no data corruption, re-construct user prompt for ollama
 // TODO: Eventually, add additional logic that will allow for re-direction and contextual awareness (pre-processing)
 func chat(w http.ResponseWriter, r *http.Request) {
-	model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
+		model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
 
 	input, err := io.ReadAll(r.Body)
 	if err != nil {
@@ -56,61 +121,86 @@ func chat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer r.Body.Close()
-	prompt := services.Communication{}
+	prompt := Communication{}
 	json.Unmarshal(input, &prompt)
+	prompt = decryptMessage(prompt)
 
-	newChat := services.Chat{}
+	// TODO: Add support for dynamically changing models.
+	switch prompt.Filetype {
+	case "txt":
+		model = "qwen:0.5b"
+	case "img":
+		model = "llava"
+	case "doc":
+		model = "omniparser"
+	}
+
+	newChat := Chat{}
 	newChat.Role = true
 	newChat.Content = prompt.Communication
 
-	if services.decrypt(&prompt, &newChat) {
-		chats = append(chats, newChat)
-
-		apiCall := services.PromptWHistory{}
-		apiCall.Model = model
-		apiCall.Messages = chats
-		apiCall.Stream = viper.Get("response_stream") 
-		log.Print("Pre-JSON ification: ")
-		log.Println(apiCall)
-
-		j, err := json.Marshal(apiCall)
-		buf := strings.NewReader(string(j))
-		log.Print("Post-JSON ification: ")
-		log.Println(string(j))
-
-		// Port 11434 corresponds to Ollama. Direct access to Ollama is restricted.
-		resp, err := http.Post("http://localhost:11434/api/chat", "application/json", buf)
-		if err != nil {
-			return
-		}
-
-		output, err := io.ReadAll(resp.Body)
-		if err != nil {
-			return
-		}
-
-		defer r.Body.Close()
-		response := services.ResponseWHistory{}
-		json.Unmarshal(output, &response)
-		log.Println(response)
-
+	if len(chats) == 0 {
+		chats = []Chat{newChat}
 	} else {
+		chats = append(chats, newChat)
+	}
+
+	apiCall := PromptWHistory{}
+	apiCall.Model = model
+	apiCall.Messages = chats
+
+	// TODO: Allow for this as a user setting...
+	apiCall.Stream = false
+
+	j, err := json.Marshal(apiCall)
+	buf := strings.NewReader(string(j))
+
+	// Port 11434 corresponds to Ollama. Direct access to Ollama is restricted.
+	resp, err := http.Post("http://localhost:11434/api/chat", "application/json", buf)
+	if err != nil {
+		sendError(w, "Error connecting to local process.")
 		return
 	}
+
+	output, err := io.ReadAll(resp.Body)
+	if err != nil {
+		sendError(w, "Error reading local process communication.")
+		return
+	}
+	defer r.Body.Close()
+
+	response := ResponseWHistory{}
+	json.Unmarshal(output, &response)
+	sendResponse(w, encryptMessage(response.Message.Content))
 }
 
 func generate(w http.ResponseWriter, r *http.Request) {
+	model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
 	input, err := io.ReadAll(r.Body)
 	if err != nil {
+		sendError(w, "Error reading request.")
 		return
 	}
 
 	defer r.Body.Close()
-	prompt := services.Communication{}
-	json.Unmarshal(input, &prompt)
+	prompt := Communication{}
+	err = json.Unmarshal(input, &prompt)
+	if err != nil {
+		sendError(w, "Error unmarshaling JSON.")
+		return
+	}
+
+	prompt = decryptMessage(prompt)
 
 	// TODO: Add support for dynamically changing models.
-	model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
+	switch prompt.Filetype {
+	case "txt":
+		model = "qwen:0.5b"
+	case "img":
+		model = "llava"
+	case "doc":
+		model = "omniparser"
+	}
 
 	apicall := "{\"model\": \""
 	apicall = apicall + model
@@ -120,25 +210,26 @@ func generate(w http.ResponseWriter, r *http.Request) {
 
 	buf := strings.NewReader(apicall)
 
-	// Port 11434 corresponds to Ollama. Direct access to Ollama is restricted.
 	resp, err := http.Post("http://localhost:11434/api/generate", "application/json", buf)
 	if err != nil {
+		sendError(w, "Error connecting to local process.")
 		return
 	}
 
 	output, err := io.ReadAll(resp.Body)
 	if err != nil {
+		sendError(w, "Error reading local process communication.")
 		return
 	}
 	defer resp.Body.Close()
 
-	defer r.Body.Close()
-	response := services.Response{}
-	json.Unmarshal(output, &response)
-
-	fmt.Println(response.Response) // Print the body as a string
-	// TODO: Encrypt response.Response and send back as a Communication JSON object.
-	//c.IndentedJSON(http.StatusCreated, resp)
+	response := Response{}
+	err = json.Unmarshal(output, &response)
+	if err != nil {
+		sendError(w, "Error unmarshaling local process JSON.")
+		return
+	}
+	sendResponse(w, encryptMessage(response.Response))
 }
 
 func serve() {
@@ -156,9 +247,12 @@ func serve() {
 	}
 
 	r := mux.NewRouter()
-	services.servePage(r, viper.Get("webpage_dir"), "/", viper.Get("webpage_port"))
-	services.serveApi(r, viper.Get("api"), endpoint, function, viper.Get("api_port"))
-	addr := "0.0.0.0:", viper.Get("router_port")
+ 	//for _, webpage := range config.Webpages {
+	//}
+  ServePage(r, config.WebpageDir, "/", config.WebpagePort)
+	ServeApi(r, config.API, endpoint, function, config.APIPort)
+	ServeAuthentication(r, config.AuthPort)
+	addr := "0.0.0.0:" + string(config.RouterPort)
 
 	srv := &http.Server{
 		Addr: addr,
@@ -178,7 +272,7 @@ func serve() {
 		}
 	}()
 
-	log.Println("Router is running on port ", viper.Get("router_port"))
+	log.Println("Router is running on port ", config.RouterPort)
 
 	c := make(chan os.Signal, 1)
 	// We'll accept graceful shutdowns when quit via SIGINT (Ctrl+Shift+C)
@@ -205,30 +299,26 @@ func parseCLI() {
   // Define CLI option, shorthand, default value, and description
   // TODO: Dynamically obtain default config location from environment variables.
   pflag.StringP("config", "c", "/home/violet/.config/one-ai/default.json", "Configuration file used in initializing One AI.")
+  //pflag.StringP("help", "h", "false", "Display information about using the One AI CLI.")
 
   pflag.Parse()
   viper.BindPFlags(pflag.CommandLine)
 
   // Retrieve CLI argument, either the default value or the user provided value.
-  CONFIG_DIR = viper.GetString("config")
+  CONFIG_FILE = viper.GetString("config")
 }
 
 func parseConfig() {
   viper.SetConfigType("json")
-  viper.SetConfigFile(CONFIG)
+  viper.SetConfigFile(CONFIG_FILE)
   viper.ReadInConfig()
 
-  err := viper.Unmarshal(&config)
-  if err != nil {
-  	fmt.Println("error unmarshalling config file")
-  	return
-  } else {
-  	fmt.Println(config)
-  }
+  // TODO: Handle error
+  viper.Unmarshal(&config)
 }
 
 func main() {
   parseCLI()
   parseConfig()
-  //serve()
+  serve()
 }
