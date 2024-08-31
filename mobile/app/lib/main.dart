@@ -4,6 +4,7 @@ import 'package:app/components/conversations_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
+import 'package:network_tools/network_tools.dart';
 
 import 'package:app/theme.dart';
 
@@ -57,9 +58,23 @@ class MyApp extends ConsumerWidget {
     const Center(child: ConversationsListWidget()),
   ];
 
+  Future<void> test() async {
+    for (final ActiveHost activeHost in await MdnsScanner.searchMdnsDevices()) {
+      final MdnsInfo? mdnsInfo = await activeHost.mdnsInfo;
+      print('''
+        Address: ${activeHost.address}
+        Port: ${mdnsInfo!.mdnsPort}
+        ServiceType: ${mdnsInfo.mdnsServiceType}
+        MdnsName: ${mdnsInfo.getOnlyTheStartOfMdnsName()}
+      ''');
+      // Do anything with the active host
+    }
+
+  }
+
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {o
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     return MaterialApp(
