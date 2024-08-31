@@ -14,10 +14,34 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+  "github.com/spf13/pflag"
+  "github.com/spf13/viper"
 
 	"github.com/quaxlyqueen/services"
 )
 
+type WebpagesStructure struct {
+  Domain          string                `mapstructure:"domain"`
+  WebpageDir      string                `mapstructure:"webpage_dir"`
+  WebpagePort     string                `mapstructure:"webpage_port"`
+}
+
+type ConfigStructure struct {
+  TextModel       string                `mapstructure:"text_model"`
+  ImageModel      string                `mapstructure:"image_model"`
+  VideoModel      string                `mapstructure:"video_model"`
+  DocModel        string                `mapstructure:"doc_model"`
+  ResponseStream  string                `mapstructure:"response_stream"`
+
+  Domain          string                `mapstructure:"domain"`
+  RouterPort      string                `mapstructure:"router_port"`
+  API             string                `mapstructure:"api"`
+  APIPort         string                `mapstructure:"api_port"`
+  Webpages        WebpagesStructure     `mapstructure:"webpages"`
+}
+
+var CONFIG_DIR string
+var config ConfigStructure
 var chats []services.Chat
 
 // User HTTP GET request has the prompt decrypted and verified with a SHA-1 checksum.
@@ -45,7 +69,7 @@ func chat(w http.ResponseWriter, r *http.Request) {
 		apiCall := services.PromptWHistory{}
 		apiCall.Model = model
 		apiCall.Messages = chats
-		apiCall.Stream = false // TODO: Allow for this as a user setting...
+		apiCall.Stream = viper.Get("response_stream") 
 		log.Print("Pre-JSON ification: ")
 		log.Println(apiCall)
 
@@ -118,24 +142,26 @@ func generate(w http.ResponseWriter, r *http.Request) {
 }
 
 func serve() {
+	// TODO: Authenticate user credentials to verify they are allowed to even access
 	var wg sync.WaitGroup
 
-	portfolioDir := "/home/violet/documents/development/portfolio/public_html/"
 	endpoint := []string{
 		"/generate",
 		"/chat",
 	}
+
 	function := []func(http.ResponseWriter, *http.Request){
 		generate,
 		chat,
 	}
 
 	r := mux.NewRouter()
-	services.servePage(r, portfolioDir, "/", 1112)
-	services.serveApi(r, "ai.joshashton.dev", endpoint, function, 1113)
+	services.servePage(r, viper.Get("webpage_dir"), "/", viper.Get("webpage_port"))
+	services.serveApi(r, viper.Get("api"), endpoint, function, viper.Get("api_port"))
+	addr := "0.0.0.0:", viper.Get("router_port")
 
 	srv := &http.Server{
-		Addr: "0.0.0.0:1111",
+		Addr: addr,
 		// Good practice to set timeouts to avoid Slowloris attacks.
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
@@ -152,7 +178,7 @@ func serve() {
 		}
 	}()
 
-	log.Println("Router is running on port 1111")
+	log.Println("Router is running on port ", viper.Get("router_port"))
 
 	c := make(chan os.Signal, 1)
 	// We'll accept graceful shutdowns when quit via SIGINT (Ctrl+Shift+C)
@@ -175,7 +201,34 @@ func serve() {
 	os.Exit(0)
 }
 
+func parseCLI() {
+  // Define CLI option, shorthand, default value, and description
+  // TODO: Dynamically obtain default config location from environment variables.
+  pflag.StringP("config", "c", "/home/violet/.config/one-ai/default.json", "Configuration file used in initializing One AI.")
+
+  pflag.Parse()
+  viper.BindPFlags(pflag.CommandLine)
+
+  // Retrieve CLI argument, either the default value or the user provided value.
+  CONFIG_DIR = viper.GetString("config")
+}
+
+func parseConfig() {
+  viper.SetConfigType("json")
+  viper.SetConfigFile(CONFIG)
+  viper.ReadInConfig()
+
+  err := viper.Unmarshal(&config)
+  if err != nil {
+  	fmt.Println("error unmarshalling config file")
+  	return
+  } else {
+  	fmt.Println(config)
+  }
+}
+
 func main() {
-	// TODO: Authenticate user credentials to verify they are allowed to even access
-	serve()
+  parseCLI()
+  parseConfig()
+  //serve()
 }
