@@ -15,7 +15,7 @@ func ServeApi(
 	domain string,
 	endpoint []string,
 	function []func(http.ResponseWriter, *http.Request),
-	port int,
+	port string,
 ) {
 	// TODO: Add error handling
 	apiR := router.Host(domain).Subrouter()
@@ -25,7 +25,7 @@ func ServeApi(
 	}
 
 	apiSrv := &http.Server{
-		Addr:         "0.0.0.0:" + string(port),
+		Addr:         "0.0.0.0:" + port,
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,
@@ -38,5 +38,5 @@ func ServeApi(
 		}
 	}()
 
-	log.Println("API server is running on port " + string(port))
+	log.Println("API server is running on port " + port)
 }

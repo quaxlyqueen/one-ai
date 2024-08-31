@@ -8,11 +8,11 @@ import (
 )
 
 // Serve a directory to a port.
-func ServePage(router *mux.Router, dest string, path string, port int) {
+func ServePage(router *mux.Router, dest string, path string, port string) {
 	router.PathPrefix(path).Handler(http.FileServer(http.Dir(dest)))
 
 	srv := &http.Server{
-		Addr: "0.0.0.0: " + string(port),
+		Addr: "0.0.0.0: " + port,
 		// Good practice to set timeouts to avoid Slowloris attacks.
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
@@ -27,5 +27,5 @@ func ServePage(router *mux.Router, dest string, path string, port int) {
 		}
 	}()
 
-	log.Println("Web server is running on port " + string(port))
+	log.Println("Web server is running on port " + port)
 }
