@@ -70,11 +70,11 @@ type ConfigStructure struct {
   ResponseStream  bool                	`mapstructure:"response_stream"`
 
   Domain          string                `mapstructure:"domain"`
-  RouterPort      int 									`mapstructure:"router_port"`
+  RouterPort      string 								`mapstructure:"router_port"`
   API             string                `mapstructure:"api"`
-  APIPort         int 									`mapstructure:"api_port"`
-  AuthPort 				int 									`mapstructure:"auth_port"`
+  APIPort         string 								`mapstructure:"api_port"`
+  AuthPort 				string 								`mapstructure:"auth_port"`
   //Webpages        WebpagesStructure     `mapstructure:"webpages"`
   WebpageDir      string                `mapstructure:"webpage_dir"`
-  WebpagePort     int 									`mapstructure:"webpage_port"`
+  WebpagePort     string 									`mapstructure:"webpage_port"`
 }
