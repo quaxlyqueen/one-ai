@@ -249,10 +249,10 @@ func serve() {
 	r := mux.NewRouter()
  	//for _, webpage := range config.Webpages {
 	//}
-  ServePage(r, config.WebpageDir, "/", string(config.WebpagePort))
-	ServeApi(r, config.API, endpoint, function, string(config.APIPort))
-	ServeAuthentication(r, string(config.AuthPort))
-	addr := "0.0.0.0:" + string(config.RouterPort)
+  ServePage(r, config.WebpageDir, "/", config.WebpagePort)
+	ServeApi(r, config.API, endpoint, function, config.APIPort)
+	ServeAuthentication(r, config.AuthPort)
+	addr := "0.0.0.0:" + config.RouterPort
 
 	srv := &http.Server{
 		Addr: addr,
