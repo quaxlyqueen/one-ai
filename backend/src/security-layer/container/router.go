@@ -113,7 +113,7 @@ func sendResponse(w http.ResponseWriter, encryptedMessage Communication) {
 // If there's been no data corruption, re-construct user prompt for ollama
 // TODO: Eventually, add additional logic that will allow for re-direction and contextual awareness (pre-processing)
 func chat(w http.ResponseWriter, r *http.Request) {
-		model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
+		model := "qwen2:1.5b" // qwen:1.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
 
 	input, err := io.ReadAll(r.Body)
 	if err != nil {
@@ -128,7 +128,7 @@ func chat(w http.ResponseWriter, r *http.Request) {
 	// TODO: Add support for dynamically changing models.
 	switch prompt.Filetype {
 	case "txt":
-		model = "qwen:0.5b"
+		model = "qwen2:1.5b"
 	case "img":
 		model = "llava"
 	case "doc":
@@ -175,7 +175,7 @@ func chat(w http.ResponseWriter, r *http.Request) {
 }
 
 func generate(w http.ResponseWriter, r *http.Request) {
-	model := "qwen:0.5b" // qwen:0.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
+	model := "qwen2:1.5b" // qwen2:1.5b used for testing while hosting from my laptop. llama3 seems to be the best to use normally.
 	input, err := io.ReadAll(r.Body)
 	if err != nil {
 		sendError(w, "Error reading request.")
@@ -195,7 +195,7 @@ func generate(w http.ResponseWriter, r *http.Request) {
 	// TODO: Add support for dynamically changing models.
 	switch prompt.Filetype {
 	case "txt":
-		model = "qwen:0.5b"
+		model = "qwen:1.5b"
 	case "img":
 		model = "llava"
 	case "doc":
@@ -298,7 +298,7 @@ func serve() {
 func parseCLI() {
   // Define CLI option, shorthand, default value, and description
   // TODO: Dynamically obtain default config location from environment variables.
-  pflag.StringP("config", "c", "/home/violet/.config/one-ai/default.json", "Configuration file used in initializing One AI.")
+  pflag.StringP("config", "c", "/home/violet/.config/one-ai/test.json", "Configuration file used in initializing One AI.")
   //pflag.StringP("help", "h", "false", "Display information about using the One AI CLI.")
 
   pflag.Parse()
