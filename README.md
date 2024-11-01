@@ -1,64 +1,64 @@
 One AI - Name TBD, this is just the shortest name I could think of and IDRC
 
-Usage:
-As of right now, running is not streamlined. Of particular note is using
-cloudflared tunnels. I've done my own Cloudflare Tunnel configuration,
-but in the future that will be automated as part of the installation process,
-along with much more. These instructions are (currently) only for Linux.
-In the meantime:
+INSTALLATION:
 
-1. Install dependencies listed below:
-      - ollama,
-      - go,
-      - cloudflared,
-      - flutter,
+1. Install and configure dependencies. On Arch Linux, run the following:
+    ```
+    # Install dependencies
+    sudo pacman -S ollama go cloudflared docker
+    yay -S flutter-bin
+    
+    # Configure ollama
+    ollama pull llama3
+    #ollama pull qwen:0.5b # Use this if hosting on older hardware.
 
-      - docker, (optional)
+    # Configure cloudflared
+    cloudflared tunnel login
 
-    eg. `pacman -S ollama go docker cloudflared; yay -s flutter;`
+    # Configure Docker
+    systemctl start docker
+    #systemctl enable docker
 
-2. Setup Ollama. If you're on a laptop (non-gaming variety), run `ollama pull
-   qwen:0.5b`. If you're running this on something with a beefy GPU, run
-   `ollama pull llama3`. Word of warning, qwen is really dumb, but it's light.
-   it tried to convince me there were 12 letters in the alphabet.
+    ```
 
-3. Start the web server via Docker or plain Golang:
-   a) Go to ./backend/src/security-layer/ and run `./init`. The exact script is
-      within the repository, but the commands can be ran as follows:
+2. Run the installation script. This will create, configure, and start the
+   Cloudflare Tunnel via cloudflared and create the initial configuration
+   file for One AI;
+
+3. Start the server via Docker or plain Golang:
+   a) Go to ./backend/src/security-layer/ and run `./init`.
         
-        ```
-        #!/bin/zsh
-        # Force delete the old container and re-initialize the container.
-        sudo docker rm -f security-layer
-
-        # Build the Docker image.
-        sudo docker build --tag security-layer:latest .
-
-        # Create a Docker container from the image and connect host port 8000 to container port 8000.
-        sudo docker run --name security-layer -d -p 8000:8000 security-layer:latest
-        ```
-
    b) Go to ./backend/src/security-layer/container and run `go run router.go`.
-   
-4. Edit ~/.cloudflared/config.yml to to indicate something along these lines:
-      ```
-      tunnel: another-long-weird-hash
-      credentials-file: /home/username/.cloudflared/another-long-weird-hash.json
-      ingress:
-        - hostname: somedomain.cloudflare.com
-          service: http://localhost:8080
-      ```
 
-5. Start the Cloudflare Tunnel on the host/server machine. For Linux, it should
-   be a command like `sudo cloudflared service install areallylonghash@sha-256?`
+   By default, this will expose 4 ports: the router at port 1111, the API on
+   1112, Auth/Session Management on 1113, and a static webpage on 1114. The
+   ports and webpage directory are configurable through
+   `~/.config/one-ai/test.json`.
+   
+CONFIGURATION:
+
+The primary configuration file is located at `~/.config/one-ai/`. It is 
+recommended to keep two files, `test.json` and `live.json`. This is purely
+for security purposes.
+
+The following are configurable parameters:
+    - `text_model`: Specify the LLM used through Ollama, eg. "llama3".
+    - `response_stream`: `true` or `false`, to receive communication as it is
+    generated or once it is completed generating.
+    - `domain`: The URL to be used to access the router.
+    - `router_port`: The port to be exposed to the internet.
+    - `api`: The URL to be used to access the One AI API.
+    - `api_port`: A port to be only accessible to the localhost.
+    - `auth_port`: A port to be only accessible to the localhost.
+    - `webpage_dir`: The directory containing a website.
+    - `webpage_port`: The port to expose the webpage directory to the internet.
 
 TODO:
-  Urgent:
   - [x] Basic Documentation
 
-  - [ ] Installation/setup script
+  - [x] Installation/setup script
     - [ ] AES-256 Private and Public key handshake via USB.
-    - [ ] Cloudflare Tunnel setup via cloudflared
+    - [x] Cloudflare Tunnel setup via cloudflared
     - [ ] Daemonize service
 
   - [x] Encryption
@@ -66,8 +66,9 @@ TODO:
     - [x] Encrypt API request
     - [x] Encrypt API response
 
-  - [ ] Dockerize backend
-    - [ ] Broke Dockerfile, need to expose additional ports.
+  - [x] Dockerize backend
+    - [x] Broke Dockerfile, need to expose additional ports.
+    - [ ] Dynamically expose ports based on primary configuration file.
 
   - [ ] Golang backend, connect to other services/projects
     - [x] Port 8080 -> self-hosted portfolio
@@ -81,7 +82,7 @@ TODO:
 
   - [ ] Connect Flutter Web App to server
 
-  Soon:
+  Later:
   - [ ] Raspberry Pi nightly package
 
   - [ ] Image support via llava
@@ -99,7 +100,28 @@ TODO:
     - [x] On-device Speech to Text
     - [x] On-device Text to Speech
 
-  Later:
+  router.go:
+  - [ ] Allow for additional fields for the client.
+  - [ ] Add preprocessing based upon filetypes.
+  - [ ] Add support for dynamically changing models.
+  - [ ] Actually make text streaming a toggleable setting.
+  - [ ] Authentication via JWT.
+  - [ ] Get config via CLI argument or environment variable.
+  - [ ] Add --test CLI argument when testing solely on localhost.
+  - [ ] Error handling, testing, & documentation.
+
+  authentication.go:
+  - [ ] 32 bit key generation & storage between server and client
+  - [ ] Add testing flag
+  - [ ] Error handling, testing, & documentation.
+
+  serveAPI.go:
+  - [ ] Error handling, testing, & documentation.
+
+  servePage.go:
+  - [ ] Error handling, testing, & documentation.
+
+  Much Later:
   - [ ] Document support via OmniParser
     - [ ] Encode files to Base64 to/from backend.
     - [ ] Connect to external services like Google Drive
