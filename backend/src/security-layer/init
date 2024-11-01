@@ -5,5 +5,10 @@ sudo docker rm -f security-layer
 # Build the Docker image.
 sudo docker build --tag security-layer:latest .
 
+<<<<<<< HEAD
 # Create a Docker container from the image and connect host port 1111 to container port 1111, and 1114 to 1114.
 sudo docker run --name security-layer -d -p 1111:1111 -p 1114:1114 security-layer:latest
+=======
+# Create a Docker container from the image and connect host port 8000 to container port 8000.
+sudo docker run --name security-layer -d -p 8000:8000 security-layer:latest
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403

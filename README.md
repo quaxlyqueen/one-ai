@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 One AI - Name TBD, this is just the shortest name I could think of.
 Also, user beware, this project is scuffed. Very early WIP.
 
@@ -60,6 +61,69 @@ TODO:
   - [x] Installation/setup script
     - [ ] AES-256 Private and Public key handshake via USB.
     - [x] Cloudflare Tunnel setup via cloudflared
+=======
+One AI - Name TBD, this is just the shortest name I could think of and IDRC
+
+Usage:
+As of right now, running is not streamlined. Of particular note is using
+cloudflared tunnels. I've done my own Cloudflare Tunnel configuration,
+but in the future that will be automated as part of the installation process,
+along with much more. These instructions are (currently) only for Linux.
+In the meantime:
+
+1. Install dependencies listed below:
+      - ollama,
+      - go,
+      - cloudflared,
+      - flutter,
+
+      - docker, (optional)
+
+    eg. `pacman -S ollama go docker cloudflared; yay -s flutter;`
+
+2. Setup Ollama. If you're on a laptop (non-gaming variety), run `ollama pull
+   qwen:0.5b`. If you're running this on something with a beefy GPU, run
+   `ollama pull llama3`. Word of warning, qwen is really dumb, but it's light.
+   it tried to convince me there were 12 letters in the alphabet.
+
+3. Start the web server via Docker or plain Golang:
+   a) Go to ./backend/src/security-layer/ and run `./init`. The exact script is
+      within the repository, but the commands can be ran as follows:
+        
+        ```
+        #!/bin/zsh
+        # Force delete the old container and re-initialize the container.
+        sudo docker rm -f security-layer
+
+        # Build the Docker image.
+        sudo docker build --tag security-layer:latest .
+
+        # Create a Docker container from the image and connect host port 8000 to container port 8000.
+        sudo docker run --name security-layer -d -p 8000:8000 security-layer:latest
+        ```
+
+   b) Go to ./backend/src/security-layer/container and run `go run router.go`.
+   
+4. Edit ~/.cloudflared/config.yml to to indicate something along these lines:
+      ```
+      tunnel: another-long-weird-hash
+      credentials-file: /home/username/.cloudflared/another-long-weird-hash.json
+      ingress:
+        - hostname: somedomain.cloudflare.com
+          service: http://localhost:8080
+      ```
+
+5. Start the Cloudflare Tunnel on the host/server machine. For Linux, it should
+   be a command like `sudo cloudflared service install areallylonghash@sha-256?`
+
+TODO:
+  Urgent:
+  - [x] Basic Documentation
+
+  - [ ] Installation/setup script
+    - [ ] AES-256 Private and Public key handshake via USB.
+    - [ ] Cloudflare Tunnel setup via cloudflared
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
     - [ ] Daemonize service
 
   - [x] Encryption
@@ -67,9 +131,14 @@ TODO:
     - [x] Encrypt API request
     - [x] Encrypt API response
 
+<<<<<<< HEAD
   - [x] Dockerize backend
     - [x] Broke Dockerfile, need to expose additional ports.
     - [ ] Dynamically expose ports based on primary configuration file.
+=======
+  - [ ] Dockerize backend
+    - [ ] Broke Dockerfile, need to expose additional ports.
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
 
   - [ ] Golang backend, connect to other services/projects
     - [x] Port 8080 -> self-hosted portfolio
@@ -83,7 +152,11 @@ TODO:
 
   - [ ] Connect Flutter Web App to server
 
+<<<<<<< HEAD
   Later:
+=======
+  Soon:
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
   - [ ] Raspberry Pi nightly package
 
   - [ ] Image support via llava
@@ -101,6 +174,7 @@ TODO:
     - [x] On-device Speech to Text
     - [x] On-device Text to Speech
 
+<<<<<<< HEAD
   router.go:
   - [ ] Allow for additional fields for the client.
   - [ ] Add preprocessing based upon filetypes.
@@ -123,6 +197,9 @@ TODO:
   - [ ] Error handling, testing, & documentation.
 
   Much Later:
+=======
+  Later:
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
   - [ ] Document support via OmniParser
     - [ ] Encode files to Base64 to/from backend.
     - [ ] Connect to external services like Google Drive

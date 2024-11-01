@@ -11,7 +11,11 @@ VERBOSE=0
 while getopts "d:p:n?s?c?v?h?" opt; do
     case "$opt" in
     h|\?)
+<<<<<<< HEAD
         echo "A utility script for quickly getting up and started with self-hosted applications."
+=======
+        echo "A utility script for quickly getting up and started with self-hosted applicaitons."
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
         echo "This script assumes the following:"
         echo "- You have already signed in to the cloudflared CLI application;"
         echo "- You own a domain through Cloudflare;"
@@ -40,6 +44,7 @@ done
 shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
+<<<<<<< HEAD
 # TODO: Connect with cross-platform package manager from quaxlyqueen/scripts
 # TODO: Setup ollama (pull LLM best fitting hardware).
 
@@ -103,3 +108,65 @@ createTunnel() {
 	  echo "Complete!"
 	fi
 }
+=======
+# TODO: Install dependencies.
+# TODO: Add CLI option to enable cloudflared
+
+# Initialize cloudflared
+#cloudflared tunnel login 
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Creating cloudflared tunnel..."
+fi
+output=$(cloudflared tunnel create $TUNNEL_NAME)
+TUNNEL_ID=$(echo "$output" | grep -o 'id [^ ]*' | awk -F ' ' '{print $2}')
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Created cloudflared tunnel, ID $TUNNEL_ID"
+fi
+
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Creating cloudflared tunnel credentials file..."
+fi
+echo "tunnel: $TUNNEL_ID" > $CLOUDFLARE_CONFIG
+echo "credentials-file: $HOME/.cloudflared/$TUNNEL_ID.json" >> $CLOUDFLARE_CONFIG
+echo "ingress:" >> $CLOUDFLARE_CONFIG
+
+# Add subdomain and associated ports
+len=${#SUBDOMAINS[@]}
+for (( i=0; i<${len}; i++ ));
+do
+  echo ${SUBDOMAINS[$i]}
+  echo ${PORTS[$i]}
+done
+echo $SUBDOMAINS
+for (( i=0; i<${len}; i++ ));
+do
+  echo "  - hostname: ${SUBDOMAINS[$i]}.$DOMAIN" >> $CLOUDFLARE_CONFIG
+  echo "    service: http://127.0.0.1:${PORTS[$i]}" >> $CLOUDFLARE_CONFIG
+  if [[ "$VERBOSE" -eq 1 ]]; then
+    echo "Associated ${SUBDOMAINS[$i]}.$DOMAIN to port ${PORTS[$i]}"
+  fi
+done
+
+echo "  - hostname: $DOMAIN" >> $CLOUDFLARE_CONFIG
+echo "    service: http://127.0.0.1:$PORT" >> $CLOUDFLARE_CONFIG
+echo "  - service: http_status:404" >> $CLOUDFLARE_CONFIG
+echo "Associated $DOMAIN to port $PORT"
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Created cloudflared tunnel credentials file"
+  cat $CLOUDFLARE_CONFIG
+fi
+
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Routing domains and sub-domains to the tunnel..."
+fi
+for (( i=0; i<${len}; i++ ));
+do
+  cloudflared tunnel route dns $TUNNEL_ID ${SUBDOMAINS[$i]}.$DOMAIN
+done
+cloudflared tunnel route dns $TUNNEL_ID $DOMAIN
+cloudflared tunnel run $TUNNEL_NAME
+
+if [[ "$VERBOSE" -eq 1 ]]; then
+  echo "Complete!"
+fi
+>>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
