@@ -1,4 +1,5 @@
-One AI - Name TBD, this is just the shortest name I could think of and IDRC
+One AI - Name TBD, this is just the shortest name I could think of.
+Also, user beware, this project is scuffed. Very early WIP.
 
 INSTALLATION:
 
