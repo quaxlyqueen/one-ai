@@ -42,19 +42,17 @@ The primary configuration file is located at `~/.config/one-ai/`. It is
 recommended to keep two files, `test.json` and `live.json`. This is purely
 for security purposes.
 
-The following are configurable parameters:
-    - `text_model`: Specify the LLM used through Ollama, eg. "llama3".
+The following are configurable parameters:<br>
+    - `text_model`: Specify the LLM used through Ollama, eg. "llama3".<br>
     - `response_stream`: `true` or `false`, to receive communication as it is
-    generated or once it is completed generating.
-    - `domain`: The URL to be used to access the router.
-    - `router_port`: The port to be exposed to the internet.
-    - `api`: The URL to be used to access the One AI API.
-    - `api_port`: A port to be only accessible to the localhost.
-    - `auth_port`: A port to be only accessible to the localhost.
-    - `webpage_dir`: The directory containing a website.
-    - `webpage_port`: The port to expose the webpage directory to the internet.
-
-
+    generated or once it is completed generating.<br>
+    - `domain`: The URL to be used to access the router.<br>
+    - `router_port`: The port to be exposed to the internet.<br>
+    - `api`: The URL to be used to access the One AI API.<br>
+    - `api_port`: A port to be only accessible to the localhost.<br>
+    - `auth_port`: A port to be only accessible to the localhost.<br>
+    - `webpage_dir`: The directory containing a website.<br>
+    - `webpage_port`: The port to expose the webpage directory to the internet.<br>
 
 TODO:
   Urgent:
