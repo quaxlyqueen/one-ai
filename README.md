@@ -72,10 +72,6 @@ TODO:
   - [x] Dockerize backend
     - [x] Broke Dockerfile, need to expose additional ports.
     - [ ] Dynamically expose ports based on primary configuration file.
-  - [ ] Dockerize backend
-    - [ ] Broke Dockerfile, need to expose additional ports.
-  - [ ] Dockerize backend
-    - [ ] Broke Dockerfile, need to expose additional ports.
 
   - [ ] Golang backend, connect to other services/projects
     - [x] Port 8080 -> self-hosted portfolio
