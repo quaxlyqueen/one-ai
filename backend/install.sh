@@ -11,11 +11,7 @@ VERBOSE=0
 while getopts "d:p:n?s?c?v?h?" opt; do
     case "$opt" in
     h|\?)
-<<<<<<< HEAD
-        echo "A utility script for quickly getting up and started with self-hosted applications."
-=======
         echo "A utility script for quickly getting up and started with self-hosted applicaitons."
->>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
         echo "This script assumes the following:"
         echo "- You have already signed in to the cloudflared CLI application;"
         echo "- You own a domain through Cloudflare;"
@@ -44,7 +40,6 @@ done
 shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
-<<<<<<< HEAD
 # TODO: Connect with cross-platform package manager from quaxlyqueen/scripts
 # TODO: Setup ollama (pull LLM best fitting hardware).
 
@@ -109,6 +104,7 @@ createTunnel() {
 	fi
 }
 =======
+=======
 # TODO: Install dependencies.
 # TODO: Add CLI option to enable cloudflared
 
@@ -169,4 +165,3 @@ cloudflared tunnel run $TUNNEL_NAME
 if [[ "$VERBOSE" -eq 1 ]]; then
   echo "Complete!"
 fi
->>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403

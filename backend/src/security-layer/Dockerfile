@@ -21,15 +21,12 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /security-layer
 # But we can document in the Dockerfile what ports
 # the application is going to listen on by default.
 # https://docs.docker.com/reference/dockerfile/#expose
-<<<<<<< HEAD
+
 # TODO: Need to dynamically expose ports based upon ~/.config/one-ai/test.json
 EXPOSE 1111
 EXPOSE 1112
 EXPOSE 1113
 EXPOSE 1114
-=======
-EXPOSE 8000
->>>>>>> 8e9b82829bebbb9a096236b505c2e8a17b8a9403
 
 # Run
 CMD ["/security-layer"]
